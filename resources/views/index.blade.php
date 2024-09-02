@@ -80,9 +80,9 @@
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#testimonials">Témoignages</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000" : "https://suisco.net" }}">SuiSco</a>
-                            </li>
+                            </li> -->
                             <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000#subscribe" : "https://suisco.net#subscribe"}}">Newsletter</a>
                             </li>
