@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-    <title>SuiSco Bus</title>
+    <title>Transport</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -109,7 +109,7 @@
                     </div>
                     <div class="box-custom-2-inner">
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
-                            SuiSco assure le transport des élèves du primaire<br>au lycée sur la région du GRAND LOMÉ.
+                            Transport Scolaire.
                         </p>
                         <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
                         <div class="contacts-default">
@@ -129,7 +129,6 @@
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
                                     <option value="" selected style="display: none !important;">Choisir un Service</option>
-                                    <option value="Mutuel">Mutuel</option>
                                     <option value="Standard">Standard</option>
                                     <option value="Premium">Premium</option>
                                 </select>
@@ -276,7 +275,7 @@
                         <!-- Nav tabs-->
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Bus</span></a></li>
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Transport</span></a></li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a></li>
                         </ul>
@@ -495,7 +494,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Bus | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>

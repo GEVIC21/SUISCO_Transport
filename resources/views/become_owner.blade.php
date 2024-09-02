@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-    <title>SuiSco Bus | Consignation</title>
+    <title>Transport | Consignation</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,7 +108,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h2 style="color:#fff;"><b>LA CONSIGNATION CHEZ SUISCO BUS</b></h2>
+                    <h2 style="color:#fff;"><b>LA CONSIGNATION CHEZ Transport</b></h2>
                     @yield('ol')
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="row">
                 <div class="col-sm-8" style="margin-bottom: 30px">
                    <ol>
-                       <li><b class="item-text">1- Qu’est-ce qu’un CONSIGNATAIRE chez SuiSco bus ? </b>
+                       <li><b class="item-text">1- Qu’est-ce qu’un CONSIGNATAIRE chez Transport ? </b>
                            <p>
                                C’est un parent qui a souscrit pour le transport scolaire d’un apprenant au moins et qui
                                souhaite bénéficié d’une réduction spéciale ou annulation des frais d’abonnement par enfant
@@ -134,7 +134,7 @@
                                 <li>Disposer d’un droit non négociable de réduction ou d’annulation sur les frais d’abonnement
                                     par siège consigné sur une durée d’une année scolaire renouvelable,</li>
                                 <li>Mutualiser les ressources pour un meilleur service de qualité pérenne,</li>
-                               <li>Droits de réservation d’un (Chauffeur & véhicule) du parc de SuiSco Bus pour des courses
+                               <li>Droits de réservation d’un (Chauffeur & véhicule) du parc de Transport pour des courses
                                    personnelles à des tarifs forfaitaires durant les heures non ouvrées de transports scolaires.<br><br></li>
                            </ul>
                        </li>
@@ -350,7 +350,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights"><span>&copy;&nbsp</span><span>Copyright 2020 SuiSco Bus | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp</span><span>Copyright 2020 Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>
