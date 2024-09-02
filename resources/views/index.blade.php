@@ -47,7 +47,7 @@
 </div>
 <div class="page">
     <!-- Page Header-->
-    <header class="section page-header page-header-1 gradient-1">
+    <header class="section page-header page-header-1 gradient-1" id="acceuil">
         <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -73,6 +73,8 @@
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="#acceuil" >Acceuil</a>
+                            </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#offers">Offres</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#advantages">Avantages</a>
@@ -91,14 +93,14 @@
                     </div>
                     <div class="rd-navbar-element bg-gray-4">
                         <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
-                            Devenir Propriétaire</a>
+                            Simulation Tarifs</a>
                     </div>
                     <div class="rd-navbar-dummy"></div>
                 </div>
             </nav>
         </div>
         <!-- FScreen-->
-        <div class="layout-4">
+        <div class="layout-4" >
             <div class="layout-4-item-right">
                 <div class="box-custom-2 bg-accent">
                     <div class="box-custom-2-bg">
@@ -139,13 +141,18 @@
                                 <label class="form-label" for="form-location">Adresse de la Maison</label><span class="form-icon mdi mdi-map-marker"></span>
                             </div>
                             <div class="form-wrap">
-                                <input class="form-input" id="form-location-2" type="text" name="school_address" data-constraints="@Required" required>
-                                <label class="form-label" for="form-location-2">Adresse de l'école</label><span class="form-icon mdi mdi-map-marker"></span>
+                                <!-- Select 2-->
+                                <select class="form-input select " name="schools_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-wrap">
                                 <!-- Select 2-->
-                                <select class="form-input select button-shadow" name="trajectory" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir le Trajet</option>
+                                <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Votre trajet</option>
                                     <option value="Aller Simple">Aller Simple</option>
                                     <option value="Retour Simple">Retour Simple</option>
                                     <option value="Aller-Retour">Aller-Retour</option>
