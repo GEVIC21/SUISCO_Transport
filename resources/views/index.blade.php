@@ -355,10 +355,10 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                        src="{{ asset('template/bus/images/testimonials-1-74x74.jpg') }}" alt="" width="74" height="74"/>
+                                        src="{{ asset('template/bus/images/1.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">Jane Williams</cite>
-                                        <p class="quote-modern-position">Cliente régulière</p>
+                                        <p class="quote-modern-position">Cadre d'une banque</p>
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +384,7 @@
                                          src="{{ asset('template/bus/images/testimonials-2-74x74.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">John Doe</cite>
-                                        <p class="quote-modern-position">Client régulier</p>
+                                        <p class="quote-modern-position">Administrateur Public</p>
                                     </div>
                                 </div>
                             </div>
@@ -405,10 +405,10 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/testimonials-3-74x74.jpg') }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/2.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">Kate Peterson</cite>
-                                        <p class="quote-modern-position">Cliente régulière</p>
+                                        <p class="quote-modern-position">Chef d'entreprise</p>
                                     </div>
                                 </div>
                             </div>

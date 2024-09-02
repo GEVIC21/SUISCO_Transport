@@ -67,9 +67,9 @@ class Parameter extends Model
     const DEFAULTS = [
         self::SHOP_PAGINATION => ['SHOP_PAGINATION', '12'],
         self::PRE_ORDER_VALIDATION_FEES => ["PRE-ORDER VALIDATION FEES", "1"],
-        self::BUS_MUTUAL_PRICE => ['BUS MUTUAL PRICE', '40 000 F cfa'],
-        self::BUS_STANDARD_PRICE => ['BUS STANDARD PRICE', '60 000 F cfa'],
-        self::BUS_PREMIUM_PRICE => ['BUS PREMIUM PRICE', '200 000 F cfa'],
+        self::BUS_MUTUAL_PRICE => ['BUS MUTUAL PRICE', '40 000 Fcfa/mois'],
+        self::BUS_STANDARD_PRICE => ['BUS STANDARD PRICE', '60 000 Fcfa/mois'],
+        self::BUS_PREMIUM_PRICE => ['BUS PREMIUM PRICE', '200 000 Fcfa/mois'],
         self::BEST_PARENTS_QUANTITY => ['BEST STUDENT PARENTS QUANTITY', '1'],
         self::LOAN_START_DATE => ['LOAN START DATE', '2020-05-10'],
         self::LOAN_END_DATE => ['LOAN END DATE', '2020-11-30'],
