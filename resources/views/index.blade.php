@@ -361,20 +361,20 @@
                                     <img class="quote-modern-avatar"
                                         src="{{ asset('template/bus/images/1.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Jane Williams</cite>
-                                        <p class="quote-modern-position">Cadre d'une banque</p>
+                                        <cite class="quote-modern-cite">Kodjo TELOU</cite>
+                                        <p class="quote-modern-position">Diplomate</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>J'ai trouvé que votre service est une expérience 5 étoiles.
-                                        Le chauffeur agréable et nous attendait dans le hall des arrivées.
+                                    <p>Votre service de transport a rendu mon deplacement plus agréable.
+                                        Le chauffeur connaissait parfaitement les raccourcis pour eviter le trafic.
                                         {{--Toutes les personnes avec qui nous avons communiqué étaient agréables et gaies.--}}</p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
@@ -387,18 +387,18 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/testimonials-2-74x74.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">John Doe</cite>
-                                        <p class="quote-modern-position">Administrateur Public</p>
+                                        <cite class="quote-modern-cite">Williams KLOUTSE</cite>
+                                        <p class="quote-modern-position">Chef d'entreprise</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Tout s'est parfaitement déroulé ! Des chauffeurs incroyablement ponctuels et sympathiques et le meilleur service !</p>
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
@@ -411,19 +411,20 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/2.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Kate Peterson</cite>
-                                        <p class="quote-modern-position">Chef d'entreprise</p>
+                                        <cite class="quote-modern-cite">Florence Afi AGBESSI</cite>
+                                        <p class="quote-modern-position">Cadre a ECOBANK</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Le service était excellent, merci. Mon chauffeur m'attendait aux arrivées avec un signe clair.
-                                        Il s'est présenté, était très poli et amical.</p>
+                                    <p>J'utilise regulierement ce service de transport et je suis toujours impressionnée par sa fiabilité.
+                                        les vehicules sont propres,et les horaires sont respectés.
+                                    </p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
