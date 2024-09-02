@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-    <title>Transport</title>
+
+    <title>SuiSco Transport</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -275,22 +276,25 @@
                         <!-- Nav tabs-->
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Transport</span></a></li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a></li>
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Transport</span></a></li>
+                            <!-- <li class="nav-item" role="presentation">
+                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a>
+                            </li> -->
                         </ul>
                         <!-- Tab panes-->
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tabs-1-1">
-                                <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
-                                    using it is to enter your name and mobile phone number. You’ll access:</p>
+                                <!-- <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
+                                    using it is to enter your name and mobile phone number. You’ll access:</p> -->
+                                    <p>Service de transport dédié aux élèves, enseignants et parents d’élèves.</p>
                                 <ul class="list-marked list-marked_secondary">
-                                    <li>Special offers</li>
-                                    <li>TAXPRO loyalty program</li>
-                                    <li>More pricing plans</li>
+                                    <li>Véhicules neuves</li>
+                                    <li>Assurance tous risques</li>
+                                    <li>Chauffeurs experimentés </li>
+                                    <li>Services personnalisés </li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="tabs-1-2">
+                            <!-- <div class="tab-pane fade" id="tabs-1-2">
                                 <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
                                     set your route in advance or pick a driver, a preferred car, and more:</p>
                                 <ul class="list-marked list-marked_secondary">
@@ -298,7 +302,8 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul>
-                            </div>
+                            </div> -->
+
                         </div>
                     </div>
                     <div class="group">
@@ -430,15 +435,14 @@
 
     <!-- CTA-->
     <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
-             data-parallax-img="{{ asset('template/bus/images/bg-image-5.jpg') }}">
+             data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
         <div class="parallax-content">
             <div class="container">
                 <div class="row row-50 justify-content-end">
                     <div class="col-md-6 col-lg-5">
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> on first order</h1>
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                            Our first-time customers get a great discount
-                            on their order.
+                            Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -464,7 +468,7 @@
                         <div><img src="{{ asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
                         <p><span style="max-width: 250px;">
                             SuiSco est une société spécialisée dans la numérisation des services autour de l’éducation et l’enseignement.
-                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570 - NIF 1000739551 - CNSS 68279.</span>
+                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570.</span>
                         </p>
                     </div>
 
@@ -479,14 +483,18 @@
                         </ul>
                         <div class="group group-xs">
                             <a class="link link-social-1 mdi mdi-facebook" target="_blank"
-                               href="https://www.facebook.com/SuiviScolair/" title="Facebook"></a>
+                               href="https://www.facebook.com/SuiviScolair/" title="Facebook">
+                            </a>
 
                             <a class="link link-social-1 mdi mdi-twitter" target="_blank"
-                               href="https://twitter.com/ScolaireSuivi" title="Twitter"></a>
+                               href="https://twitter.com/ScolaireSuivi" title="Twitter" style="pointer-events: none;" >
+                            </a>
 
                             {{--<a class="link link-social-1 mdi mdi-instagram" href="#"></a>--}}
-                            <a class="link link-social-1 mdi mdi-youtube-play" target="_blank"
-                               href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube"></a>
+
+                            <a  class="link link-social-1 mdi mdi-youtube-play" target="_blank"
+                               href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube" style="pointer-events: none;">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -494,7 +502,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 Transport | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>
