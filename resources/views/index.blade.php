@@ -256,9 +256,9 @@
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                             <div class="form-wrap" id="map" style="height: 350px;"></div>
                             <div class="form-wrap">
-                            <button type="button" id="locate-me" class="button button-block button-primary">
+                            <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                             Aller à ma position
-                            </button>
+                            </button> -->
                  </div>
 
 
@@ -362,8 +362,8 @@
      </script> -->
      
      <script>
-     document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([51.505, -0.09], 13);
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([6.1356, 1.2226], 15);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -378,15 +378,15 @@
                     var lon = position.coords.longitude;
 
                     // Centrer la carte sur la position actuelle
-                    map.setView([lat, lon], 13);
+                    map.setView([lat, lon], 17);
 
                     // Ajouter un marqueur à la position actuelle
                     if (currentMarker) {
                         map.removeLayer(currentMarker);
                     }
-                    currentMarker = L.marker([lat, lon]).addTo(map)
+                   /*  currentMarker = L.marker([lat, lon]).addTo(map)
                         .bindPopup('Vous êtes ici')
-                        .openPopup();
+                        .openPopup(); */
 
                     // Mettre à jour le champ caché avec les coordonnées du point actuel
                     document.getElementById('home_address').value = `${lat},${lon}`;
@@ -447,12 +447,16 @@
                 });
         }
 
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser();
+
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
         document.getElementById('locate-me').addEventListener('click', function() {
             locateUser();
-         });
-      });
-     </script>
+        });
+    });
+</script>
+
 
 
                             </div>
@@ -529,13 +533,13 @@
                             </div>
 
                          <div class="form-wrap">
-                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez les adresses pour simuler">
+                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                 <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                 <div class="form-wrap">
-                                <button type="button" id="locate-me2" class="button button-block button-primary">
+                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
                                 Aller à ma position
-                             </button>
+                             </button> -->
                         </div>
 
 
@@ -640,7 +644,7 @@
      
      <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var map2 = L.map('map2').setView([51.505, -0.09], 13);
+        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -667,15 +671,15 @@
                     var lon2 = position.coords.longitude;
 
                     // Centrer la carte sur la position actuelle
-                    map2.setView([lat2, lon2], 13);
+                    map2.setView([lat2, lon2], 17);
 
                     // Ajouter un marqueur à la position actuelle
                     if (userMarker2) {
                         map2.removeLayer(userMarker2);
                     }
-                    userMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                    /* userMarker2 = L.marker([lat2, lon2]).addTo(map2)
                         .bindPopup('Vous êtes ici')
-                        .openPopup();
+                        .openPopup(); */
                 },
                 function() {
                     alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
@@ -702,7 +706,7 @@
                     .bindPopup('Point de départ')
                     .openPopup();
                 clickCount2++;
-                alert("Choissisez un second point");
+                alert("Choisissez un second point");
             } else if (clickCount2 === 1) {
                 // Deuxième point (point d'arrivée)
                 if (endMarker2) {
@@ -726,12 +730,9 @@
                 console.log(document.getElementById('arrive_address_evaluation').value);
                 console.log(document.getElementById('distance_address_evaluation').value);
 
-                 // Mise a jour des valeurs dans le popup
-               /*  document.getElementById('modalDeparture').textContent = 'Point de départ: ' + document.getElementById('distance_address_evaluation').value;
-                document.getElementById('modalArrival').textContent = 'Point d\'arrivée: ' + document.getElementById('arrive_address_evaluation').value;
-                */ document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
+                // Mise à jour des valeurs dans le popup
+                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
                 document.getElementById('modalPrice').textContent = 'Prix: ' + price;
-
 
                 // Réinitialiser le comptage pour permettre une nouvelle sélection
                 clickCount2 = 0;
@@ -741,12 +742,16 @@
         // Ajouter un écouteur d'événement pour cliquer sur la carte
         map2.on('click', handleMapClick);
 
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser2();
+
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
         document.getElementById('locate-me2').addEventListener('click', function() {
             locateUser2();
         });
     });
 </script>
+
 
 
                             </div>
