@@ -21,3 +21,9 @@ Route::name('bus.')->group(function (){
     Route::post('/consignment/store', 'App\Http\Controllers\BusController@store_consignment')->name('consignment.store');
 });
 
+Route::name('admin.')->group(function (){
+    Route::get('/app', [\App\Http\Controllers\AdminController::class, 'app'])->name('app');
+});
+
+Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
+
