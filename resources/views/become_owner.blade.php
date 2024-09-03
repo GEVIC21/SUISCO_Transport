@@ -134,6 +134,7 @@
                                 <li>Disposer d’un droit non négociable de réduction ou d’annulation sur les frais d’abonnement
                                     par siège consigné sur une durée d’une année scolaire renouvelable,</li>
                                 <li>Mutualiser les ressources pour un meilleur service de qualité pérenne,</li>
+
                                <li>Droits de réservation d’un (Chauffeur & véhicule) du parc de SuiSco Transport pour des courses
                                    personnelles à des tarifs forfaitaires durant les heures non ouvrées de transports scolaires.<br><br></li>
                            </ul>

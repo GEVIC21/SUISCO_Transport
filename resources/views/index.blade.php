@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
+
     <title>SuiSco Transport</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
@@ -10,7 +11,9 @@
     <link rel="stylesheet" href="{{ asset('template/bus/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset("template/css/icon_flashy.css") }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
         .ie-panel {
             display: none;
@@ -46,7 +49,7 @@
 </div>
 <div class="page">
     <!-- Page Header-->
-    <header class="section page-header page-header-1 gradient-1">
+    <header class="section page-header page-header-1 gradient-1" id="acceuil">
         <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -72,6 +75,8 @@
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="#acceuil" >Acceuil</a>
+                            </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#offers">Offres</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#advantages">Avantages</a>
@@ -90,14 +95,14 @@
                     </div>
                     <div class="rd-navbar-element bg-gray-4">
                         <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
-                            Devenir Propriétaire</a>
+                            Simulation Tarifs</a>
                     </div>
                     <div class="rd-navbar-dummy"></div>
                 </div>
             </nav>
         </div>
         <!-- FScreen-->
-        <div class="layout-4">
+        <div class="layout-4" >
             <div class="layout-4-item-right">
                 <div class="box-custom-2 bg-accent">
                     <div class="box-custom-2-bg">
@@ -109,7 +114,7 @@
                     </div>
                     <div class="box-custom-2-inner">
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
-                            SuiSco assure le transport des élèves du primaire<br>au lycée sur la région du GRAND LOMÉ.
+                            Transport Scolaire.
                         </p>
                         <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
                         <div class="contacts-default">
@@ -129,23 +134,219 @@
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
                                     <option value="" selected style="display: none !important;">Choisir un Service</option>
-                                    <option value="Mutuel">Mutuel</option>
                                     <option value="Standard">Standard</option>
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
                             <div class="form-wrap">
-                                <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required>
-                                <label class="form-label" for="form-location">Adresse de la Maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                                <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required disabled>
+                                <label class="form-label" for="form-location">Choisissz l'adresse de votre maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                            
+
+            <div id="map" style="height: 350px;">
+
+            </div>
+
+
+            
+           <!--  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map.setView([lat, lon], 13);
+
+                        // Ajouter un marqueur à la position actuelle
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Vous êtes ici')
+                            .openPopup();
+                    }, function() {
+                        alert("Erreur de géolocalisation.");
+                    });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Variables pour stocker les points cliqués
+            var firstPoint = null;
+            var secondPoint = null;
+            var line = null;
+
+            // Appeler la fonction pour localiser l'utilisateur
+            locateUser();
+
+            // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                reverseGeocode(lat, lon, function(name) {
+                    if (!firstPoint) {
+                        // Premier clic
+                        firstPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Premier point cliqué: ' + name)
+                            .openPopup();
+                    } else if (!secondPoint) {
+                        // Deuxième clic
+                        secondPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Deuxième point cliqué: ' + name)
+                            .openPopup();
+
+                        // Calculer la distance entre les deux points
+                        var distance = map.distance([firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]);
+                        alert('Distance: ' + (distance / 1000).toFixed(2) + ' km');
+
+                        // Tracer une ligne entre les deux points
+                        if (line) {
+                            map.removeLayer(line);
+                        }
+                        line = L.polyline([[firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]], {color: 'blue'}).addTo(map);
+
+                        // Réinitialiser les points pour permettre de sélectionner de nouveaux points
+                        firstPoint = null;
+                        secondPoint = null;
+                    }
+                });
+            });
+        });
+    </script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map.setView([lat, lon], 13);
+
+                        // Ajouter un marqueur à la position actuelle
+                        /* L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Vous êtes ici')
+                            .openPopup() */;
+                    }, 
+                    function() {
+                        alert("Erreur de géolocalisation.");
+                    });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Marqueur actuel
+            var currentMarker = null;
+
+            // Appeler la fonction pour localiser l'utilisateur
+            locateUser();
+
+            // Ajouter un marqueur lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                // Appeler reverseGeocode pour obtenir le nom du lieu
+                reverseGeocode(lat, lon, function(name) {
+                    // Supprimer le marqueur précédent s'il existe
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+
+                    // Ajouter un nouveau marqueur au point cliqué
+                    currentMarker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('Point cliqué: ' + name)
+                        .openPopup();
+
+                    // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                    document.getElementById('selected-point-coords').value = `${lat},${lon}`;
+                });
+            });
+        });
+    </script>
                             </div>
-                            <div class="form-wrap">
-                                <input class="form-input" id="form-location-2" type="text" name="school_address" data-constraints="@Required" required>
-                                <label class="form-label" for="form-location-2">Adresse de l'école</label><span class="form-icon mdi mdi-map-marker"></span>
-                            </div>
+
                             <div class="form-wrap">
                                 <!-- Select 2-->
-                                <select class="form-input select button-shadow" name="trajectory" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir le Trajet</option>
+                                <select class="form-input select " name="schools_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                           
+                            
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Votre trajet</option>
                                     <option value="Aller Simple">Aller Simple</option>
                                     <option value="Retour Simple">Retour Simple</option>
                                     <option value="Aller-Retour">Aller-Retour</option>
@@ -466,7 +667,7 @@
                     </div>
 
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div><img src="{{ asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
+                        <div><img src="{{asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
                         <p><span style="max-width: 250px;">
                             SuiSco est une société spécialisée dans la numérisation des services autour de l’éducation et l’enseignement.
                             Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570.</span>
@@ -512,6 +713,7 @@
 
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
 <!-- coded by Ragnar-->
