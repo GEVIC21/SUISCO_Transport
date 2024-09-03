@@ -62,6 +62,54 @@
     white-space: nowrap; /* Empêche le texte de se plier sur plusieurs lignes */
 }
 
+
+/* styles.css */
+
+/* La Modal (cachée par défaut) */
+.modal {
+    display: none; /* Cachée par défaut */
+    position: fixed; /* Reste en place lors du défilement */
+    z-index: 1; /* Au-dessus du contenu */
+    left: 0;
+    top: 0;
+    width: 100%; /* Occupe toute la largeur */
+    height: 100%; /* Occupe toute la hauteur */
+    overflow: auto; /* Ajoute une barre de défilement si nécessaire */
+    background-color: rgb(0,0,0); /* Fond semi-transparent */
+    background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
+}
+
+/* Contenu de la Modal */
+.modal-content {
+    color: #000;
+    background-color: #fefefe;
+    margin: 15% auto; /* Centre verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Réduit la largeur pour permettre le déplacement */
+    margin-left: 10%; /* Ajuste la marge à gauche pour déplacer le contenu vers la gauche */
+}
+.modal-content h4{
+    color: #000;
+
+}
+
+/* Le bouton de fermeture */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
     </style>
 </head>
 <body>
@@ -698,11 +746,23 @@
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div> -->
                                 <div class="form-button">
-                                    <button class="button button-block button-primary button-winona" type="submit" >
+                                    <button id="openModal" class="button button-block button-primary button-winona" type="submit" >
                                         Essayer
                                     </button>
                                 </div>
                             </div>
+
+                                    <!-- La Modal -->
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <h4>Modal Title</h4>
+                                            <p>Some content for the modal.</p>
+                                        </div>
+                                    </div>
+
+                                    <!--fin Button trigger modal -->
+                                        
                         </form>
                             </div> 
 
@@ -712,6 +772,10 @@
             </div>
         </div>
      </section>
+
+     <!-- Button trigger modal -->
+
+
                         <!-- RD Mailform-->
      
                     </div>
@@ -1067,6 +1131,34 @@
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // script.js
+
+// Récupérer les éléments
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("openModal");
+var span = document.getElementsByClassName("close")[0];
+
+// Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// Lorsque l'utilisateur clique sur (x), fermer la modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+</script>
+
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
 <!-- coded by Ragnar-->

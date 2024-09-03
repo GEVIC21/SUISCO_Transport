@@ -82,7 +82,7 @@
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('bus.index') . '#offers'}}">Offres</a>
+                            <li class="rd-nav-itssam"><a class="rd-nav-link" href="{{route('bus.index') . '#offers'}}">Offres</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('bus.index') . '#advantages'}}">Avantages</a>
                             </li>
