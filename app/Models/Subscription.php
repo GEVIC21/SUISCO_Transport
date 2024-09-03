@@ -67,7 +67,7 @@ class Subscription extends Model
      */
     public static $rules = [
         'service' => 'required',
-        'home_address' => 'required',
+        // 'home_address' => 'required',
         'school_address' => 'required',
         'trajectory' => 'required',
         'phone_number' => ['required', 'string', 'phone:TG,AUTO']

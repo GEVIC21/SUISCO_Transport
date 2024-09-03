@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ asset('template/bus/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
     <link rel="stylesheet" href="{{ asset("template/css/icon_flashy.css") }}">
     <style>
         .ie-panel {
@@ -128,24 +130,231 @@
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none !important;">Choisir un Service</option>
+                                    <option value="" selected style="display: none !important;">Choissez un Service</option>
                                     <option value="Mutuel">Mutuel</option>
                                     <option value="Standard">Standard</option>
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
                             <div class="form-wrap">
-                                <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required>
-                                <label class="form-label" for="form-location">Adresse de la Maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                                <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required disabled>
+                                <label class="form-label" for="form-location">Choisissz l'adresse de votre maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                            
+
+            <div id="map" style="height: 350px;">
+
+            </div>
+
+
+            
+           <!--  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map.setView([lat, lon], 13);
+
+                        // Ajouter un marqueur à la position actuelle
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Vous êtes ici')
+                            .openPopup();
+                    }, function() {
+                        alert("Erreur de géolocalisation.");
+                    });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Variables pour stocker les points cliqués
+            var firstPoint = null;
+            var secondPoint = null;
+            var line = null;
+
+            // Appeler la fonction pour localiser l'utilisateur
+            locateUser();
+
+            // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                reverseGeocode(lat, lon, function(name) {
+                    if (!firstPoint) {
+                        // Premier clic
+                        firstPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Premier point cliqué: ' + name)
+                            .openPopup();
+                    } else if (!secondPoint) {
+                        // Deuxième clic
+                        secondPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Deuxième point cliqué: ' + name)
+                            .openPopup();
+
+                        // Calculer la distance entre les deux points
+                        var distance = map.distance([firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]);
+                        alert('Distance: ' + (distance / 1000).toFixed(2) + ' km');
+
+                        // Tracer une ligne entre les deux points
+                        if (line) {
+                            map.removeLayer(line);
+                        }
+                        line = L.polyline([[firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]], {color: 'blue'}).addTo(map);
+
+                        // Réinitialiser les points pour permettre de sélectionner de nouveaux points
+                        firstPoint = null;
+                        secondPoint = null;
+                    }
+                });
+            });
+        });
+    </script> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map.setView([lat, lon], 13);
+
+                        // Ajouter un marqueur à la position actuelle
+                        /* L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Vous êtes ici')
+                            .openPopup() */;
+                    }, 
+                    function() {
+                        alert("Erreur de géolocalisation.");
+                    });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Marqueur actuel
+            var currentMarker = null;
+
+            // Appeler la fonction pour localiser l'utilisateur
+            locateUser();
+
+            // Ajouter un marqueur lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                // Appeler reverseGeocode pour obtenir le nom du lieu
+                reverseGeocode(lat, lon, function(name) {
+                    // Supprimer le marqueur précédent s'il existe
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+
+                    // Ajouter un nouveau marqueur au point cliqué
+                    currentMarker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('Point cliqué: ' + name)
+                        .openPopup();
+
+                    // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                    document.getElementById('selected-point-coords').value = `${lat},${lon}`;
+                });
+            });
+        });
+    </script>
                             </div>
+
                             <div class="form-wrap">
+                                <input type="hidden" id="selected-point-coords" class="form-input" id="form-location-2" type="text" name="selected-point-coords" data-constraints="@Required" required hidden>
+                                <label class="form-label" for="form-location-2"> </label><span class="form-icon mdi mdi-map-marker"></span>
+                            </div>
+
+                            <!-- <div class="form-wrap">
                                 <input class="form-input" id="form-location-2" type="text" name="school_address" data-constraints="@Required" required>
                                 <label class="form-label" for="form-location-2">Adresse de l'école</label><span class="form-icon mdi mdi-map-marker"></span>
+                            </div> -->
+
+                            <div class="form-wrap">
+                                <!-- Select 3-->
+                                <select class="form-input select button-shadow" name="school_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choissez l'école</option>
+                                    <option value="Aller Simple">Lyago</option>
+                                    <option value="Retour Simple">Brillant</option>
+                                    <option value="Aller-Retour">Fabienne</option>
+                                </select>
                             </div>
+                           
+                            
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow" name="trajectory" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir le Trajet</option>
+                                    <option value="" selected style="display: none">Choissez un type de trajet</option>
                                     <option value="Aller Simple">Aller Simple</option>
                                     <option value="Retour Simple">Retour Simple</option>
                                     <option value="Aller-Retour">Aller-Retour</option>
@@ -504,6 +713,7 @@
 
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
 <!-- coded by Ragnar-->

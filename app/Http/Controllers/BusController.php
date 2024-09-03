@@ -20,24 +20,28 @@ class BusController extends Controller
 
     public function index()
     {
-        $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value;
-        $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value;
-        $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value;
-
+        $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value ?? 'default_value';
+        $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value ?? 'default_value';
+        $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value ?? 'default_value';
+    
         return view('index', compact('mutual_price', 'standard_price', 'premium_price'));
     }
+    
 
     public function store_subscription(CreateSubscriptionRequest $request)
     {
         $input = $request->all();
 
-        $subscription = Subscription::create($input);
+        dd($input);
+
+      /*  $subscription = Subscription::create($input);
 
         $input += ['subscription_id' => $subscription->id];
         SubscriptionHistory::create($input);
 
         Flashy::message(__('Subscription saved successfully.') . ' ' . __('We will contact you as soon as possible.'));
         return redirect()->back();
+        */
     }
 
     public function store_consignment(CreateConsignmentRequest $request)
