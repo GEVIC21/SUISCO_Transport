@@ -46,6 +46,8 @@ class BusController extends Controller
 
     }
 
+    
+
     public function store_consignment(CreateConsignmentRequest $request)
     {
         $input = $request->all();

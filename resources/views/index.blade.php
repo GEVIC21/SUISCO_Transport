@@ -257,7 +257,7 @@
                             <div class="form-wrap" id="map" style="height: 350px;"></div>
                             <div class="form-wrap">
                             <button type="button" id="locate-me" class="button button-block button-primary">
-                                Localiser ma position
+                            Aller à ma position
                             </button>
                  </div>
 
@@ -502,23 +502,39 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul> -->
-                                <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                                <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
                             @csrf
                             <div class="form-wrap">
-                                <!-- Select 2-->
-                                <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
+                                <!-- Select 4-->
+                                <select class="form-input select button-shadow" name="service_evaluation" id ="service_evaluation" data-constraints="@Required" required>
                                     <option value="" selected style="display: none !important;">Choisir un Service</option>
                                     <option value="Standard">Standard</option>
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
+                            
+                            <div class="form-wrap" >
+                                <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
+                                
+                            </div>
+
+                            <div class="form-wrap">
+                                <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
+                                
+                            </div>
+
+                            <div class="form-wrap">
+                                <input hidden class="form-input" id="distance_address_evaluation" type="text"  name="distance_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
+                                
+                            </div>
+
                          <div class="form-wrap">
-                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez les adresses pour simuler">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                 <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                 <div class="form-wrap">
-                                <button type="button" id="locate-me" class="button button-block button-primary">
-                                Localiser ma position
+                                <button type="button" id="locate-me2" class="button button-block button-primary">
+                                Aller à ma position
                              </button>
                         </div>
 
@@ -623,7 +639,7 @@
      </script> -->
      
      <script>
-     document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         var map2 = L.map('map2').setView([51.505, -0.09], 13);
 
         // Charger les tuiles de la carte
@@ -631,8 +647,20 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map2);
 
+        // Marqueurs pour les points de départ et d'arrivée
+        var startMarker2 = null;
+        var endMarker2 = null;
+        var userMarker2 = null;
+
+        // Variables pour stocker les coordonnées des points
+        var startLatLng2 = null;
+        var endLatLng2 = null;
+
+        // Variable pour compter les clics
+        var clickCount2 = 0;
+
         // Fonction pour obtenir la position actuelle de l'utilisateur
-        function locateUser() {
+        function locateUser2() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     var lat2 = position.coords.latitude;
@@ -642,15 +670,12 @@
                     map2.setView([lat2, lon2], 13);
 
                     // Ajouter un marqueur à la position actuelle
-                    if (currentMarker) {
-                        map2.removeLayer(currentMarker);
+                    if (userMarker2) {
+                        map2.removeLayer(userMarker2);
                     }
-                    currentMarker = L.marker([lat2, lon2]).addTo(map2)
+                    userMarker2 = L.marker([lat2, lon2]).addTo(map2)
                         .bindPopup('Vous êtes ici')
                         .openPopup();
-
-                    // Mettre à jour le champ caché avec les coordonnées du point actuel
-                    //  document.getElementById('home_address').value = `${lat},${lon}`;
                 },
                 function() {
                     alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
@@ -662,58 +687,66 @@
             }
         }
 
-        // Marqueur actuel
-        var currentMarker = null;
+        // Fonction pour gérer les clics sur la carte
+        function handleMapClick(e) {
+            var lat2 = e.latlng.lat;
+            var lon2 = e.latlng.lng;
 
-        // Ajouter un marqueur lorsqu'on clique sur la carte
-        map.on('click', function(e) {
-            var lat = e.latlng.lat;
-            var lon = e.latlng.lng;
-
-            // Appeler reverseGeocode pour obtenir le nom du lieu
-            reverseGeocode(lat, lon, function(name) {
-                // Supprimer le marqueur précédent s'il existe
-                if (currentMarker) {
-                    map.removeLayer(currentMarker);
+            if (clickCount2 === 0) {
+                // Premier point (point de départ)
+                if (startMarker2) {
+                    map2.removeLayer(startMarker2);
                 }
-
-                // Ajouter un nouveau marqueur au point cliqué
-                currentMarker = L.marker([lat, lon]).addTo(map)
-                    .bindPopup('Point cliqué: ' + name)
+                startLatLng2 = e.latlng;
+                startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                    .bindPopup('Point de départ')
+                    .openPopup();
+                clickCount2++;
+                alert("Choissisez un second point");
+            } else if (clickCount2 === 1) {
+                // Deuxième point (point d'arrivée)
+                if (endMarker2) {
+                    map2.removeLayer(endMarker2);
+                }
+                endLatLng2 = e.latlng;
+                endMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                    .bindPopup('Point d\'arrivée')
                     .openPopup();
 
-                // Mettre à jour le champ caché avec les coordonnées du point cliqué
-                document.getElementById('home_address').value = `${lat},${lon}`;
-            });
-        });
+                // Calculer la distance entre les deux points
+                var distance2 = startLatLng2.distanceTo(endLatLng2);
 
-        // Fonction de géocodage inverse pour obtenir le nom géographique
-        function reverseGeocode(lat, lon, callback) {
-            var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    var address = data.address;
-                    var name = address ? [
-                        address.road || '',
-                        address.suburb || '',
-                        address.city || '',
-                        address.state || '',
-                        address.country || ''
-                    ].filter(part => part).join(', ') : 'N/A';
-                    callback(name);
-                })
-                .catch(() => {
-                    callback('N/A');
-                });
+                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
+
+                // Afficher les valeurs dans la console
+                console.log(document.getElementById('departure_address_evaluation').value);
+                console.log(document.getElementById('arrive_address_evaluation').value);
+                console.log(document.getElementById('distance_address_evaluation').value);
+
+                 // Mise a jour des valeurs dans le popup
+               /*  document.getElementById('modalDeparture').textContent = 'Point de départ: ' + document.getElementById('distance_address_evaluation').value;
+                document.getElementById('modalArrival').textContent = 'Point d\'arrivée: ' + document.getElementById('arrive_address_evaluation').value;
+                */ document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
+                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
+
+
+                // Réinitialiser le comptage pour permettre une nouvelle sélection
+                clickCount2 = 0;
+            }
         }
 
+        // Ajouter un écouteur d'événement pour cliquer sur la carte
+        map2.on('click', handleMapClick);
+
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me').addEventListener('click', function() {
-            locateUser();
-         });
-      });
-     </script>
+        document.getElementById('locate-me2').addEventListener('click', function() {
+            locateUser2();
+        });
+    });
+</script>
 
 
                             </div>
@@ -746,20 +779,23 @@
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div> -->
                                 <div class="form-button">
-                                    <button id="openModal" class="button button-block button-primary button-winona" type="submit" >
+                                    <button id="openModal" class="button button-block button-primary button-winona" type="button" >
                                         Essayer
                                     </button>
                                 </div>
                             </div>
 
-                                    <!-- La Modal -->
-                                    <div id="myModal" class="modal">
-                                        <div class="modal-content">
-                                            <span class="close">&times;</span>
-                                            <h4>Modal Title</h4>
-                                            <p>Some content for the modal.</p>
-                                        </div>
-                                    </div>
+                                  <!-- La Modal -->
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h4>Résultats de la simulation</h4>
+                          <!--   <p id="modalDeparture"></p>
+                            <p id="modalArrival"></p> -->
+                            <p id="modalDistance"></p>
+                            <p id="modalPrice"></p>
+                        </div>
+                    </div>
 
                                     <!--fin Button trigger modal -->
                                         
@@ -1132,32 +1168,52 @@
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-<script>
-    // script.js
+                    
+        <script>
+                        // script.js     
 
-// Récupérer les éléments
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("openModal");
-var span = document.getElementsByClassName("close")[0];
+                    // Récupérer les éléments
+                    var modal = document.getElementById("myModal");
+                    var btn = document.getElementById("openModal");
+                    var span = document.getElementsByClassName("close")[0];
 
-// Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+                    // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+                    var departure = document.getElementById('departure_address_evaluation').value ;
+                    console.log("depart");
+                    console.log(departure);
 
-// Lorsque l'utilisateur clique sur (x), fermer la modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+                    var arrive = document.getElementById('arrive_address_evaluation').value;
+                    var distance = document.getElementById('distance_address_evaluation').value ;
+                    var price = "20.000 FCFA";
 
-// Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
 
-</script>
+                            // Mettre à jour le contenu de la modal
+                        
+                    // Afficher les valeurs dans la console
+                    console.log("depart2");
+                    console.log(document.getElementById('departure_address_evaluation').value);
+                    console.log(document.getElementById('arrive_address_evaluation').value);
+                    console.log(document.getElementById('distance_address_evaluation').value);
+
+
+                    // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+                    btn.onclick = function() {
+                        modal.style.display = "block";
+                    }
+
+                    // Lorsque l'utilisateur clique sur (x), fermer la modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+
+        </script>
 
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
