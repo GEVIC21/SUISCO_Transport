@@ -90,11 +90,14 @@
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('bus.index') . '#testimonials'}}">Témoignages</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                         <!--    <li class="rd-nav-item"><a class="rd-nav-link"
                                                        href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000" : "http://suisco.net" }}">SuiSco</a>
-                            </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            </li>-->
+                            <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                                        href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000#subscribe" : "http://suisco.net#subscribe"}}">Newsletter</a>
+                            </li> -->
+                            <li class="rd-nav-item"><a class="rd-nav-link"
+                                  href="#">Newsletter</a>
                             </li>
                         </ul>
                     </div>
@@ -143,7 +146,7 @@
                        <li><b class="item-text">3- Quelle est la procédure pour devenir CONSIGNATAIRE ?</b>
                            <ul class="list-marked">
                                <li>Il faut soumettre la demande en remplissant le formulaire <a href="{{ route('bus.become.owner') . '#' . __('become-owner') }}" class="box-default-text">suivant</a>,
-                                   ou en appelant notre service client au 90976767,<br></li>
+                                   ou en appelant notre service client au 99998998,<br></li>
                                Une fois la demande validée, il faut procéder :
                                <li>à la dotation d’un bon de carburant de 100 litres/siège à chaque début d’année scolaire,</li>
                                <li>au versement du montant de la consignation relative au nombre de sièges consignés.<br><br></li>
@@ -347,7 +350,7 @@
                         <h5 class="footer-classic-title">Nos Contacts</h5>
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228 90 97 67 67</li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
                             <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>
