@@ -363,7 +363,7 @@
      
      <script>
      document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([6.1356, 1.2226], 15);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -529,7 +529,7 @@
                             </div>
 
                          <div class="form-wrap">
-                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez les adresses pour simuler">
+                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                 <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                 <div class="form-wrap">
@@ -640,7 +640,7 @@
      
      <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var map2 = L.map('map2').setView([51.505, -0.09], 13);
+        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
