@@ -114,7 +114,7 @@
                     </div>
                     <div class="box-custom-2-inner">
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
-                            Transport Scolaire.
+                            Transport Scolaire dans GRAND LOMÉ.
                         </p>
                         <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
                         <div class="contacts-default">
@@ -123,7 +123,7 @@
                                     <div class="contacts-default-icon mdi mdi-phone-incoming"></div>
                                 </div>
                                 <div class="unit-body">
-                                    <a class="contacts-default-link" href="tel:#">+228 90 97 67 67</a>
+                                    <a class="contacts-default-link" href="tel:#">+228 99 99 89 98</a>
                                 </div>
                             </div>
                         </div>
@@ -560,9 +560,9 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                        src="{{ asset('template/bus/images/1.jpg') }}" alt="" width="74" height="74"/>
+                                        src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Kodjo TELOU</cite>
+                                        <cite class="quote-modern-cite"> Dr Tsolenyanu</cite>
                                         <p class="quote-modern-position">Diplomate</p>
                                     </div>
                                 </div>
@@ -580,40 +580,16 @@
                             </div>
                         </blockquote>
                     </div>
-                    <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".1s">
-                        <!-- Quote Modern-->
-                        <blockquote class="quote-modern">
-                            <div class="quote-modern-header">
-                                <div class="quote-modern-info">
-                                    <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/testimonials-2-74x74.jpg') }}" alt="" width="74" height="74"/>
-                                    <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Williams KLOUTSE</cite>
-                                        <p class="quote-modern-position">Chef d'entreprise</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quote-modern-main">
-                                <div class="quote-modern-text">
-                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
-                                </div>
-                                <div class="quote-modern-meta">
-                                    <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
-                                </div>
-                            </div>
-                        </blockquote>
-                    </div>
                     <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".3s">
                         <!-- Quote Modern-->
                         <blockquote class="quote-modern">
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/2.jpg') }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Florence Afi AGBESSI</cite>
-                                        <p class="quote-modern-position">Cadre a ECOBANK</p>
+                                        <cite class="quote-modern-cite">Yao-Amuama</cite>
+                                        <p class="quote-modern-position">Miss Togo</p>
                                     </div>
                                 </div>
                             </div>
@@ -630,6 +606,32 @@
                             </div>
                         </blockquote>
                     </div>
+                    <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".1s">
+                        <!-- Quote Modern-->
+                        <blockquote class="quote-modern">
+                            <div class="quote-modern-header">
+                                <div class="quote-modern-info">
+                                    <img class="quote-modern-avatar"
+                                         src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
+                                    <div class="quote-modern-info-main">
+                                        <cite class="quote-modern-cite">kako Nubukpo </cite>
+                                        <p class="quote-modern-position">Economiste</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quote-modern-main">
+                                <div class="quote-modern-text">
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
+                                </div>
+                                <div class="quote-modern-meta">
+                                    <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
@@ -679,7 +681,7 @@
                         {{--<div class="row row-20 row-sm-35 text-center">--}}
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228 90 97 67 67</li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
                             <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>
