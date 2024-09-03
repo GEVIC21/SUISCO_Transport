@@ -28,6 +28,40 @@
         html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
             display: block;
         }
+        <!-- Ajoutez ces styles à votre fichier CSS ou dans une balise <style> -->
+
+    .tabs-custom {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .nav-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .nav-item {
+        margin-right: 1rem;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+    }
+/* Assurez-vous que les onglets sont affichés en ligne */
+.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.nav-item {
+    margin-right: 1rem; /* Espacement entre les onglets */
+}
+
+/* Si nécessaire, ajustez la largeur des onglets */
+.nav-link {
+    white-space: nowrap; /* Empêche le texte de se plier sur plusieurs lignes */
+}
+
     </style>
 </head>
 <body>
@@ -88,8 +122,11 @@
                             <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000" : "https://suisco.net" }}">SuiSco</a>
                             </li> -->
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000#subscribe" : "https://suisco.net#subscribe"}}">Newsletter</a>
+                            </li> -->
+                            <li class="rd-nav-item"><a class="rd-nav-link"
+                               href="{{ route('bus.become.owner') }}" >Newsletter</a>
                             </li>
                         </ul>
                     </div>
@@ -126,9 +163,37 @@
                                     <a class="contacts-default-link" href="tel:#">+228 99 99 89 98</a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- RD Mailform-->
-                        <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                        </div> <br>
+                        
+     <section class="section " id="advantages">
+        <div class="container">
+            <div class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
+                <div class="col-md-12 col-lg-12 wow fadeInRightSmall">
+                    <!-- <h3>Avantages</h3> -->
+                    <!-- Bootstrap tabs -->
+                    <div class="tabs-custom tabs-horizontal tabs-line tabs-line_1 block-8" id="tabs-1">
+                        <!-- Nav tabs-->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
+                             <li class="nav-item" role="presentation">
+                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Evaluer</span></a>
+                            </li> 
+                        </ul>
+                        <!-- Tab panes-->
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tabs-1-1">
+                                <!-- <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
+                                    using it is to enter your name and mobile phone number. You’ll access:</p> -->
+                                    <!-- <p>Service de transport dédié aux élèves, enseignants et parents d’élèves.</p>
+                                <ul class="list-marked list-marked_secondary">
+                                    <li>Véhicules neuves</li>
+                                    <li>Assurance tous risques</li>
+                                    <li>Chauffeurs experimentés </li>
+                                    <li>Services personnalisés </li>
+                                </ul> -->
+
+                            <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                             @csrf
                             <div class="form-wrap">
                                 <!-- Select 2-->
@@ -141,15 +206,12 @@
                             <div class="form-wrap">
                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-
-
-            <div class="form-wrap" id="map" style="height: 350px;">
-
-            </div>
-
-            <div class="form-wrap">
-        <button type="button" id="locate-me" class="button button-block button-primary">Localiser ma position</button>
-    </div>
+                            <div class="form-wrap" id="map" style="height: 350px;"></div>
+                            <div class="form-wrap">
+                            <button type="button" id="locate-me" class="button button-block button-primary">
+                                Localiser ma position
+                            </button>
+                 </div>
 
 
            <!--  <script>
@@ -249,8 +311,8 @@
                 });
             });
         });
-    </script> --><script>
-    document.addEventListener('DOMContentLoaded', function () {
+     </script> --><script>
+     document.addEventListener('DOMContentLoaded', function () {
         var map = L.map('map').setView([51.505, -0.09], 13);
 
         // Charger les tuiles de la carte
@@ -338,9 +400,9 @@
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
         document.getElementById('locate-me').addEventListener('click', function() {
             locateUser();
-        });
-    });
-</script>
+         });
+      });
+     </script>
 
 
                             </div>
@@ -379,6 +441,277 @@
                                 </div>
                             </div>
                         </form>
+
+                            </div>
+
+                           <div class="tab-pane fade" id="tabs-1-2">
+                                <!-- <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
+                                    set your route in advance or pick a driver, a preferred car, and more:</p>
+                                <ul class="list-marked list-marked_secondary">
+                                    <li>Manage your taxi spendings;</li>
+                                    <li>Pay for taxi without a credit card;</li>
+                                    <li>Great discounts for regular clients.</li>
+                                </ul> -->
+                                <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                            @csrf
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none !important;">Choisir un Service</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                            </div>
+                         <div class="form-wrap">
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                <div class="form-wrap">
+                                <button type="button" id="locate-me" class="button button-block button-primary">
+                                Localiser ma position
+                             </button>
+                        </div>
+
+
+           <!--  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var map = L.map('map').setView([51.505, -0.09], 13);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map.setView([lat, lon], 13);
+
+                        // Ajouter un marqueur à la position actuelle
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Vous êtes ici')
+                            .openPopup();
+                    }, function() {
+                        alert("Erreur de géolocalisation.");
+                    });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Variables pour stocker les points cliqués
+            var firstPoint = null;
+            var secondPoint = null;
+            var line = null;
+
+            // Appeler la fonction pour localiser l'utilisateur
+            locateUser();
+
+            // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                reverseGeocode(lat, lon, function(name) {
+                    if (!firstPoint) {
+                        // Premier clic
+                        firstPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Premier point cliqué: ' + name)
+                            .openPopup();
+                    } else if (!secondPoint) {
+                        // Deuxième clic
+                        secondPoint = { lat: lat, lon: lon, name: name };
+                        L.marker([lat, lon]).addTo(map)
+                            .bindPopup('Deuxième point cliqué: ' + name)
+                            .openPopup();
+
+                        // Calculer la distance entre les deux points
+                        var distance = map.distance([firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]);
+                        alert('Distance: ' + (distance / 1000).toFixed(2) + ' km');
+
+                        // Tracer une ligne entre les deux points
+                        if (line) {
+                            map.removeLayer(line);
+                        }
+                        line = L.polyline([[firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]], {color: 'blue'}).addTo(map);
+
+                        // Réinitialiser les points pour permettre de sélectionner de nouveaux points
+                        firstPoint = null;
+                        secondPoint = null;
+                    }
+                });
+            });
+        });
+     </script> -->
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
+
+                    // Centrer la carte sur la position actuelle
+                    map.setView([lat, lon], 13);
+
+                    // Ajouter un marqueur à la position actuelle
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+                    currentMarker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('Vous êtes ici')
+                        .openPopup();
+
+                    // Mettre à jour le champ caché avec les coordonnées du point actuel
+                    document.getElementById('home_address').value = `${lat},${lon}`;
+                },
+                function() {
+                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                }, {
+                    enableHighAccuracy: true
+                });
+            } else {
+                alert("Géolocalisation non supportée.");
+            }
+        }
+
+        // Marqueur actuel
+        var currentMarker = null;
+
+        // Ajouter un marqueur lorsqu'on clique sur la carte
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lon = e.latlng.lng;
+
+            // Appeler reverseGeocode pour obtenir le nom du lieu
+            reverseGeocode(lat, lon, function(name) {
+                // Supprimer le marqueur précédent s'il existe
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
+
+                // Ajouter un nouveau marqueur au point cliqué
+                currentMarker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup('Point cliqué: ' + name)
+                    .openPopup();
+
+                // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                document.getElementById('home_address').value = `${lat},${lon}`;
+            });
+        });
+
+        // Fonction de géocodage inverse pour obtenir le nom géographique
+        function reverseGeocode(lat, lon, callback) {
+            var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.address;
+                    var name = address ? [
+                        address.road || '',
+                        address.suburb || '',
+                        address.city || '',
+                        address.state || '',
+                        address.country || ''
+                    ].filter(part => part).join(', ') : 'N/A';
+                    callback(name);
+                })
+                .catch(() => {
+                    callback('N/A');
+                });
+        }
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me').addEventListener('click', function() {
+            locateUser();
+         });
+      });
+     </script>
+
+
+                            </div>
+
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select " name="school_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Votre trajet</option>
+                                    <option value="Aller Simple">Aller Simple</option>
+                                    <option value="Retour Simple">Retour Simple</option>
+                                    <option value="Aller-Retour">Aller-Retour</option>
+                                </select>
+                            </div>
+                            <div class="form-wrap">
+                                <!-- <div class="form-wrap">
+                                    <input class="form-input" id="form-phone" type="text" name="phone_number"
+                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                    <label class="form-label" for="form-phone"></label><span
+                                        class="form-icon mdi mdi-cellphone"></span>
+                                </div> -->
+                                <div class="form-button">
+                                    <button class="button button-block button-primary button-winona" type="submit" >
+                                        Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                            </div> 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+                        <!-- RD Mailform-->
+     
                     </div>
                 </div>
             </div>
@@ -474,6 +807,7 @@
             </div>
         </div>
     </section>
+
     <section class="section section-lg bg-gray-4 oh" id="advantages">
         <div class="container">
             <div
@@ -491,9 +825,9 @@
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Transport</span></a></li>
-                            <!-- <li class="nav-item" role="presentation">
+                             <!-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a>
-                            </li> -->
+                            </li>  -->
                         </ul>
                         <!-- Tab panes-->
                         <div class="tab-content">
@@ -508,7 +842,7 @@
                                     <li>Services personnalisés </li>
                                 </ul>
                             </div>
-                            <!-- <div class="tab-pane fade" id="tabs-1-2">
+                           <div class="tab-pane fade" id="tabs-1-2">
                                 <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
                                     set your route in advance or pick a driver, a preferred car, and more:</p>
                                 <ul class="list-marked list-marked_secondary">
@@ -516,7 +850,7 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul>
-                            </div> -->
+                            </div> 
 
                         </div>
                     </div>
@@ -531,6 +865,7 @@
             </div>
         </div>
     </section>
+
     <!-- Stickers-->
     <section class="section section-1 text-center" id="prices">
         <div class="container">
@@ -657,9 +992,10 @@
             <div class="container">
                 <div class="row row-50 justify-content-end">
                     <div class="col-md-6 col-lg-5">
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
+                        <!-- <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1> -->
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                            Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
+                          Pour votre premier mois, et les 10 premières subscription.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
