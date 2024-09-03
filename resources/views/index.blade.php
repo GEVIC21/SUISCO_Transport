@@ -139,9 +139,9 @@
                                 </select>
                             </div>
                             <div class="form-wrap">
-                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;">
+                                <label class="form-label" for="form-location">Choisissz l'adresse de votre maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                            
 
             <div class="form-wrap" id="map" style="height: 350px;">
 
@@ -151,7 +151,7 @@
         <button type="button" id="locate-me" class="button button-block button-primary">Localiser ma position</button>
     </div>
 
-
+            
            <!--  <script>
         document.addEventListener('DOMContentLoaded', function () {
             var map = L.map('map').setView([51.505, -0.09], 13);
@@ -214,7 +214,7 @@
 
             // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
             map.on('click', function(e) {
-
+                
                 var lat = e.latlng.lat;
                 var lon = e.latlng.lng;
 
@@ -249,7 +249,8 @@
                 });
             });
         });
-    </script> --><script>
+    </script> -->
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
         var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -278,11 +279,9 @@
 
                     // Mettre à jour le champ caché avec les coordonnées du point actuel
                     document.getElementById('home_address').value = `${lat},${lon}`;
-                },
+                }, 
                 function() {
-                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                }, {
-                    enableHighAccuracy: true
+                    alert("Erreur de géolocalisation.");
                 });
             } else {
                 alert("Géolocalisation non supportée.");
@@ -342,6 +341,7 @@
     });
 </script>
 
+ 
 
                             </div>
 
@@ -354,8 +354,8 @@
                                     @endforeach
                                 </select>
                             </div>
-
-
+                           
+                            
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
@@ -368,8 +368,8 @@
                             <div class="form-wrap-2">
                                 <div class="form-wrap">
                                     <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
-                                    <label class="form-label" for="form-phone"></label><span
+                                           data-constraints="@Required{{-- @PhoneNumber--}}" required>
+                                    <label class="form-label" for="form-phone">Votre téléphone mobile</label><span
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div>
                                 <div class="form-button">
