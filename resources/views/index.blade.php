@@ -139,14 +139,17 @@
                                 </select>
                             </div>
                             <div class="form-wrap">
-                                <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required disabled>
-                                <label class="form-label" for="form-location">Choisissz l'adresse de votre maison</label><span class="form-icon mdi mdi-map-marker"></span>
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
 
 
-            <div id="map" style="height: 350px;">
+            <div class="form-wrap" id="map" style="height: 350px;">
 
             </div>
 
+            <div class="form-wrap">
+        <button type="button" id="locate-me" class="button button-block button-primary">Localiser ma position</button>
+    </div>
 
 
            <!--  <script>
@@ -246,95 +249,105 @@
                 });
             });
         });
-    </script> -->
+    </script> --><script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([51.505, -0.09], 13);
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var map = L.map('map').setView([51.505, -0.09], 13);
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-            // Charger les tuiles de la carte
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat = position.coords.latitude;
+                    var lon = position.coords.longitude;
 
-            // Fonction pour obtenir la position actuelle de l'utilisateur
-            function locateUser() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var lat = position.coords.latitude;
-                        var lon = position.coords.longitude;
+                    // Centrer la carte sur la position actuelle
+                    map.setView([lat, lon], 13);
 
-                        // Centrer la carte sur la position actuelle
-                        map.setView([lat, lon], 13);
-
-                        // Ajouter un marqueur à la position actuelle
-                        /* L.marker([lat, lon]).addTo(map)
-                            .bindPopup('Vous êtes ici')
-                            .openPopup() */;
-                    },
-                    function() {
-                        alert("Erreur de géolocalisation.");
-                    });
-                } else {
-                    alert("Géolocalisation non supportée.");
-                }
-            }
-
-            // Fonction de géocodage inverse pour obtenir le nom géographique
-            function reverseGeocode(lat, lon, callback) {
-                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        var address = data.address;
-                        var name = address ? [
-                            address.road || '',
-                            address.suburb || '',
-                            address.city || '',
-                            address.state || '',
-                            address.country || ''
-                        ].filter(part => part).join(', ') : 'N/A';
-                        callback(name);
-                    })
-                    .catch(() => {
-                        callback('N/A');
-                    });
-            }
-
-            // Marqueur actuel
-            var currentMarker = null;
-
-            // Appeler la fonction pour localiser l'utilisateur
-            locateUser();
-
-            // Ajouter un marqueur lorsqu'on clique sur la carte
-            map.on('click', function(e) {
-                var lat = e.latlng.lat;
-                var lon = e.latlng.lng;
-
-                // Appeler reverseGeocode pour obtenir le nom du lieu
-                reverseGeocode(lat, lon, function(name) {
-                    // Supprimer le marqueur précédent s'il existe
+                    // Ajouter un marqueur à la position actuelle
                     if (currentMarker) {
                         map.removeLayer(currentMarker);
                     }
-
-                    // Ajouter un nouveau marqueur au point cliqué
                     currentMarker = L.marker([lat, lon]).addTo(map)
-                        .bindPopup('Point cliqué: ' + name)
+                        .bindPopup('Vous êtes ici')
                         .openPopup();
 
-                    // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                    // Mettre à jour le champ caché avec les coordonnées du point actuel
                     document.getElementById('home_address').value = `${lat},${lon}`;
+                },
+                function() {
+                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                }, {
+                    enableHighAccuracy: true
                 });
+            } else {
+                alert("Géolocalisation non supportée.");
+            }
+        }
+
+        // Marqueur actuel
+        var currentMarker = null;
+
+        // Ajouter un marqueur lorsqu'on clique sur la carte
+        map.on('click', function(e) {
+            var lat = e.latlng.lat;
+            var lon = e.latlng.lng;
+
+            // Appeler reverseGeocode pour obtenir le nom du lieu
+            reverseGeocode(lat, lon, function(name) {
+                // Supprimer le marqueur précédent s'il existe
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
+
+                // Ajouter un nouveau marqueur au point cliqué
+                currentMarker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup('Point cliqué: ' + name)
+                    .openPopup();
+
+                // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                document.getElementById('home_address').value = `${lat},${lon}`;
             });
         });
-    </script>
+
+        // Fonction de géocodage inverse pour obtenir le nom géographique
+        function reverseGeocode(lat, lon, callback) {
+            var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var address = data.address;
+                    var name = address ? [
+                        address.road || '',
+                        address.suburb || '',
+                        address.city || '',
+                        address.state || '',
+                        address.country || ''
+                    ].filter(part => part).join(', ') : 'N/A';
+                    callback(name);
+                })
+                .catch(() => {
+                    callback('N/A');
+                });
+        }
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me').addEventListener('click', function() {
+            locateUser();
+        });
+    });
+</script>
+
+
                             </div>
 
                             <div class="form-wrap">
                                 <!-- Select 2-->
-                                <select class="form-input select " name="schools_address" data-constraints="@Required" required>
+                                <select class="form-input select " name="school_address" data-constraints="@Required" required>
                                     <option value="" selected style="display: none">Choisir votre école</option>
                                 @foreach($schools as $school)
                                         <option value="{{$school->name}}">{{$school->name}}</option>
@@ -355,8 +368,8 @@
                             <div class="form-wrap-2">
                                 <div class="form-wrap">
                                     <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                           data-constraints="@Required{{-- @PhoneNumber--}}" required>
-                                    <label class="form-label" for="form-phone">Votre téléphone mobile</label><span
+                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                    <label class="form-label" for="form-phone"></label><span
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div>
                                 <div class="form-button">

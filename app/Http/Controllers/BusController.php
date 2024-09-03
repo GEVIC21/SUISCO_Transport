@@ -32,6 +32,7 @@ class BusController extends Controller
 
     public function store_subscription(CreateSubscriptionRequest $request)
     {
+        
         $input = $request->all();
         dd($input);
 
