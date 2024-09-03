@@ -730,7 +730,7 @@
                /*  document.getElementById('modalDeparture').textContent = 'Point de départ: ' + document.getElementById('distance_address_evaluation').value;
                 document.getElementById('modalArrival').textContent = 'Point d\'arrivée: ' + document.getElementById('arrive_address_evaluation').value;
                 */ document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
-                document.getElementById('modalPrice').textContent = 'Prix (essai): ' + price;
+                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
 
 
                 // Réinitialiser le comptage pour permettre une nouvelle sélection
@@ -779,7 +779,7 @@
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div> -->
                                 <div class="form-button">
-                                    <button id="openModal" class="button button-block button-primary button-winona" type="" >
+                                    <button id="openModal" class="button button-block button-primary button-winona" type="button" >
                                         Essayer
                                     </button>
                                 </div>
@@ -789,7 +789,7 @@
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <h4>Résumé des informations</h4>
+                            <h4>Résultats de la simulation</h4>
                           <!--   <p id="modalDeparture"></p>
                             <p id="modalArrival"></p> -->
                             <p id="modalDistance"></p>
