@@ -141,14 +141,14 @@
                             <div class="form-wrap">
                                 <input class="form-input" id="form-location" type="text" name="home_address" data-constraints="@Required" required disabled>
                                 <label class="form-label" for="form-location">Choisissz l'adresse de votre maison</label><span class="form-icon mdi mdi-map-marker"></span>
-                            
+
 
             <div id="map" style="height: 350px;">
 
             </div>
 
 
-            
+
            <!--  <script>
         document.addEventListener('DOMContentLoaded', function () {
             var map = L.map('map').setView([51.505, -0.09], 13);
@@ -211,7 +211,7 @@
 
             // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
             map.on('click', function(e) {
-                
+
                 var lat = e.latlng.lat;
                 var lon = e.latlng.lng;
 
@@ -271,7 +271,7 @@
                         /* L.marker([lat, lon]).addTo(map)
                             .bindPopup('Vous êtes ici')
                             .openPopup() */;
-                    }, 
+                    },
                     function() {
                         alert("Erreur de géolocalisation.");
                     });
@@ -325,7 +325,7 @@
                         .openPopup();
 
                     // Mettre à jour le champ caché avec les coordonnées du point cliqué
-                    document.getElementById('selected-point-coords').value = `${lat},${lon}`;
+                    document.getElementById('home_address').value = `${lat},${lon}`;
                 });
             });
         });
@@ -341,8 +341,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                           
-                            
+
+
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
