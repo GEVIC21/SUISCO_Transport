@@ -311,7 +311,9 @@
                 });
             });
         });
-     </script> --><script>
+     </script> -->
+     
+     <script>
      document.addEventListener('DOMContentLoaded', function () {
         var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -465,7 +467,7 @@
                          <div class="form-wrap">
                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                 <div class="form-wrap">
                                 <button type="button" id="locate-me" class="button button-block button-primary">
                                 Localiser ma position
@@ -574,33 +576,33 @@
      
      <script>
      document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map2 = L.map('map2').setView([51.505, -0.09], 13);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+        }).addTo(map2);
 
         // Fonction pour obtenir la position actuelle de l'utilisateur
         function locateUser() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    var lat = position.coords.latitude;
-                    var lon = position.coords.longitude;
+                    var lat2 = position.coords.latitude;
+                    var lon2 = position.coords.longitude;
 
                     // Centrer la carte sur la position actuelle
-                    map.setView([lat, lon], 13);
+                    map2.setView([lat2, lon2], 13);
 
                     // Ajouter un marqueur à la position actuelle
                     if (currentMarker) {
-                        map.removeLayer(currentMarker);
+                        map2.removeLayer(currentMarker);
                     }
-                    currentMarker = L.marker([lat, lon]).addTo(map)
+                    currentMarker = L.marker([lat2, lon2]).addTo(map2)
                         .bindPopup('Vous êtes ici')
                         .openPopup();
 
                     // Mettre à jour le champ caché avec les coordonnées du point actuel
-                    document.getElementById('home_address').value = `${lat},${lon}`;
+                    //  document.getElementById('home_address').value = `${lat},${lon}`;
                 },
                 function() {
                     alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
@@ -697,7 +699,7 @@
                                 </div> -->
                                 <div class="form-button">
                                     <button class="button button-block button-primary button-winona" type="submit" >
-                                        Réserver
+                                        Essayer
                                     </button>
                                 </div>
                             </div>
