@@ -7,6 +7,7 @@ use App\Http\Requests\CreateConsignmentRequest;
 use App\Http\Requests\CreateSubscriptionRequest;
 use App\Models\Consignment;
 use App\Models\Parameter;
+use App\Models\School;
 use App\Models\Subscription;
 use App\Models\SubscriptionHistory;
 use MercurySeries\Flashy\Flashy;
@@ -20,11 +21,12 @@ class BusController extends Controller
 
     public function index()
     {
-        $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value ?? 'default_value';
-        $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value ?? 'default_value';
-        $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value ?? 'default_value';
-    
-        return view('index', compact('mutual_price', 'standard_price', 'premium_price'));
+        $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value;       
+        $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value;
+        $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value;
+        $schools = School::all();
+
+        return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools'));
     }
     
 

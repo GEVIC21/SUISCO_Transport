@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Parameter;
+use App\Models\School;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Parameter::DEFAULTS as $key => $value) {
+        foreach (Parameter::DEFAULTS as $key => $value ) {
             if (Parameter::whereLabel($key)->doesntExist()) {
                 Parameter::create([
                     'label' => $key,
@@ -23,5 +24,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+
     }
 }

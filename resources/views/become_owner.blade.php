@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-    <title>SuiSco Bus | Consignation</title>
+    <title>SuiSco Transport | Consignation</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,7 +108,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <h2 style="color:#fff;"><b>LA CONSIGNATION CHEZ SUISCO BUS</b></h2>
+                    <h2 style="color:#fff;"><b>LA CONSIGNATION CHEZ SUISCO Transport</b></h2>
                     @yield('ol')
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="row">
                 <div class="col-sm-8" style="margin-bottom: 30px">
                    <ol>
-                       <li><b class="item-text">1- Qu’est-ce qu’un CONSIGNATAIRE chez SuiSco bus ? </b>
+                       <li><b class="item-text">1- Qu’est-ce qu’un CONSIGNATAIRE chez SuiSco transport ? </b>
                            <p>
                                C’est un parent qui a souscrit pour le transport scolaire d’un apprenant au moins et qui
                                souhaite bénéficié d’une réduction spéciale ou annulation des frais d’abonnement par enfant
@@ -134,7 +134,8 @@
                                 <li>Disposer d’un droit non négociable de réduction ou d’annulation sur les frais d’abonnement
                                     par siège consigné sur une durée d’une année scolaire renouvelable,</li>
                                 <li>Mutualiser les ressources pour un meilleur service de qualité pérenne,</li>
-                               <li>Droits de réservation d’un (Chauffeur & véhicule) du parc de SuiSco Bus pour des courses
+
+                               <li>Droits de réservation d’un (Chauffeur & véhicule) du parc de SuiSco Transport pour des courses
                                    personnelles à des tarifs forfaitaires durant les heures non ouvrées de transports scolaires.<br><br></li>
                            </ul>
                        </li>
@@ -287,7 +288,7 @@
         </div>
     </section>--}}
     <!-- CTA-->
-    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+    <!-- <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
              data-parallax-img="{{ asset('template/bus/images/bg-image-5.jpg') }}">
         <div class="parallax-content">
             <div class="container">
@@ -297,6 +298,22 @@
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
                             Our first-time customers get a great discount
                             on their order.
+                        </p>
+                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+             data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
+        <div class="parallax-content">
+            <div class="container">
+                <div class="row row-50 justify-content-end">
+                    <div class="col-md-6 col-lg-5">
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
+                        <p class="big wow clipInLeft" data-wow-delay=".1s">
+                            Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -322,7 +339,7 @@
                         <div><img src="{{ asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
                         <p><span style="max-width: 250px;">
                             SuiSco est une société spécialisée dans la numérisation des services autour de l’éducation et l’enseignement.
-                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570 - NIF 1000739551 - CNSS 68279.</span>
+                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570.</span>
                         </p>
                     </div>
 
@@ -350,7 +367,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights"><span>&copy;&nbsp</span><span>Copyright 2020 SuiSco Bus | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp</span><span>Copyright 2020 SuiSco Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>

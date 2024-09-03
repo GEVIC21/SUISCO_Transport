@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
 <head>
-    <title>SuiSco Bus</title>
+
+    <title>SuiSco Transport</title>
     <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('template/bus/css/style.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-    <link rel="stylesheet" href="{{ asset("template/css/icon_flashy.css") }}">
+    <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
         .ie-panel {
             display: none;
@@ -48,7 +49,7 @@
 </div>
 <div class="page">
     <!-- Page Header-->
-    <header class="section page-header page-header-1 gradient-1">
+    <header class="section page-header page-header-1 gradient-1" id="acceuil">
         <!-- RD Navbar-->
         <div class="rd-navbar-wrap">
             <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
@@ -74,6 +75,8 @@
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="#acceuil" >Acceuil</a>
+                            </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#offers">Offres</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#advantages">Avantages</a>
@@ -92,14 +95,14 @@
                     </div>
                     <div class="rd-navbar-element bg-gray-4">
                         <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
-                            Devenir Propriétaire</a>
+                            Simulation Tarifs</a>
                     </div>
                     <div class="rd-navbar-dummy"></div>
                 </div>
             </nav>
         </div>
         <!-- FScreen-->
-        <div class="layout-4">
+        <div class="layout-4" >
             <div class="layout-4-item-right">
                 <div class="box-custom-2 bg-accent">
                     <div class="box-custom-2-bg">
@@ -111,7 +114,7 @@
                     </div>
                     <div class="box-custom-2-inner">
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
-                            SuiSco assure le transport des élèves du primaire<br>au lycée sur la région du GRAND LOMÉ.
+                            Transport Scolaire.
                         </p>
                         <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
                         <div class="contacts-default">
@@ -130,8 +133,7 @@
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none !important;">Choissez un Service</option>
-                                    <option value="Mutuel">Mutuel</option>
+                                    <option value="" selected style="display: none !important;">Choisir un Service</option>
                                     <option value="Standard">Standard</option>
                                     <option value="Premium">Premium</option>
                                 </select>
@@ -331,30 +333,20 @@
                             </div>
 
                             <div class="form-wrap">
-                                <input type="hidden" id="selected-point-coords" class="form-input" id="form-location-2" type="text" name="selected-point-coords" data-constraints="@Required" required hidden>
-                                <label class="form-label" for="form-location-2"> </label><span class="form-icon mdi mdi-map-marker"></span>
-                            </div>
-
-                            <!-- <div class="form-wrap">
-                                <input class="form-input" id="form-location-2" type="text" name="school_address" data-constraints="@Required" required>
-                                <label class="form-label" for="form-location-2">Adresse de l'école</label><span class="form-icon mdi mdi-map-marker"></span>
-                            </div> -->
-
-                            <div class="form-wrap">
-                                <!-- Select 3-->
-                                <select class="form-input select button-shadow" name="school_address" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choissez l'école</option>
-                                    <option value="Aller Simple">Lyago</option>
-                                    <option value="Retour Simple">Brillant</option>
-                                    <option value="Aller-Retour">Fabienne</option>
+                                <!-- Select 2-->
+                                <select class="form-input select " name="schools_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                            
                             
                             <div class="form-wrap">
                                 <!-- Select 2-->
-                                <select class="form-input select button-shadow" name="trajectory" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choissez un type de trajet</option>
+                                <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Votre trajet</option>
                                     <option value="Aller Simple">Aller Simple</option>
                                     <option value="Retour Simple">Retour Simple</option>
                                     <option value="Aller-Retour">Aller-Retour</option>
@@ -485,22 +477,25 @@
                         <!-- Nav tabs-->
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Bus</span></a></li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a></li>
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Transport</span></a></li>
+                            <!-- <li class="nav-item" role="presentation">
+                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a>
+                            </li> -->
                         </ul>
                         <!-- Tab panes-->
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tabs-1-1">
-                                <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
-                                    using it is to enter your name and mobile phone number. You’ll access:</p>
+                                <!-- <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
+                                    using it is to enter your name and mobile phone number. You’ll access:</p> -->
+                                    <p>Service de transport dédié aux élèves, enseignants et parents d’élèves.</p>
                                 <ul class="list-marked list-marked_secondary">
-                                    <li>Special offers</li>
-                                    <li>TAXPRO loyalty program</li>
-                                    <li>More pricing plans</li>
+                                    <li>Véhicules neuves</li>
+                                    <li>Assurance tous risques</li>
+                                    <li>Chauffeurs experimentés </li>
+                                    <li>Services personnalisés </li>
                                 </ul>
                             </div>
-                            <div class="tab-pane fade" id="tabs-1-2">
+                            <!-- <div class="tab-pane fade" id="tabs-1-2">
                                 <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
                                     set your route in advance or pick a driver, a preferred car, and more:</p>
                                 <ul class="list-marked list-marked_secondary">
@@ -508,7 +503,8 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul>
-                            </div>
+                            </div> -->
+
                         </div>
                     </div>
                     <div class="group">
@@ -566,20 +562,20 @@
                                     <img class="quote-modern-avatar"
                                         src="{{ asset('template/bus/images/1.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Jane Williams</cite>
-                                        <p class="quote-modern-position">Cadre d'une banque</p>
+                                        <cite class="quote-modern-cite">Kodjo TELOU</cite>
+                                        <p class="quote-modern-position">Diplomate</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>J'ai trouvé que votre service est une expérience 5 étoiles.
-                                        Le chauffeur agréable et nous attendait dans le hall des arrivées.
+                                    <p>Votre service de transport a rendu mon deplacement plus agréable.
+                                        Le chauffeur connaissait parfaitement les raccourcis pour eviter le trafic.
                                         {{--Toutes les personnes avec qui nous avons communiqué étaient agréables et gaies.--}}</p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
@@ -592,18 +588,18 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/testimonials-2-74x74.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">John Doe</cite>
-                                        <p class="quote-modern-position">Administrateur Public</p>
+                                        <cite class="quote-modern-cite">Williams KLOUTSE</cite>
+                                        <p class="quote-modern-position">Chef d'entreprise</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Tout s'est parfaitement déroulé ! Des chauffeurs incroyablement ponctuels et sympathiques et le meilleur service !</p>
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
@@ -616,19 +612,20 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/2.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Kate Peterson</cite>
-                                        <p class="quote-modern-position">Chef d'entreprise</p>
+                                        <cite class="quote-modern-cite">Florence Afi AGBESSI</cite>
+                                        <p class="quote-modern-position">Cadre a ECOBANK</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Le service était excellent, merci. Mon chauffeur m'attendait aux arrivées avec un signe clair.
-                                        Il s'est présenté, était très poli et amical.</p>
+                                    <p>J'utilise regulierement ce service de transport et je suis toujours impressionnée par sa fiabilité.
+                                        les vehicules sont propres,et les horaires sont respectés.
+                                    </p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2019</time>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
                                 </div>
                             </div>
                         </blockquote>
@@ -640,15 +637,14 @@
 
     <!-- CTA-->
     <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
-             data-parallax-img="{{ asset('template/bus/images/bg-image-5.jpg') }}">
+             data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
         <div class="parallax-content">
             <div class="container">
                 <div class="row row-50 justify-content-end">
                     <div class="col-md-6 col-lg-5">
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> on first order</h1>
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                            Our first-time customers get a great discount
-                            on their order.
+                            Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -671,10 +667,10 @@
                     </div>
 
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div><img src="{{ asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
+                        <div><img src="{{asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
                         <p><span style="max-width: 250px;">
                             SuiSco est une société spécialisée dans la numérisation des services autour de l’éducation et l’enseignement.
-                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570 - NIF 1000739551 - CNSS 68279.</span>
+                            Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570.</span>
                         </p>
                     </div>
 
@@ -689,14 +685,18 @@
                         </ul>
                         <div class="group group-xs">
                             <a class="link link-social-1 mdi mdi-facebook" target="_blank"
-                               href="https://www.facebook.com/SuiviScolair/" title="Facebook"></a>
+                               href="https://www.facebook.com/SuiviScolair/" title="Facebook">
+                            </a>
 
                             <a class="link link-social-1 mdi mdi-twitter" target="_blank"
-                               href="https://twitter.com/ScolaireSuivi" title="Twitter"></a>
+                               href="https://twitter.com/ScolaireSuivi" title="Twitter" style="pointer-events: none;" >
+                            </a>
 
                             {{--<a class="link link-social-1 mdi mdi-instagram" href="#"></a>--}}
-                            <a class="link link-social-1 mdi mdi-youtube-play" target="_blank"
-                               href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube"></a>
+
+                            <a  class="link link-social-1 mdi mdi-youtube-play" target="_blank"
+                               href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube" style="pointer-events: none;">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -704,7 +704,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Bus | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>
