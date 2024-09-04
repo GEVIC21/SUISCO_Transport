@@ -19,6 +19,7 @@ Route::name('bus.')->group(function (){
 
     Route::post('/subscription/store', 'App\Http\Controllers\BusController@store_subscription')->name('subscription.store');
     Route::post('/consignment/store', 'App\Http\Controllers\BusController@store_consignment')->name('consignment.store');
+    
 });
 
 Route::name('admin.')->group(function (){

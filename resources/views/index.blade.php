@@ -28,6 +28,88 @@
         html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
             display: block;
         }
+        <!-- Ajoutez ces styles à votre fichier CSS ou dans une balise <style> -->
+
+    .tabs-custom {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .nav-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .nav-item {
+        margin-right: 1rem;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+    }
+/* Assurez-vous que les onglets sont affichés en ligne */
+.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.nav-item {
+    margin-right: 1rem; /* Espacement entre les onglets */
+}
+
+/* Si nécessaire, ajustez la largeur des onglets */
+.nav-link {
+    white-space: nowrap; /* Empêche le texte de se plier sur plusieurs lignes */
+}
+
+
+/* styles.css */
+
+/* La Modal (cachée par défaut) */
+.modal {
+    display: none; /* Cachée par défaut */
+    position: fixed; /* Reste en place lors du défilement */
+    z-index: 1; /* Au-dessus du contenu */
+    left: 0;
+    top: 0;
+    width: 100%; /* Occupe toute la largeur */
+    height: 100%; /* Occupe toute la hauteur */
+    overflow: auto; /* Ajoute une barre de défilement si nécessaire */
+    background-color: rgb(0,0,0); /* Fond semi-transparent */
+    background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
+}
+
+/* Contenu de la Modal */
+.modal-content {
+    color: #000;
+    background-color: #fefefe;
+    margin: 15% auto; /* Centre verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Réduit la largeur pour permettre le déplacement */
+    margin-left: 10%; /* Ajuste la marge à gauche pour déplacer le contenu vers la gauche */
+}
+.modal-content h4{
+    color: #000;
+
+}
+
+/* Le bouton de fermeture */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
     </style>
 </head>
 <body>
@@ -88,8 +170,11 @@
                             <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000" : "https://suisco.net" }}">SuiSco</a>
                             </li> -->
-                            <li class="rd-nav-item"><a class="rd-nav-link"
+                            <!-- <li class="rd-nav-item"><a class="rd-nav-link"
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000#subscribe" : "https://suisco.net#subscribe"}}">Newsletter</a>
+                            </li> -->
+                            <li class="rd-nav-item"><a class="rd-nav-link"
+                               href="{{ route('bus.become.owner') }}" >Newsletter</a>
                             </li>
                         </ul>
                     </div>
@@ -114,7 +199,7 @@
                     </div>
                     <div class="box-custom-2-inner">
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
-                            Transport Scolaire.
+                            Transport Scolaire dans GRAND LOMÉ.
                         </p>
                         <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
                         <div class="contacts-default">
@@ -123,12 +208,40 @@
                                     <div class="contacts-default-icon mdi mdi-phone-incoming"></div>
                                 </div>
                                 <div class="unit-body">
-                                    <a class="contacts-default-link" href="tel:#">+228 90 97 67 67</a>
+                                    <a class="contacts-default-link" href="tel:#">+228 99 99 89 98</a>
                                 </div>
                             </div>
-                        </div>
-                        <!-- RD Mailform-->
-                        <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                        </div> <br>
+                        
+     <section class="section " id="advantages">
+        <div class="container">
+            <div class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
+                <div class="col-md-12 col-lg-12 wow fadeInRightSmall">
+                    <!-- <h3>Avantages</h3> -->
+                    <!-- Bootstrap tabs -->
+                    <div class="tabs-custom tabs-horizontal tabs-line tabs-line_1 block-8" id="tabs-1">
+                        <!-- Nav tabs-->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
+                             <li class="nav-item" role="presentation">
+                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Evaluer</span></a>
+                            </li> 
+                        </ul>
+                        <!-- Tab panes-->
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="tabs-1-1">
+                                <!-- <p>Download our app and enjoy the best service from TAXPRO. All you have to do to begin
+                                    using it is to enter your name and mobile phone number. You’ll access:</p> -->
+                                    <!-- <p>Service de transport dédié aux élèves, enseignants et parents d’élèves.</p>
+                                <ul class="list-marked list-marked_secondary">
+                                    <li>Véhicules neuves</li>
+                                    <li>Assurance tous risques</li>
+                                    <li>Chauffeurs experimentés </li>
+                                    <li>Services personnalisés </li>
+                                </ul> -->
+
+                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                             @csrf
                             <div class="form-wrap">
                                 <!-- Select 2-->
@@ -138,21 +251,47 @@
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
+
                             <div class="form-wrap">
-                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <!-- Select 2-->
+                                <select class="form-input select" id="school_address" name="school_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
+                            
+                            <!-- Bouton pour afficher la div -->
+                        <div class="form-wrap-2">
+                            
+                            <div class="form-wrap">
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre mes coordonnées">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            </div>
+                            <div class="form-button">
+                                    <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
+                                    Masquer
+                                    </button>
+                               
+                            </div>
+                        </div>
+                   
+                            <div id="mapContainer"  class="form-wrap" style="display: ">
+                            <br>
+                               <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                          <div class="form-wrap" id="map" style="height: 350px;"></div>
+                            <div class="form-wrap">
+                            <!-- <button type="button" id="locate-me" class="button button-block button-primary">
+                            Aller à ma position
+                            </button> -->
+                 </div>
 
 
-            <div class="form-wrap" id="map" style="height: 350px;">
-
-            </div>
-
-            <div class="form-wrap">
-        <button type="button" id="locate-me" class="button button-block button-primary">Localiser ma position</button>
-    </div>
-
-
-           <!--  <script>
+    <!--  <script>
         document.addEventListener('DOMContentLoaded', function () {
             var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -249,113 +388,37 @@
                 });
             });
         });
-    </script> --><script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([51.505, -0.09], 13);
+    </script> -->
 
-        // Charger les tuiles de la carte
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+<!-- Script Masquer Reserver carte  -->
 
-        // Fonction pour obtenir la position actuelle de l'utilisateur
-        function locateUser() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lat = position.coords.latitude;
-                    var lon = position.coords.longitude;
+<script>
+                var myMapvar;
+                document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                    var mapContainer = document.getElementById('mapContainer');
+                    
+                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                        mapContainer.style.display = 'block';
+                        myMapvar= 1;
+                        console.log("myMapvar dans Afficher");
 
-                    // Centrer la carte sur la position actuelle
-                    map.setView([lat, lon], 13);
+                        console.log(myMapvar);
 
-                    // Ajouter un marqueur à la position actuelle
-                    if (currentMarker) {
-                        map.removeLayer(currentMarker);
+                        this.textContent = 'Masquer'; // Changer le texte du bouton
+                    } else {
+                        mapContainer.style.display = 'none';
+                        this.textContent = 'Afficher'; // Changer le texte du bouton
+                        myMapvar= 0;
+                        console.log("myMapvar dans Masquer");
+
+                        console.log(myMapvar);
                     }
-                    currentMarker = L.marker([lat, lon]).addTo(map)
-                        .bindPopup('Vous êtes ici')
-                        .openPopup();
-
-                    // Mettre à jour le champ caché avec les coordonnées du point actuel
-                    document.getElementById('home_address').value = `${lat},${lon}`;
-                },
-                function() {
-                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                }, {
-                    enableHighAccuracy: true
                 });
-            } else {
-                alert("Géolocalisation non supportée.");
-            }
-        }
-
-        // Marqueur actuel
-        var currentMarker = null;
-
-        // Ajouter un marqueur lorsqu'on clique sur la carte
-        map.on('click', function(e) {
-            var lat = e.latlng.lat;
-            var lon = e.latlng.lng;
-
-            // Appeler reverseGeocode pour obtenir le nom du lieu
-            reverseGeocode(lat, lon, function(name) {
-                // Supprimer le marqueur précédent s'il existe
-                if (currentMarker) {
-                    map.removeLayer(currentMarker);
-                }
-
-                // Ajouter un nouveau marqueur au point cliqué
-                currentMarker = L.marker([lat, lon]).addTo(map)
-                    .bindPopup('Point cliqué: ' + name)
-                    .openPopup();
-
-                // Mettre à jour le champ caché avec les coordonnées du point cliqué
-                document.getElementById('home_address').value = `${lat},${lon}`;
-            });
-        });
-
-        // Fonction de géocodage inverse pour obtenir le nom géographique
-        function reverseGeocode(lat, lon, callback) {
-            var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    var address = data.address;
-                    var name = address ? [
-                        address.road || '',
-                        address.suburb || '',
-                        address.city || '',
-                        address.state || '',
-                        address.country || ''
-                    ].filter(part => part).join(', ') : 'N/A';
-                    callback(name);
-                })
-                .catch(() => {
-                    callback('N/A');
-                });
-        }
-
-        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me').addEventListener('click', function() {
-            locateUser();
-        });
-    });
 </script>
+                           
+                        </div>
 
-
-                            </div>
-
-                            <div class="form-wrap">
-                                <!-- Select 2-->
-                                <select class="form-input select " name="school_address" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir votre école</option>
-                                @foreach($schools as $school)
-                                        <option value="{{$school->name}}">{{$school->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-
+                          
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
@@ -379,6 +442,136 @@
                                 </div>
                             </div>
                         </form>
+
+                            </div>
+
+                           <div class="tab-pane fade" id="tabs-1-2">
+                                <!-- <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
+                                    set your route in advance or pick a driver, a preferred car, and more:</p>
+                                <ul class="list-marked list-marked_secondary">
+                                    <li>Manage your taxi spendings;</li>
+                                    <li>Pay for taxi without a credit card;</li>
+                                    <li>Great discounts for regular clients.</li>
+                                </ul> -->
+    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
+                            @csrf
+                            <div class="form-wrap">
+                                <!-- Select 4-->
+                                <select class="form-input select button-shadow" name="service_evaluation" id ="service_evaluation" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none !important;">Choisir un Service</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                            </div>
+
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select" id="school_address_evaluation" name="school_address_evaluation" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->location}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            
+                            <div class="form-wrap" >
+                                <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
+                                
+                            </div>
+
+                            <div class="form-wrap">
+                                <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
+                                
+                            </div>
+
+                            <div class="form-wrap">
+                                <input hidden class="form-input" id="distance_address_evaluation" type="text"  name="distance_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
+                                
+                            </div>
+            <!-- Bouton pour afficher la div -->
+                             <div class="form-wrap-2">
+                            
+                            <div class="form-wrap">
+                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre mes coordonnées">
+                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            </div>
+                            <div class="form-button">
+                                    <button  id="toggleMapBtn2" class="button button-block button-primary button-winona" type="button" >
+                                    Masquer
+                                    </button>
+                               
+                            </div>
+                        </div>
+                         
+                            <div id="mapContainer2"  class="form-wrap" style="display: ">
+                            <br>
+                          <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
+                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                <div class="form-wrap" id="map2" style="height: 350px;"></div>
+                                <div class="form-wrap">
+                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
+                                Aller à ma position
+                             </button> -->
+                        </div>
+     
+                     
+
+                            </div>
+
+                         
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Votre trajet</option>
+                                    <option value="Aller Simple">Aller Simple</option>
+                                    <option value="Retour Simple">Retour Simple</option>
+                                    <option value="Aller-Retour">Aller-Retour</option>
+                                </select>
+                            </div>
+                            <div class="form-wrap">
+                                <!-- <div class="form-wrap">
+                                    <input class="form-input" id="form-phone" type="text" name="phone_number"
+                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                    <label class="form-label" for="form-phone"></label><span
+                                        class="form-icon mdi mdi-cellphone"></span>
+                                </div> -->
+                                <div class="form-button">
+                                    <button id="openModal" class="button button-block button-primary button-winona" type="button" >
+                                        Essayer
+                                    </button>
+                                </div>
+                            </div>
+
+                                  <!-- La Modal -->
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h4>Résultats de la simulation</h4>
+                          <!--   <p id="modalDeparture"></p>
+                            <p id="modalArrival"></p> -->
+                            <p id="modalDistance"></p>
+                            <p id="modalPrice"></p>
+                        </div>
+                    </div>
+
+                                    <!--fin Button trigger modal -->
+                                        
+    </form>
+                            </div> 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+
+     <!-- Button trigger modal -->
+
+
+                        <!-- RD Mailform-->
+     
                     </div>
                 </div>
             </div>
@@ -474,6 +667,7 @@
             </div>
         </div>
     </section>
+
     <section class="section section-lg bg-gray-4 oh" id="advantages">
         <div class="container">
             <div
@@ -491,9 +685,9 @@
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Transport</span></a></li>
-                            <!-- <li class="nav-item" role="presentation">
+                             <!-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a>
-                            </li> -->
+                            </li>  -->
                         </ul>
                         <!-- Tab panes-->
                         <div class="tab-content">
@@ -508,7 +702,7 @@
                                     <li>Services personnalisés </li>
                                 </ul>
                             </div>
-                            <!-- <div class="tab-pane fade" id="tabs-1-2">
+                           <div class="tab-pane fade" id="tabs-1-2">
                                 <p>TAXPRO App allows you to book a taxi without having to call our dispatcher as well as
                                     set your route in advance or pick a driver, a preferred car, and more:</p>
                                 <ul class="list-marked list-marked_secondary">
@@ -516,7 +710,7 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul>
-                            </div> -->
+                            </div> 
 
                         </div>
                     </div>
@@ -531,6 +725,7 @@
             </div>
         </div>
     </section>
+
     <!-- Stickers-->
     <section class="section section-1 text-center" id="prices">
         <div class="container">
@@ -573,9 +768,9 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                        src="{{ asset('template/bus/images/1.jpg') }}" alt="" width="74" height="74"/>
+                                        src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Kodjo TELOU</cite>
+                                        <cite class="quote-modern-cite"> Dr Tsolenyanu</cite>
                                         <p class="quote-modern-position">Diplomate</p>
                                     </div>
                                 </div>
@@ -593,40 +788,16 @@
                             </div>
                         </blockquote>
                     </div>
-                    <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".1s">
-                        <!-- Quote Modern-->
-                        <blockquote class="quote-modern">
-                            <div class="quote-modern-header">
-                                <div class="quote-modern-info">
-                                    <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/testimonials-2-74x74.jpg') }}" alt="" width="74" height="74"/>
-                                    <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Williams KLOUTSE</cite>
-                                        <p class="quote-modern-position">Chef d'entreprise</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="quote-modern-main">
-                                <div class="quote-modern-text">
-                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
-                                </div>
-                                <div class="quote-modern-meta">
-                                    <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
-                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
-                                </div>
-                            </div>
-                        </blockquote>
-                    </div>
                     <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".3s">
                         <!-- Quote Modern-->
                         <blockquote class="quote-modern">
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/2.jpg') }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Florence Afi AGBESSI</cite>
-                                        <p class="quote-modern-position">Cadre a ECOBANK</p>
+                                        <cite class="quote-modern-cite">Yao-Amuama</cite>
+                                        <p class="quote-modern-position">Miss Togo</p>
                                     </div>
                                 </div>
                             </div>
@@ -643,6 +814,32 @@
                             </div>
                         </blockquote>
                     </div>
+                    <div class="col-md-6 col-lg-4 isotope-item wow fadeInUpSmall" data-wow-delay=".1s">
+                        <!-- Quote Modern-->
+                        <blockquote class="quote-modern">
+                            <div class="quote-modern-header">
+                                <div class="quote-modern-info">
+                                    <img class="quote-modern-avatar"
+                                         src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
+                                    <div class="quote-modern-info-main">
+                                        <cite class="quote-modern-cite">kako Nubukpo </cite>
+                                        <p class="quote-modern-position">Economiste</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quote-modern-main">
+                                <div class="quote-modern-text">
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
+                                </div>
+                                <div class="quote-modern-meta">
+                                    <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
+                                    <time class="quote-modern-time" datetime="2019">Mar 24, 2024</time>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+
+                    
                 </div>
             </div>
         </div>
@@ -650,21 +847,23 @@
 
     <!-- CTA-->
     <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
-             data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
-        <div class="parallax-content">
-            <div class="container">
-                <div class="row row-50 justify-content-end">
-                    <div class="col-md-6 col-lg-5">
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
-                        <p class="big wow clipInLeft" data-wow-delay=".1s">
-                            Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
-                        </p>
-                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
-                    </div>
+         style="background-image: url('{{ asset('template/bus/images/b3.jpg') }}'); background-size: cover; background-position: center;">
+    <div class="parallax-content">
+        <div class="container">
+            <div class="row row-50 justify-content-end">
+                <div class="col-md-6 col-lg-5">
+                    <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> on first order</h1>
+                    <p class="big wow clipInLeft" data-wow-delay=".1s">
+                        Our first-time customers get a great discount
+                        on their order.
+                    </p>
+                    <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!-- Page Footer-->
     <footer class="section footer-classic">
         <div class="footer-classic-main">
@@ -692,7 +891,7 @@
                         {{--<div class="row row-20 row-sm-35 text-center">--}}
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228 90 97 67 67</li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
                             <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>
@@ -727,6 +926,303 @@
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+
+  <!-- Script Reserver carte -->   
+<script>
+
+        console.log("myMapvar dans le map");
+
+        console.log(myMapvar);
+
+        document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([6.1356, 1.2226], 15);
+
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+        maxZoom: 20
+        }).addTo(map);
+
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+
+                // Centrer la carte sur la position actuelle
+                map.setView([lat, lon], 17);
+
+                // Ajouter un marqueur à la position actuelle
+                if (currentMarker) {
+                    map.removeLayer(currentMarker);
+                }
+            /*  currentMarker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup('Vous êtes ici')
+                    .openPopup(); */
+
+                // Mettre à jour le champ caché avec les coordonnées du point actuel
+                document.getElementById('home_address').value = `${lat},${lon}`;
+            },
+            function() {
+                alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+            }, {
+                enableHighAccuracy: true
+            });
+        } else {
+            alert("Géolocalisation non supportée.");
+        }
+        }
+
+        // Marqueur actuel
+        var currentMarker = null;
+
+        // Ajouter un marqueur lorsqu'on clique sur la carte
+        map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lon = e.latlng.lng;
+
+        // Appeler reverseGeocode pour obtenir le nom du lieu
+        reverseGeocode(lat, lon, function(name) {
+            // Supprimer le marqueur précédent s'il existe
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+            }
+
+            // Ajouter un nouveau marqueur au point cliqué
+            currentMarker = L.marker([lat, lon]).addTo(map)
+                .bindPopup('Point cliqué: ' + name)
+                .openPopup();
+
+            // Mettre à jour le champ caché avec les coordonnées du point cliqué
+            document.getElementById('home_address').value = `${lat},${lon}`;
+        });
+        });
+
+        // Fonction de géocodage inverse pour obtenir le nom géographique
+        function reverseGeocode(lat, lon, callback) {
+        var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                var address = data.address;
+                var name = address ? [
+                    address.road || '',
+                    address.suburb || '',
+                    address.city || '',
+                    address.state || '',
+                    address.country || ''
+                ].filter(part => part).join(', ') : 'N/A';
+                callback(name);
+            })
+            .catch(() => {
+                callback('N/A');
+            });
+        }
+
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser();
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me').addEventListener('click', function() {
+        locateUser();
+        });
+        });
+
+</script>
+
+<!-- Script Evaluer carte  -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 20
+        }).addTo(map2);
+
+        // Marqueurs pour les points de départ et d'arrivée
+        var startMarker2 = null;
+        var endMarker2 = null;
+
+        // Variables pour stocker les coordonnées des points
+        var startLatLng2 = null;
+        var endLatLng2 = null;
+
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser2() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat2 = position.coords.latitude;
+                    var lon2 = position.coords.longitude;
+
+                    // Centrer la carte sur la position actuelle
+                    map2.setView([lat2, lon2], 17);
+
+                    // Ajouter un marqueur à la position actuelle
+                    if (startMarker2) {
+                        map2.removeLayer(startMarker2);
+                    }
+                    startLatLng2 = L.latLng(lat2, lon2);
+                    /* startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                        .bindPopup('Point actuel')
+                        .openPopup();
+ */
+                    // Mettre à jour le champ de formulaire pour le départ
+                    document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                    
+                },
+                function() {
+                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                }, {
+                    enableHighAccuracy: true
+                });
+            } else {
+                alert("Géolocalisation non supportée.");
+            }
+        }
+
+        // Fonction pour gérer les clics sur la carte
+        function handleMapClick(e) {
+            var lat2 = e.latlng.lat;
+            var lon2 = e.latlng.lng;
+
+            // Mettre à jour le point de départ avec la position cliquée
+            if (startMarker2) {
+                map2.removeLayer(startMarker2);
+            }
+            startLatLng2 = e.latlng; // Définir le point de départ
+            startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                .bindPopup('Point choisi')
+                .openPopup();
+
+            // Récupérer les coordonnées de l'école à partir du champ
+            var schoolCoords = document.getElementById('school_address_evaluation').value;
+            var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
+            
+            if (schoolLatLng.length === 2) {
+                // Créer un latlng pour le point de l'école
+                endLatLng2 = L.latLng(schoolLatLng[0], schoolLatLng[1]);
+
+                // Supprimer le marqueur d'arrivée précédent s'il existe
+                if (endMarker2) {
+                    map2.removeLayer(endMarker2);
+                }
+                endMarker2 = L.marker(endLatLng2).addTo(map2)
+                    .bindPopup('École')
+                    .openPopup();
+
+                // Calculer la distance entre les points
+                var distance2 = startLatLng2.distanceTo(endLatLng2);
+
+                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
+
+                // Afficher les valeurs dans la console
+                console.log(document.getElementById('departure_address_evaluation').value);
+                console.log(document.getElementById('arrive_address_evaluation').value);
+                console.log(document.getElementById('distance_address_evaluation').value);
+
+                // Mise à jour des valeurs dans le popup
+                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
+                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
+            } else {
+                alert("Choissisz votre école et réessayez.");
+            }
+        }
+
+        // Ajouter un écouteur d'événement pour cliquer sur la carte
+        map2.on('click', handleMapClick);
+
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser2();
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me2').addEventListener('click', function() {
+            locateUser2();
+        });
+    });
+</script>
+
+
+ <!-- Script Masquer Evaluer carte  -->
+
+<script>
+            var myMapvar2 = 0;
+            document.getElementById('toggleMapBtn2').addEventListener('click', function() {
+                var mapContainer = document.getElementById('mapContainer2');
+                
+                if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                    mapContainer.style.display = 'block';
+                    myMapvar2= 1;
+                    console.log("myMapvar dans Afficher");
+
+                    console.log(myMapvar2);
+
+                    this.textContent = 'Masquer'; // Changer le texte du bouton
+                } else {
+                    mapContainer.style.display = 'none';
+                    this.textContent = 'Afficher'; // Changer le texte du bouton
+                    myMapvar2= 0;
+                    console.log("myMapvar dans Masquer");
+
+                    console.log(myMapvar2);
+                }
+            });
+</script>
+                           
+ <!-- Script Ouvrir Modal  -->
+                
+ <script>
+            // script.js     
+
+            // Récupérer les éléments
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("openModal");
+            var span = document.getElementsByClassName("close")[0];
+
+            // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+            var departure = document.getElementById('departure_address_evaluation').value ;
+            console.log("depart");
+            console.log(departure);
+
+            var arrive = document.getElementById('arrive_address_evaluation').value;
+            var distance = document.getElementById('distance_address_evaluation').value ;
+            var price = "20.000 FCFA";
+
+
+                    // Mettre à jour le contenu de la modal
+                
+            // Afficher les valeurs dans la console
+            console.log("depart2");
+            console.log(document.getElementById('departure_address_evaluation').value);
+            console.log(document.getElementById('arrive_address_evaluation').value);
+            console.log(document.getElementById('distance_address_evaluation').value);
+
+
+            // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Lorsque l'utilisateur clique sur (x), fermer la modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+</script>
+                         
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
 <!-- coded by Ragnar-->
