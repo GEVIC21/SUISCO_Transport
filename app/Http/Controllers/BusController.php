@@ -34,7 +34,7 @@ class BusController extends Controller
     {
         
         $input = $request->all();
-        dd($input);
+        
 
       $subscription = Subscription::create($input);
 
