@@ -7,6 +7,7 @@ use App\Http\Requests\CreateConsignmentRequest;
 use App\Http\Requests\CreateSubscriptionRequest;
 use App\Models\Consignment;
 use App\Models\Parameter;
+use App\Models\Reservation;
 use App\Models\School;
 use App\Models\Subscription;
 use App\Models\SubscriptionHistory;
@@ -32,18 +33,17 @@ class BusController extends Controller
 
     public function store_subscription(CreateSubscriptionRequest $request)
     {
-        
-        $input = $request->all();
-        dd($input);
-
-      $subscription = Subscription::create($input);
-
-        $input += ['subscription_id' => $subscription->id];
-        SubscriptionHistory::create($input);
-
+          $subscription = Reservation::create(
+              [
+                  'service' => $request->service,
+                  'house_location' => $request->home_address,
+                  'school_location' => $request->school_address,
+                  'route' => $request->trajectory,
+                  'phone_numbre' => $request->phone_number,
+                  ]
+          );
         Flashy::message(__('Subscription saved successfully.') . ' ' . __('We will contact you as soon as possible.'));
         return redirect()->back();
-
     }
 
     public function store_consignment(CreateConsignmentRequest $request)

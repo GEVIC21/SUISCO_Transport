@@ -22,7 +22,12 @@ Route::name('bus.')->group(function (){
 });
 
 Route::name('admin.')->group(function (){
-    Route::get('/app', [\App\Http\Controllers\AdminController::class, 'app'])->name('app');
+    Route::get('/reservations', [\App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations');
+    Route::get('/utilisateurs', [\App\Http\Controllers\AdminController::class, 'utilisateurs'])->name('utilisateurs');
+    Route::get('/ecoles', [\App\Http\Controllers\AdminController::class, 'ecoles'])->name('ecoles');
+    Route::get('/parametres', [\App\Http\Controllers\AdminController::class, 'parametres'])->name('parametres');
+    Route::get('/ajouter_ecole', [\App\Http\Controllers\AdminController::class, 'ajouter_ecole'])->name('add.ecole');
+    Route::get('/ajouter_utilisateur', [\App\Http\Controllers\AdminController::class, 'ajouter_utilisateur'])->name('add.utilisateur');
 });
 
 Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
