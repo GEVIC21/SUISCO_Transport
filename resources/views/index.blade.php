@@ -241,7 +241,7 @@
                                     <li>Services personnalisés </li>
                                 </ul> -->
 
-                            <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                             @csrf
                             <div class="form-wrap">
                                 <!-- Select 2-->
@@ -251,10 +251,51 @@
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
+                            
+                            <!-- Bouton pour afficher la div -->
+                        <div class="form-wrap-2">
+                            
                             <div class="form-wrap">
-                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre mes coordonnées">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                            <div class="form-wrap" id="map" style="height: 350px;"></div>
+                            </div>
+                            <div class="form-button">
+                                    <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
+                                    Masquer
+                                    </button>
+                               
+                            </div>
+                        </div>
+                         
+                            <script>
+                                var myMapvar;
+                                document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                                    var mapContainer = document.getElementById('mapContainer');
+                                    
+                                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                                        mapContainer.style.display = 'block';
+                                        myMapvar= 1;
+                                        console.log("myMapvar dans Afficher");
+
+                                        console.log(myMapvar);
+
+                                        this.textContent = 'Masquer'; // Changer le texte du bouton
+                                    } else {
+                                        mapContainer.style.display = 'none';
+                                        this.textContent = 'Afficher'; // Changer le texte du bouton
+                                        myMapvar= 0;
+                                        console.log("myMapvar dans Masquer");
+
+                                        console.log(myMapvar);
+                                    }
+                                });
+                            </script>
+                  
+                            <div id="mapContainer"  class="form-wrap" style="display: ">
+                            <br>
+                               <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            --> <div class="form-wrap" id="map" style="height: 350px;"></div>
                             <div class="form-wrap">
                             <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                             Aller à ma position
@@ -262,7 +303,7 @@
                  </div>
 
 
-           <!--  <script>
+    <!--  <script>
         document.addEventListener('DOMContentLoaded', function () {
             var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -359,15 +400,21 @@
                 });
             });
         });
-     </script> -->
+    </script> -->
      
-     <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+
+console.log("myMapvar dans le map");
+
+console.log(myMapvar);
+       
+        document.addEventListener('DOMContentLoaded', function () {
         var map = L.map('map').setView([6.1356, 1.2226], 15);
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 20
         }).addTo(map);
 
         // Fonction pour obtenir la position actuelle de l'utilisateur
@@ -455,6 +502,7 @@
             locateUser();
         });
     });
+
 </script>
 
 
@@ -506,7 +554,7 @@
                                     <li>Pay for taxi without a credit card;</li>
                                     <li>Great discounts for regular clients.</li>
                                 </ul> -->
-                                <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
+    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
                             @csrf
                             <div class="form-wrap">
                                 <!-- Select 4-->
@@ -531,228 +579,167 @@
                                 <input hidden class="form-input" id="distance_address_evaluation" type="text"  name="distance_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
                                 
                             </div>
-
-                         <div class="form-wrap">
-                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse">
+            <!-- Bouton pour afficher la div -->
+                             <div class="form-wrap-2">
+                            
+                            <div class="form-wrap">
+                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre mes coordonnées">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            </div>
+                            <div class="form-button">
+                                    <button  id="toggleMapBtn2" class="button button-block button-primary button-winona" type="button" >
+                                    Masquer
+                                    </button>
+                               
+                            </div>
+                        </div>
+                         
+                            <script>
+                                var myMapvar2 = 0;
+                                document.getElementById('toggleMapBtn2').addEventListener('click', function() {
+                                    var mapContainer = document.getElementById('mapContainer2');
+                                    
+                                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                                        mapContainer.style.display = 'block';
+                                        myMapvar2= 1;
+                                        console.log("myMapvar dans Afficher");
+
+                                        console.log(myMapvar2);
+
+                                        this.textContent = 'Masquer'; // Changer le texte du bouton
+                                    } else {
+                                        mapContainer.style.display = 'none';
+                                        this.textContent = 'Afficher'; // Changer le texte du bouton
+                                        myMapvar2= 0;
+                                        console.log("myMapvar dans Masquer");
+
+                                        console.log(myMapvar2);
+                                    }
+                                });
+                            </script>
+                           
+
+                            <div id="mapContainer2"  class="form-wrap" style="display: ">
+                            <br>
+                          <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
+                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                 <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                 <div class="form-wrap">
                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
                                 Aller à ma position
                              </button> -->
                         </div>
-
-
-           <!--  <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var map = L.map('map').setView([51.505, -0.09], 13);
-
-            // Charger les tuiles de la carte
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Fonction pour obtenir la position actuelle de l'utilisateur
-            function locateUser() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var lat = position.coords.latitude;
-                        var lon = position.coords.longitude;
-
-                        // Centrer la carte sur la position actuelle
-                        map.setView([lat, lon], 13);
-
-                        // Ajouter un marqueur à la position actuelle
-                        L.marker([lat, lon]).addTo(map)
-                            .bindPopup('Vous êtes ici')
-                            .openPopup();
-                    }, function() {
-                        alert("Erreur de géolocalisation.");
-                    });
-                } else {
-                    alert("Géolocalisation non supportée.");
-                }
-            }
-
-            // Fonction de géocodage inverse pour obtenir le nom géographique
-            function reverseGeocode(lat, lon, callback) {
-                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        var address = data.address;
-                        var name = address ? [
-                            address.road || '',
-                            address.suburb || '',
-                            address.city || '',
-                            address.state || '',
-                            address.country || ''
-                        ].filter(part => part).join(', ') : 'N/A';
-                        callback(name);
-                    })
-                    .catch(() => {
-                        callback('N/A');
-                    });
-            }
-
-            // Variables pour stocker les points cliqués
-            var firstPoint = null;
-            var secondPoint = null;
-            var line = null;
-
-            // Appeler la fonction pour localiser l'utilisateur
-            locateUser();
-
-            // Ajouter un marqueur et une ligne lorsqu'on clique sur la carte
-            map.on('click', function(e) {
-
-                var lat = e.latlng.lat;
-                var lon = e.latlng.lng;
-
-                reverseGeocode(lat, lon, function(name) {
-                    if (!firstPoint) {
-                        // Premier clic
-                        firstPoint = { lat: lat, lon: lon, name: name };
-                        L.marker([lat, lon]).addTo(map)
-                            .bindPopup('Premier point cliqué: ' + name)
-                            .openPopup();
-                    } else if (!secondPoint) {
-                        // Deuxième clic
-                        secondPoint = { lat: lat, lon: lon, name: name };
-                        L.marker([lat, lon]).addTo(map)
-                            .bindPopup('Deuxième point cliqué: ' + name)
-                            .openPopup();
-
-                        // Calculer la distance entre les deux points
-                        var distance = map.distance([firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]);
-                        alert('Distance: ' + (distance / 1000).toFixed(2) + ' km');
-
-                        // Tracer une ligne entre les deux points
-                        if (line) {
-                            map.removeLayer(line);
-                        }
-                        line = L.polyline([[firstPoint.lat, firstPoint.lon], [secondPoint.lat, secondPoint.lon]], {color: 'blue'}).addTo(map);
-
-                        // Réinitialiser les points pour permettre de sélectionner de nouveaux points
-                        firstPoint = null;
-                        secondPoint = null;
-                    }
-                });
-            });
-        });
-     </script> -->
      
-     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+            <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
 
-        // Charger les tuiles de la carte
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map2);
+                        // Charger les tuiles de la carte
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '© OpenStreetMap contributors',
+                            maxZoom: 20
+                        }).addTo(map2);
 
-        // Marqueurs pour les points de départ et d'arrivée
-        var startMarker2 = null;
-        var endMarker2 = null;
-        var userMarker2 = null;
+                        // Marqueurs pour les points de départ et d'arrivée
+                        var startMarker2 = null;
+                        var endMarker2 = null;
+                        var userMarker2 = null;
 
-        // Variables pour stocker les coordonnées des points
-        var startLatLng2 = null;
-        var endLatLng2 = null;
+                        // Variables pour stocker les coordonnées des points
+                        var startLatLng2 = null;
+                        var endLatLng2 = null;
 
-        // Variable pour compter les clics
-        var clickCount2 = 0;
+                        // Variable pour compter les clics
+                        var clickCount2 = 0;
 
-        // Fonction pour obtenir la position actuelle de l'utilisateur
-        function locateUser2() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lat2 = position.coords.latitude;
-                    var lon2 = position.coords.longitude;
+                        // Fonction pour obtenir la position actuelle de l'utilisateur
+                        function locateUser2() {
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(function(position) {
+                                    var lat2 = position.coords.latitude;
+                                    var lon2 = position.coords.longitude;
 
-                    // Centrer la carte sur la position actuelle
-                    map2.setView([lat2, lon2], 17);
+                                    // Centrer la carte sur la position actuelle
+                                    map2.setView([lat2, lon2], 17);
 
-                    // Ajouter un marqueur à la position actuelle
-                    if (userMarker2) {
-                        map2.removeLayer(userMarker2);
-                    }
-                    /* userMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                        .bindPopup('Vous êtes ici')
-                        .openPopup(); */
-                },
-                function() {
-                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                }, {
-                    enableHighAccuracy: true
-                });
-            } else {
-                alert("Géolocalisation non supportée.");
-            }
-        }
+                                    // Ajouter un marqueur à la position actuelle
+                                    if (userMarker2) {
+                                        map2.removeLayer(userMarker2);
+                                    }
+                                    /* userMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                                        .bindPopup('Vous êtes ici')
+                                        .openPopup(); */
+                                },
+                                function() {
+                                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                                }, {
+                                    enableHighAccuracy: true
+                                });
+                            } else {
+                                alert("Géolocalisation non supportée.");
+                            }
+                        }
 
-        // Fonction pour gérer les clics sur la carte
-        function handleMapClick(e) {
-            var lat2 = e.latlng.lat;
-            var lon2 = e.latlng.lng;
+                        // Fonction pour gérer les clics sur la carte
+                        function handleMapClick(e) {
+                            var lat2 = e.latlng.lat;
+                            var lon2 = e.latlng.lng;
 
-            if (clickCount2 === 0) {
-                // Premier point (point de départ)
-                if (startMarker2) {
-                    map2.removeLayer(startMarker2);
-                }
-                startLatLng2 = e.latlng;
-                startMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                    .bindPopup('Point de départ')
-                    .openPopup();
-                clickCount2++;
-                alert("Choisissez un second point");
-            } else if (clickCount2 === 1) {
-                // Deuxième point (point d'arrivée)
-                if (endMarker2) {
-                    map2.removeLayer(endMarker2);
-                }
-                endLatLng2 = e.latlng;
-                endMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                    .bindPopup('Point d\'arrivée')
-                    .openPopup();
+                            if (clickCount2 === 0) {
+                                // Premier point (point de départ)
+                                if (startMarker2) {
+                                    map2.removeLayer(startMarker2);
+                                }
+                                startLatLng2 = e.latlng;
+                                startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                                    .bindPopup('Point de départ')
+                                    .openPopup();
+                                clickCount2++;
+                                alert("Choisissez un second point");
+                            } else if (clickCount2 === 1) {
+                                // Deuxième point (point d'arrivée)
+                                if (endMarker2) {
+                                    map2.removeLayer(endMarker2);
+                                }
+                                endLatLng2 = e.latlng;
+                                endMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                                    .bindPopup('Point d\'arrivée')
+                                    .openPopup();
 
-                // Calculer la distance entre les deux points
-                var distance2 = startLatLng2.distanceTo(endLatLng2);
+                                // Calculer la distance entre les deux points
+                                var distance2 = startLatLng2.distanceTo(endLatLng2);
 
-                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
-                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
-                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
+                                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+                                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
 
-                // Afficher les valeurs dans la console
-                console.log(document.getElementById('departure_address_evaluation').value);
-                console.log(document.getElementById('arrive_address_evaluation').value);
-                console.log(document.getElementById('distance_address_evaluation').value);
+                                // Afficher les valeurs dans la console
+                                console.log(document.getElementById('departure_address_evaluation').value);
+                                console.log(document.getElementById('arrive_address_evaluation').value);
+                                console.log(document.getElementById('distance_address_evaluation').value);
 
-                // Mise à jour des valeurs dans le popup
-                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
-                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
+                                // Mise à jour des valeurs dans le popup
+                                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
+                                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
 
-                // Réinitialiser le comptage pour permettre une nouvelle sélection
-                clickCount2 = 0;
-            }
-        }
+                                // Réinitialiser le comptage pour permettre une nouvelle sélection
+                                clickCount2 = 0;
+                            }
+                        }
 
-        // Ajouter un écouteur d'événement pour cliquer sur la carte
-        map2.on('click', handleMapClick);
+                        // Ajouter un écouteur d'événement pour cliquer sur la carte
+                        map2.on('click', handleMapClick);
 
-        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
-        locateUser2();
+                        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+                        locateUser2();
 
-        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me2').addEventListener('click', function() {
-            locateUser2();
-        });
-    });
-</script>
-
-
+                        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+                        document.getElementById('locate-me2').addEventListener('click', function() {
+                            locateUser2();
+                        });
+                    });
+            </script>
 
                             </div>
 
@@ -765,7 +752,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
 
                             <div class="form-wrap">
                                 <!-- Select 2-->
@@ -804,7 +790,7 @@
 
                                     <!--fin Button trigger modal -->
                                         
-                        </form>
+    </form>
                             </div> 
 
                         </div>
