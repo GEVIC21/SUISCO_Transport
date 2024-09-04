@@ -251,6 +251,18 @@
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
+
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select" id="school_address" name="school_address" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->name}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+
                             
                             <!-- Bouton pour afficher la div -->
                         <div class="form-wrap-2">
@@ -270,8 +282,8 @@
                             <div id="mapContainer"  class="form-wrap" style="display: ">
                             <br>
                                <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                            --> <div class="form-wrap" id="map" style="height: 350px;"></div>
+                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                          <div class="form-wrap" id="map" style="height: 350px;"></div>
                             <div class="form-wrap">
                             <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                             Aller à ma position
@@ -378,20 +390,35 @@
         });
     </script> -->
 
+<!-- Script Masquer Reserver carte  -->
 
-                            </div>
+<script>
+                var myMapvar;
+                document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                    var mapContainer = document.getElementById('mapContainer');
+                    
+                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                        mapContainer.style.display = 'block';
+                        myMapvar= 1;
+                        console.log("myMapvar dans Afficher");
 
-                            <div class="form-wrap">
-                                <!-- Select 2-->
-                                <select class="form-input select " name="school_address" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir votre école</option>
-                                @foreach($schools as $school)
-                                        <option value="{{$school->name}}">{{$school->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        console.log(myMapvar);
 
+                        this.textContent = 'Masquer'; // Changer le texte du bouton
+                    } else {
+                        mapContainer.style.display = 'none';
+                        this.textContent = 'Afficher'; // Changer le texte du bouton
+                        myMapvar= 0;
+                        console.log("myMapvar dans Masquer");
 
+                        console.log(myMapvar);
+                    }
+                });
+</script>
+                           
+                        </div>
+
+                          
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
@@ -436,6 +463,17 @@
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
+
+                            <div class="form-wrap">
+                                <!-- Select 2-->
+                                <select class="form-input select" id="school_address_evaluation" name="school_address_evaluation" data-constraints="@Required" required>
+                                    <option value="" selected style="display: none">Choisir votre école</option>
+                                @foreach($schools as $school)
+                                        <option value="{{$school->location}}">{{$school->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
                             
                             <div class="form-wrap" >
                                 <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
@@ -481,16 +519,7 @@
 
                             </div>
 
-                            <div class="form-wrap">
-                                <!-- Select 2-->
-                                <select class="form-input select " name="school_address" data-constraints="@Required" required>
-                                    <option value="" selected style="display: none">Choisir votre école</option>
-                                @foreach($schools as $school)
-                                        <option value="{{$school->name}}">{{$school->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
+                         
                             <div class="form-wrap">
                                 <!-- Select 2-->
                                 <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
@@ -1003,148 +1032,125 @@
 
 </script>
 
-
 <!-- Script Evaluer carte  -->
 <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+    document.addEventListener('DOMContentLoaded', function () {
+        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
 
-                // Charger les tuiles de la carte
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap contributors',
-                    maxZoom: 20
-                }).addTo(map2);
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 20
+        }).addTo(map2);
 
-                // Marqueurs pour les points de départ et d'arrivée
-                var startMarker2 = null;
-                var endMarker2 = null;
-                var userMarker2 = null;
+        // Marqueurs pour les points de départ et d'arrivée
+        var startMarker2 = null;
+        var endMarker2 = null;
 
-                // Variables pour stocker les coordonnées des points
-                var startLatLng2 = null;
-                var endLatLng2 = null;
+        // Variables pour stocker les coordonnées des points
+        var startLatLng2 = null;
+        var endLatLng2 = null;
 
-                // Variable pour compter les clics
-                var clickCount2 = 0;
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser2() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var lat2 = position.coords.latitude;
+                    var lon2 = position.coords.longitude;
 
-                // Fonction pour obtenir la position actuelle de l'utilisateur
-                function locateUser2() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function(position) {
-                            var lat2 = position.coords.latitude;
-                            var lon2 = position.coords.longitude;
+                    // Centrer la carte sur la position actuelle
+                    map2.setView([lat2, lon2], 17);
 
-                            // Centrer la carte sur la position actuelle
-                            map2.setView([lat2, lon2], 17);
-
-                            // Ajouter un marqueur à la position actuelle
-                            if (userMarker2) {
-                                map2.removeLayer(userMarker2);
-                            }
-                            /* userMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                                .bindPopup('Vous êtes ici')
-                                .openPopup(); */
-                        },
-                        function() {
-                            alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                        }, {
-                            enableHighAccuracy: true
-                        });
-                    } else {
-                        alert("Géolocalisation non supportée.");
+                    // Ajouter un marqueur à la position actuelle
+                    if (startMarker2) {
+                        map2.removeLayer(startMarker2);
                     }
-                }
-
-                // Fonction pour gérer les clics sur la carte
-                function handleMapClick(e) {
-                    var lat2 = e.latlng.lat;
-                    var lon2 = e.latlng.lng;
-
-                    if (clickCount2 === 0) {
-                        // Premier point (point de départ)
-                        if (startMarker2) {
-                            map2.removeLayer(startMarker2);
-                        }
-                        startLatLng2 = e.latlng;
-                        startMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                            .bindPopup('Point de départ')
-                            .openPopup();
-                        clickCount2++;
-                        alert("Choisissez un second point");
-                    } else if (clickCount2 === 1) {
-                        // Deuxième point (point d'arrivée)
-                        if (endMarker2) {
-                            map2.removeLayer(endMarker2);
-                        }
-                        endLatLng2 = e.latlng;
-                        endMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                            .bindPopup('Point d\'arrivée')
-                            .openPopup();
-
-                        // Calculer la distance entre les deux points
-                        var distance2 = startLatLng2.distanceTo(endLatLng2);
-
-                        // Mettre à jour les champs de formulaire avec les coordonnées et la distance
-                        document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                        document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
-                        document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
-
-                        // Afficher les valeurs dans la console
-                        console.log(document.getElementById('departure_address_evaluation').value);
-                        console.log(document.getElementById('arrive_address_evaluation').value);
-                        console.log(document.getElementById('distance_address_evaluation').value);
-
-                        // Mise à jour des valeurs dans le popup
-                        document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
-                        document.getElementById('modalPrice').textContent = 'Prix: ' + price;
-
-                        // Réinitialiser le comptage pour permettre une nouvelle sélection
-                        clickCount2 = 0;
-                    }
-                }
-
-                // Ajouter un écouteur d'événement pour cliquer sur la carte
-                map2.on('click', handleMapClick);
-
-                // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
-                locateUser2();
-
-                // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-                document.getElementById('locate-me2').addEventListener('click', function() {
-                    locateUser2();
-                });
-            });
-</script>
-
- 
- <!-- Script Masquer Reserver carte  -->
-
-<script>
-                var myMapvar;
-                document.getElementById('toggleMapBtn').addEventListener('click', function() {
-                    var mapContainer = document.getElementById('mapContainer');
+                    startLatLng2 = L.latLng(lat2, lon2);
+                    /* startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                        .bindPopup('Point actuel')
+                        .openPopup();
+ */
+                    // Mettre à jour le champ de formulaire pour le départ
+                    document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
                     
-                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-                        mapContainer.style.display = 'block';
-                        myMapvar= 1;
-                        console.log("myMapvar dans Afficher");
-
-                        console.log(myMapvar);
-
-                        this.textContent = 'Masquer'; // Changer le texte du bouton
-                    } else {
-                        mapContainer.style.display = 'none';
-                        this.textContent = 'Afficher'; // Changer le texte du bouton
-                        myMapvar= 0;
-                        console.log("myMapvar dans Masquer");
-
-                        console.log(myMapvar);
-                    }
+                },
+                function() {
+                    alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                }, {
+                    enableHighAccuracy: true
                 });
+            } else {
+                alert("Géolocalisation non supportée.");
+            }
+        }
+
+        // Fonction pour gérer les clics sur la carte
+        function handleMapClick(e) {
+            var lat2 = e.latlng.lat;
+            var lon2 = e.latlng.lng;
+
+            // Mettre à jour le point de départ avec la position cliquée
+            if (startMarker2) {
+                map2.removeLayer(startMarker2);
+            }
+            startLatLng2 = e.latlng; // Définir le point de départ
+            startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                .bindPopup('Point choisi')
+                .openPopup();
+
+            // Récupérer les coordonnées de l'école à partir du champ
+            var schoolCoords = document.getElementById('school_address_evaluation').value;
+            var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
+            
+            if (schoolLatLng.length === 2) {
+                // Créer un latlng pour le point de l'école
+                endLatLng2 = L.latLng(schoolLatLng[0], schoolLatLng[1]);
+
+                // Supprimer le marqueur d'arrivée précédent s'il existe
+                if (endMarker2) {
+                    map2.removeLayer(endMarker2);
+                }
+                endMarker2 = L.marker(endLatLng2).addTo(map2)
+                    .bindPopup('École')
+                    .openPopup();
+
+                // Calculer la distance entre les points
+                var distance2 = startLatLng2.distanceTo(endLatLng2);
+
+                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
+                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
+
+                // Afficher les valeurs dans la console
+                console.log(document.getElementById('departure_address_evaluation').value);
+                console.log(document.getElementById('arrive_address_evaluation').value);
+                console.log(document.getElementById('distance_address_evaluation').value);
+
+                // Mise à jour des valeurs dans le popup
+                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value; 
+                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
+            } else {
+                alert("Choissisz votre école et réessayez.");
+            }
+        }
+
+        // Ajouter un écouteur d'événement pour cliquer sur la carte
+        map2.on('click', handleMapClick);
+
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser2();
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me2').addEventListener('click', function() {
+            locateUser2();
+        });
+    });
 </script>
-        
+
 
  <!-- Script Masquer Evaluer carte  -->
+
 <script>
             var myMapvar2 = 0;
             document.getElementById('toggleMapBtn2').addEventListener('click', function() {
