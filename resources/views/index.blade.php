@@ -266,26 +266,22 @@
                                
                             </div>
                         </div>
-                         
                             <script>
                                 var myMapvar;
                                 document.getElementById('toggleMapBtn').addEventListener('click', function() {
                                     var mapContainer = document.getElementById('mapContainer');
                                     
                                     if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-                                        mapContainer.style.display = 'block';
+                                        mapContainer.style.display = 'block' ;
                                         myMapvar= 1;
                                         console.log("myMapvar dans Afficher");
-
                                         console.log(myMapvar);
-
                                         this.textContent = 'Masquer'; // Changer le texte du bouton
                                     } else {
-                                        mapContainer.style.display = 'none';
+                                        mapContainer.style.display = 'none'
                                         this.textContent = 'Afficher'; // Changer le texte du bouton
                                         myMapvar= 0;
                                         console.log("myMapvar dans Masquer");
-
                                         console.log(myMapvar);
                                     }
                                 });
@@ -401,6 +397,7 @@
             });
         });
     </script> -->
+
      
     <script>
 
@@ -595,6 +592,7 @@ console.log(myMapvar);
                         </div>
                          
                             <script>
+                                
                                 var myMapvar2 = 0;
                                 document.getElementById('toggleMapBtn2').addEventListener('click', function() {
                                     var mapContainer = document.getElementById('mapContainer2');
