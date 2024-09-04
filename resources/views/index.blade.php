@@ -777,9 +777,9 @@
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Votre service de transport a rendu mon deplacement plus agréable.
+                                    <p>Votre service de transport a rendu le deplacement plus agréable à mes enfants.
                                         Le chauffeur connaissait parfaitement les raccourcis pour eviter le trafic.
-                                        {{--Toutes les personnes avec qui nous avons communiqué étaient agréables et gaies.--}}</p>
+                                       </p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>
@@ -803,7 +803,7 @@
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>J'utilise regulierement ce service de transport et je suis toujours impressionnée par sa fiabilité.
+                                    <p> Ma nièce utilise regulierement ce service de transport et elle est impressionnée par sa fiabilité.
                                         les vehicules sont propres,et les horaires sont respectés.
                                     </p>
                                 </div>
@@ -829,7 +829,9 @@
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.Je recommande le service pour des deplacements en toute confiance !</p>
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.
+                                        Je recommande le service pour des deplacements en toute confiance de mes enfants!
+                                    </p>
                                 </div>
                                 <div class="quote-modern-meta">
                                     <a class="quote-modern-link icon mdi mdi-facebook" href="#"></a>

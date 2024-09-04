@@ -42,19 +42,10 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
+
         Flashy::message(__('Subscription saved successfully.') . ' ' . __('We will contact you as soon as possible.'));
         return redirect()->back();
+     }
     }
 
-    
 
-    public function store_consignment(CreateConsignmentRequest $request)
-    {
-        $input = $request->all();
-
-        Consignment::create($input);
-
-        Flashy::message(__('Consignment saved successfully.') . ' ' . __('We will contact you as soon as possible.'));
-        return redirect()->back();
-    }
-}
