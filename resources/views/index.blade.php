@@ -1080,22 +1080,23 @@ console.log(myMapvar);
 
     <!-- CTA-->
     <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
-             data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
-        <div class="parallax-content">
-            <div class="container">
-                <div class="row row-50 justify-content-end">
-                    <div class="col-md-6 col-lg-5">
-                        <!-- <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1> -->
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
-                        <p class="big wow clipInLeft" data-wow-delay=".1s">
-                          Pour votre premier mois, et les 10 premières subscription.
-                        </p>
-                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
-                    </div>
+         style="background-image: url('{{ asset('template/bus/images/b3.jpg') }}'); background-size: cover; background-position: center;">
+    <div class="parallax-content">
+        <div class="container">
+            <div class="row row-50 justify-content-end">
+                <div class="col-md-6 col-lg-5">
+                    <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> on first order</h1>
+                    <p class="big wow clipInLeft" data-wow-delay=".1s">
+                        Our first-time customers get a great discount
+                        on their order.
+                    </p>
+                    <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
     <!-- Page Footer-->
     <footer class="section footer-classic">
         <div class="footer-classic-main">
@@ -1205,7 +1206,6 @@ console.log(myMapvar);
                     }
 
         </script>
-
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
 <!-- coded by Ragnar-->
