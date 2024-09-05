@@ -550,7 +550,7 @@
                     <div id="myModal" class="modal">
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <h4>Résultats de la simulation</h4>
+                            <h4>Résultats de la simulation:</h4>
                           <!--   <p id="modalDeparture"></p>
                             <p id="modalArrival"></p> -->
                             <p id="modalDistance"></p>
