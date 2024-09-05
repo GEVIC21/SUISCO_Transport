@@ -86,7 +86,7 @@
                                 <!--end::Total=-->
                                 <!--begin::Date Modified=-->
                                 <td class="pe-0" >
-                                    <span class="fw-bolder">{{$reservation->created_at}}</span>
+                                    <span class="fw-bolder">{{$user->created_at}}</span>
                                 </td>
                                 <!--end::Date Modified=-->
                                 <!--begin::Action=-->
@@ -151,7 +151,11 @@
 
     <script>
         $(document).ready(function () {
-            $('#kt_ecommerce_sales_table').DataTable();
+            $('#kt_ecommerce_sales_table').DataTable(
+                {
+                    "order": [[2, 'desc']]
+                }
+            );
         });
     </script>
 @endsection

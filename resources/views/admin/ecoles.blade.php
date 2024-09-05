@@ -120,14 +120,14 @@
                                     <div
                                         class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                         data-kt-menu="true">
-                                        <!--begin::Menu item-->
+                                        {{--<!--begin::Menu item-->
                                         <div class="menu-item px-3">
                                             <span class="menu-link px-3">View</span>
                                         </div>
-                                        <!--end::Menu item-->
+                                        <!--end::Menu item-->--}}
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <span class="menu-link px-3">Edit</span>
+                                            <a class="menu-link px-3" href="{{route('admin.update.school',$school->id)}}">Edit</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
@@ -164,7 +164,11 @@
 
     <script>
         $(document).ready(function () {
-            $('#kt_ecommerce_sales_table').DataTable();
+            $('#kt_ecommerce_sales_table').DataTable(
+                {
+                    "order": [[3, 'desc']]
+                }
+            );
         });
     </script>
 @endsection

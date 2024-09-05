@@ -49,13 +49,14 @@
                             <!--begin::Card body-->
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
-                                <form id="kt_ecommerce_settings_general_form" class="form" action="#">
+                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.add.user')}}" method="post">
                                     <!--begin::Input group-->
+                                    @csrf
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Meta Title</span>
+                                                <span class="required">Nom</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                                    title="Set the title of the store for SEO."></i>
                                             </label>
@@ -63,9 +64,12 @@
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" name="meta_title"
-                                                   value=""/>
+                                            <input type="text" class="form-control form-control-solid" name="name"
+                                                   />
                                             <!--end::Input-->
+                                            @error('name')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!--end::Input group-->
@@ -74,26 +78,7 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span>Meta Tag Description</span>
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set the description of the store for SEO."></i>
-                                            </label>
-                                            <!--end::Label-->
-                                        </div>
-                                        <div class="col-md-9">
-                                            <!--begin::Input-->
-                                            <textarea class="form-control form-control-solid"
-                                                      name="meta_description"></textarea>
-                                            <!--end::Input-->
-                                        </div>
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="row fv-row mb-7">
-                                        <div class="col-md-3 text-md-end">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-bold form-label mt-3">
-                                                <span>Meta Keywords</span>
+                                                <span class="required">E-mail</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                                    title="Set keywords for the store separated by a comma."></i>
                                             </label>
@@ -102,9 +87,12 @@
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                   name="meta_keywords" value=""
+                                                   name="email" value=""
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
+                                            @error('email')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!--end::Input group-->
@@ -113,26 +101,21 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span>Theme</span>
+                                                <span class="required">Mot de passe</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set theme style for the store."></i>
+                                                   title="Set keywords for the store separated by a comma."></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
-                                            <div class="w-100">
-                                                <!--begin::Select2-->
-                                                <select class="form-select form-select-solid" name="theme"
-                                                        data-control="select2" data-hide-search="true"
-                                                        data-placeholder="Select a layout">
-                                                    <option></option>
-                                                    <option value="Default" selected="selected">Default</option>
-                                                    <option value="Minimalist">Minimalist</option>
-                                                    <option value="Dark">Dark</option>
-                                                    <option value="High_Contrast">High Contrast</option>
-                                                </select>
-                                                <!--end::Select2-->
-                                            </div>
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                   name="password" value=""
+                                                   data-kt-ecommerce-settings-type="tagify"/>
+                                            <!--end::Input-->
+                                            @error('password')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!--end::Input group-->
@@ -141,28 +124,21 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span>Default Layout</span>
+                                                <span class="required">Confirmer Mot de passe</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set default layout style for the store."></i>
+                                                   title="Set keywords for the store separated by a comma."></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
-                                            <div class="w-100">
-                                                <!--begin::Select2-->
-                                                <select class="form-select form-select-solid" name="layout"
-                                                        data-control="select2" data-hide-search="true"
-                                                        data-placeholder="Select a layout">
-                                                    <option></option>
-                                                    <option value="Default" selected="selected">Default</option>
-                                                    <option value="Electronics">Electronics</option>
-                                                    <option value="Fashion">Fashion</option>
-                                                    <option value="Home">Home</option>
-                                                    <option value="Dining">Dining</option>
-                                                    <option value="Interior">Interior</option>
-                                                </select>
-                                                <!--end::Select2-->
-                                            </div>
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                   name="password_confirmation" value="" id="password_confirmation"
+                                                   data-kt-ecommerce-settings-type="tagify"/>
+                                            <!--end::Input-->
+                                            @error('password')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!--end::Input group-->
@@ -175,13 +151,13 @@
                                             <div class="d-flex justify-content-lg-start">
                                                 <!--begin::Button-->
                                                 <button type="reset" data-kt-ecommerce-settings-type="cancel"
-                                                        class="btn btn-light me-3">Cancel
+                                                        class="btn btn-light me-3">Annuler
                                                 </button>
                                                 <!--end::Button-->
                                                 <!--begin::Button-->
                                                 <button type="submit" data-kt-ecommerce-settings-type="submit"
                                                         class="btn btn-primary">
-                                                    <span class="indicator-label">Save</span>
+                                                    <span class="indicator-label">Valider</span>
                                                     <span class="indicator-progress">Please wait...
 																		<span
                                                                             class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

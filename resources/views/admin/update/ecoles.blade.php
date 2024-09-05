@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Ajouter une École')
+@section('title','Modifier une École')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
 @endsection
@@ -14,7 +14,7 @@
                  data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                  class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ajouter une Ecole</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Modifier une Ecole</h1>
                 <!--end::Title-->
             </div>
             <!--end::Page title-->
@@ -49,7 +49,7 @@
                             <!--begin::Card body-->
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
-                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.add.school')}}" method="post">
+                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.do.update.school',$school->id)}}" method="post">
                                     @csrf
                                     <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
@@ -65,7 +65,7 @@
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid" name="accronym"
-                                                   />
+                                                   value="{{$school->accronym}}"/>
                                             <!--end::Input-->
                                             @error('accronym')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
@@ -86,7 +86,8 @@
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" required name="name"/>
+                                            <input type="text" class="form-control form-control-solid" required name="name"
+                                                   value="{{$school->name}}"/>
                                             <!--end::Input-->
                                             @error('name')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
@@ -108,7 +109,7 @@
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                   name="location" value="" required
+                                                   name="location" value="{{$school->location}}" required
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
                                             @error('location')
