@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="{{ asset('template/bus/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/style.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
 
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
@@ -25,18 +28,10 @@
             position: relative;
             z-index: 1;
         }
-
         html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
             display: block;
         }
-
-        <!--
-        Ajoutez ces styles à votre fichier CSS ou dans une balise
-
-        <
-        style >
-
-        -->
+        <!-- Ajoutez ces styles à votre fichier CSS ou dans une balise <style> -->
 
         .tabs-custom {
             display: flex;
@@ -55,7 +50,6 @@
         .nav-link {
             white-space: nowrap;
         }
-
         /* Assurez-vous que les onglets sont affichés en ligne */
         .nav-tabs {
             display: flex;
@@ -84,8 +78,8 @@
             width: 100%; /* Occupe toute la largeur */
             height: 100%; /* Occupe toute la hauteur */
             overflow: auto; /* Ajoute une barre de défilement si nécessaire */
-            background-color: rgb(0, 0, 0); /* Fond semi-transparent */
-            background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
+            background-color: rgb(0,0,0); /* Fond semi-transparent */
+            background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
         }
 
         /* Contenu de la Modal */
@@ -98,8 +92,7 @@
             width: 40%; /* Réduit la largeur pour permettre le déplacement */
             margin-left: 10%; /* Ajuste la marge à gauche pour déplacer le contenu vers la gauche */
         }
-
-        .modal-content h4 {
+        .modal-content h4{
             color: #000;
 
         }
@@ -155,22 +148,19 @@
                     <!-- RD Navbar Panel-->
                     <div class="rd-navbar-panel">
                         <!-- RD Navbar Toggle-->
-                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span>
-                        </button>
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand">
                             <a class="brand" href="{{ route('bus.index') }}">
-                                <img class="brand-logo-dark"
-                                     src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}"
-                                     alt="" width="144" height="18"
-                                     srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                                <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}"
+                                     alt="" width="144" height="18" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
                             </a>
                         </div>
                     </div>
                     <div class="rd-navbar-nav-wrap">
                         <!-- RD Navbar Nav-->
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="#acceuil">Acceuil</a>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="#acceuil" >Acceuil</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="#offers">Offres</a>
                             </li>
@@ -187,13 +177,12 @@
                                href="{{ \Illuminate\Support\Str::startsWith(request()->getHost(), "dev") ? "http://dev-suisco.net:8000#subscribe" : "https://suisco.net#subscribe"}}">Newsletter</a>
                             </li> -->
                             <li class="rd-nav-item"><a class="rd-nav-link"
-                                                       href="{{ route('bus.become.owner') }}">Newsletter</a>
+                                                       href="{{ route('bus.become.owner') }}" >Newsletter</a>
                             </li>
                         </ul>
                     </div>
                     <div class="rd-navbar-element bg-gray-4">
-                        <a class="button button-sm button-default-outline button-winona"
-                           href="{{ route('bus.become.owner') }}">
+                        <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
                             Simulation Tarifs</a>
                     </div>
                     <div class="rd-navbar-dummy"></div>
@@ -201,7 +190,7 @@
             </nav>
         </div>
         <!-- FScreen-->
-        <div class="layout-4">
+        <div class="layout-4" >
             <div class="layout-4-item-right">
                 <div class="box-custom-2 bg-accent">
                     <div class="box-custom-2-bg">
@@ -222,29 +211,24 @@
                                     <div class="contacts-default-icon mdi mdi-phone-incoming"></div>
                                 </div>
                                 <div class="unit-body">
-                                    <a class="contacts-default-link" href="tel:#">+228  99 99 89 99</a>
+                                    <a class="contacts-default-link" href="tel:#">+228 99 99 89 98</a>
                                 </div>
                             </div>
-                        </div>
-                        <br>
+                        </div> <br>
 
                         <section class="section " id="advantages">
                             <div class="container">
-                                <div
-                                    class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
+                                <div class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
                                     <div class="col-md-12 col-lg-12 wow fadeInRightSmall">
                                         <!-- <h3>Avantages</h3> -->
                                         <!-- Bootstrap tabs -->
-                                        <div class="tabs-custom tabs-horizontal tabs-line tabs-line_1 block-8"
-                                             id="tabs-1">
+                                        <div class="tabs-custom tabs-horizontal tabs-line tabs-line_1 block-8" id="tabs-1">
                                             <!-- Nav tabs-->
                                             <ul class="nav nav-tabs">
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a>
-                                                </li>
+                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" href="#tabs-1-2"
-                                                       data-toggle="tab"><span>Evaluer</span></a>
+                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Evaluer</span></a>
                                                 </li>
                                             </ul>
                                             <!-- Tab panes-->
@@ -260,76 +244,49 @@
                                                     <li>Services personnalisés </li>
                                                 </ul> -->
 
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post"
-                                                          action="{{ route('bus.subscription.store') }}">
+                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select button-shadow"
-                                                                    name="service" data-constraints="@Required"
-                                                                    required>
-                                                                <option value="" selected
-                                                                        style="display: none !important;">Choisir un
-                                                                    Service
-                                                                </option>
+                                                            <select class="form-input select button-shadow" name="service" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none !important;">Choisir un Service</option>
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
-                                                            @error('service')
-                                                            <div
-                                                                style="color: red;font-size: smaller;">{{ $message }}</div>
-                                                            @enderror
                                                         </div>
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select" id="school_address"
-                                                                    name="school_address" data-constraints="@Required"
-                                                                    required>
-                                                                <option value="" selected style="display: none">Choisir
-                                                                    votre école
-                                                                </option>
+                                                            <select class="form-input select" id="school_address" name="school_address" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none">Choisir votre école</option>
                                                                 @foreach($schools as $school)
-                                                                    <option
-                                                                        value="{{$school->name}}">{{$school->name}}</option>
+                                                                    <option value="{{$school->name}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
-                                                            @error('school_address')
-                                                            <div style="color: red;">{{ $message }}</div>
-                                                            @enderror
                                                         </div>
+
 
 
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
+
                                                             <div class="form-wrap">
-                                                                <input class="form-input" id="home_address" type="text"
-                                                                       name="home_address" data-constraints="@Required"
-                                                                       style="pointer-events: none;"
-                                                                       placeholder="Prendre mes coordonnées">
-                                                                <label class="form-label"
-                                                                       for="form-location"></label><span
-                                                                    class="form-icon mdi mdi-map-marker"></span>
+                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
+                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
                                                             <div class="form-button">
-                                                                <button id="toggleMapBtn"
-                                                                        class="button button-block button-primary button-winona"
-                                                                        type="button">
+                                                                <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
                                                                     Masquer
                                                                 </button>
+
                                                             </div>
-                                                            @error('home_address')
-                                                            <div style="color: red;">{{ $message }}</div>
-                                                            @enderror
                                                         </div>
 
-                                                        <div id="mapContainer" class="form-wrap" style="display: ">
+                                                        <div id="mapContainer"  class="form-wrap" style="display: ">
                                                             <br>
                                                             <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              --> <label class="form-label" for="form-location"></label><span
-                                                                class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map"
-                                                                 style="height: 350px;"></div>
+                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                                                                 Aller à ma position
@@ -440,12 +397,12 @@
 
                                                             <script>
                                                                 var myMapvar;
-                                                                document.getElementById('toggleMapBtn').addEventListener('click', function () {
+                                                                document.getElementById('toggleMapBtn').addEventListener('click', function() {
                                                                     var mapContainer = document.getElementById('mapContainer');
 
                                                                     if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
                                                                         mapContainer.style.display = 'block';
-                                                                        myMapvar = 1;
+                                                                        myMapvar= 1;
                                                                         console.log("myMapvar dans Afficher");
 
                                                                         console.log(myMapvar);
@@ -454,7 +411,7 @@
                                                                     } else {
                                                                         mapContainer.style.display = 'none';
                                                                         this.textContent = 'Afficher'; // Changer le texte du bouton
-                                                                        myMapvar = 0;
+                                                                        myMapvar= 0;
                                                                         console.log("myMapvar dans Masquer");
 
                                                                         console.log(myMapvar);
@@ -467,12 +424,8 @@
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select button-shadow "
-                                                                    name="trajectory" data-constraints="@Required"
-                                                                    required>
-                                                                <option value="" selected style="display: none">Votre
-                                                                    trajet
-                                                                </option>
+                                                            <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none">Votre trajet</option>
                                                                 <option value="Aller Simple">Aller Simple</option>
                                                                 <option value="Retour Simple">Retour Simple</option>
                                                                 <option value="Aller-Retour">Aller-Retour</option>
@@ -480,17 +433,13 @@
                                                         </div>
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
-                                                                <input class="form-input" id="form-phone" type="text"
-                                                                       name="phone_number"
-                                                                       data-constraints="@Required{{-- @PhoneNumber--}}"
-                                                                       required placeholder="Votre téléphone mobile">
+                                                                <input class="form-input" id="form-phone" type="text" name="phone_number"
+                                                                       data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
                                                                 <label class="form-label" for="form-phone"></label><span
                                                                     class="form-icon mdi mdi-cellphone"></span>
                                                             </div>
                                                             <div class="form-button">
-                                                                <button
-                                                                    class="button button-block button-primary button-winona"
-                                                                    type="submit">
+                                                                <button class="button button-block button-primary button-winona" type="submit">
                                                                     Réserver
                                                                 </button>
                                                             </div>
@@ -507,18 +456,12 @@
                                                         <li>Pay for taxi without a credit card;</li>
                                                         <li>Great discounts for regular clients.</li>
                                                     </ul> -->
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get"
-                                                          action="#">
+                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 4-->
-                                                            <select class="form-input select button-shadow"
-                                                                    name="service_evaluation" id="service_evaluation"
-                                                                    data-constraints="@Required" required>
-                                                                <option value="" selected
-                                                                        style="display: none !important;">Choisir un
-                                                                    Service
-                                                                </option>
+                                                            <select class="form-input select button-shadow" name="service_evaluation" id ="service_evaluation" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none !important;">Choisir un Service</option>
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
@@ -526,77 +469,49 @@
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select"
-                                                                    id="school_address_evaluation"
-                                                                    name="school_address_evaluation"
-                                                                    data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none">Choisir
-                                                                    votre école
-                                                                </option>
+                                                            <select class="form-input select" id="school_address_evaluation" name="school_address_evaluation" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none">Choisir votre école</option>
                                                                 @foreach($schools as $school)
-                                                                    <option
-                                                                        value="{{$school->location}}">{{$school->name}}</option>
+                                                                    <option value="{{$school->location}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
 
 
-                                                        <div class="form-wrap">
-                                                            <input hidden class="form-input"
-                                                                   id="departure_address_evaluation" type="text"
-                                                                   name="departure_address_evaluation"
-                                                                   data-constraints="@Required"
-                                                                   style="pointer-events: none;">
+                                                        <div class="form-wrap" >
+                                                            <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
                                                         </div>
 
                                                         <div class="form-wrap">
-                                                            <input hidden class="form-input"
-                                                                   id="arrive_address_evaluation" type="text"
-                                                                   name="arrive_address_evaluation"
-                                                                   data-constraints="@Required"
-                                                                   style="pointer-events: none;">
+                                                            <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
 
                                                         </div>
 
                                                         <div class="form-wrap">
-                                                            <input hidden class="form-input"
-                                                                   id="distance_address_evaluation" type="text"
-                                                                   name="distance_address_evaluation"
-                                                                   data-constraints="@Required"
-                                                                   style="pointer-events: none;">
+                                                            <input hidden class="form-input" id="distance_address_evaluation" type="text"  name="distance_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
 
                                                         </div>
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
 
                                                             <div class="form-wrap">
-                                                                <input class="form-input" id="home_address_evaluation"
-                                                                       type="text" name="home_address_evaluation"
-                                                                       data-constraints="@Required"
-                                                                       style="pointer-events: none;"
-                                                                       placeholder="Prendre mes coordonnées">
-                                                                <label class="form-label"
-                                                                       for="form-location"></label><span
-                                                                    class="form-icon mdi mdi-map-marker"></span>
+                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
+                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
                                                             <div class="form-button">
-                                                                <button id="toggleMapBtn2"
-                                                                        class="button button-block button-primary button-winona"
-                                                                        type="button">
+                                                                <button  id="toggleMapBtn2" class="button button-block button-primary button-winona" type="button" >
                                                                     Masquer
                                                                 </button>
 
                                                             </div>
                                                         </div>
 
-                                                        <div id="mapContainer2" class="form-wrap" style="display: ">
+                                                        <div id="mapContainer2"  class="form-wrap" style="display: ">
                                                             <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            --> <label class="form-label" for="form-location"></label><span
-                                                                class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map2"
-                                                                 style="height: 350px;"></div>
+                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
                                                                 Aller à ma position
@@ -604,17 +519,14 @@
                                                             </div>
 
 
+
                                                         </div>
 
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select button-shadow "
-                                                                    name="trajectory" data-constraints="@Required"
-                                                                    required>
-                                                                <option value="" selected style="display: none">Votre
-                                                                    trajet
-                                                                </option>
+                                                            <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                                                <option value="" selected style="display: none">Votre trajet</option>
                                                                 <option value="Aller Simple">Aller Simple</option>
                                                                 <option value="Retour Simple">Retour Simple</option>
                                                                 <option value="Aller-Retour">Aller-Retour</option>
@@ -628,9 +540,7 @@
                                         class="form-icon mdi mdi-cellphone"></span>
                                 </div> -->
                                                             <div class="form-button">
-                                                                <button id="openModal"
-                                                                        class="button button-block button-primary button-winona"
-                                                                        type="button">
+                                                                <button id="openModal" class="button button-block button-primary button-winona" type="button" >
                                                                     Essayer
                                                                 </button>
                                                             </div>
@@ -640,7 +550,7 @@
                                                         <div id="myModal" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
-                                                                <h4>Résultats de la simulation</h4>
+                                                                <h4>Résultats de la simulation:</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
@@ -722,7 +632,7 @@
                                 <li>Jours de Service : Lundi à Vendredi</li>
                                 <li>Heures de Service : 06h00-08h00 & 13h30-15h30</li>
                                 <li>Départ : Préfixé par SuiSco (Maison du client)</li>
-                                <li>Destination : Ecole</li>
+                                <li>Destination : Ecole </li>
                                 <li>Escales : 3 arrêts de 5 min pour SuiSco</li>
                                 <li>Engagement : Trimestriel</li>
                                 <li>Consignation : Optionnelle & Conditionnée</li>
@@ -744,9 +654,9 @@
                         <div class="box-modern-text">
                             <ul class="list-marked list-marked_secondary">
                                 <li>Objet : Voiture Berling dédiée au client</li>
-                                <li>Retard Chauffeur : Aucune tolérance</li>
+                                <li>Retard Chauffeur :  Aucune tolérance</li>
                                 <li>Retard Client : Non applicable</li>
-                                <li>Jours de Service : Lundi à Vendredi</li>
+                                <li>Jours de Service :  Lundi à Vendredi</li>
                                 <li>Heures de Service : 06h00-08h00 & 13h30-15h30</li>
                                 <li>Départ : Fixé à volonté par le client</li>
                                 <li>Destination : Ecole</li>
@@ -767,8 +677,7 @@
                 class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
                 <div class="col-sm-5 col-md-5 col-lg-6 wow fadeInLeftSmall">
                     <div class="phone-frame-2 text-right">
-                        <img class="phone-frame-2-outer" src="{{ asset('template/bus/images/frame-1-533x868.png') }}"
-                             alt="" width="533" height="868"/>
+                        <img class="phone-frame-2-outer" src="{{ asset('template/bus/images/frame-1-533x868.png') }}" alt="" width="533" height="868"/>
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-6 wow fadeInRightSmall">
@@ -778,8 +687,7 @@
                         <!-- Nav tabs-->
                         <ul class="nav nav-tabs">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" href="#tabs-1-1"
-                                   data-toggle="tab"><span>SuiSco Transport</span></a></li>
+                                <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>SuiSco Transport</span></a></li>
                             <!-- <li class="nav-item" role="presentation">
                                <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Consignation</span></a>
                            </li>  -->
@@ -793,8 +701,8 @@
                                 <ul class="list-marked list-marked_secondary">
                                     <li>Véhicules neuves</li>
                                     <li>Assurance tous risques</li>
-                                    <li>Chauffeurs experimentés</li>
-                                    <li>Services personnalisés</li>
+                                    <li>Chauffeurs experimentés </li>
+                                    <li>Services personnalisés </li>
                                 </ul>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-2">
@@ -863,8 +771,7 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74"
-                                         height="74"/>
+                                         src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite"> Dr Tsolenyanu</cite>
                                         <p class="quote-modern-position">Diplomate</p>
@@ -890,8 +797,7 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt=""
-                                         width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">Yao-Amuama</cite>
                                         <p class="quote-modern-position">Miss Togo</p>
@@ -900,8 +806,7 @@
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p> Ma nièce utilise regulierement ce service de transport et elle est impressionnée
-                                        par sa fiabilité.
+                                    <p> Ma nièce utilise regulierement ce service de transport et elle est impressionnée par sa fiabilité.
                                         les vehicules sont propres,et les horaires sont respectés.
                                     </p>
                                 </div>
@@ -918,8 +823,7 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74"
-                                         height="74"/>
+                                         src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">kako Nubukpo </cite>
                                         <p class="quote-modern-position">Economiste</p>
@@ -928,9 +832,8 @@
                             </div>
                             <div class="quote-modern-main">
                                 <div class="quote-modern-text">
-                                    <p>Le chauffeur etait ponctuel, respectieux et avait dela conversation.
-                                        Je recommande le service pour des deplacements en toute confiance de mes
-                                        enfants!
+                                    <p>Le chauffeur etait ponctuel, respectieux  et avait dela conversation.
+                                        Je recommande le service pour des deplacements en toute confiance de mes enfants!
                                     </p>
                                 </div>
                                 <div class="quote-modern-meta">
@@ -959,8 +862,7 @@
                             Our first-time customers get a great discount
                             on their order.
                         </p>
-                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez
-                            Maintenant</a>
+                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
                 </div>
             </div>
@@ -974,19 +876,15 @@
                 <div class="row row-50 justify-content-lg-between">
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
                         <a class="brand" href="#">
-                            <img class="brand-logo-dark"
-                                 src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}" alt=""
-                                 width="144" height="18"
-                                 srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                            <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}" alt=""
+                                 width="144" height="18" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
                         </a>
                         <p><span style="max-width: 250px;">SuiSco assure le transport des élèves du primaire au lycée sur la région du GRAND LOMÉ..</span>
-                        </p><a class="button button-sm button-default-outline button-winona" href="#">Reservez
-                            Maintenant</a>
+                        </p><a class="button button-sm button-default-outline button-winona" href="#">Reservez Maintenant</a>
                     </div>
 
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div><img src="{{asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60"
-                                  height="60"></div>
+                        <div><img src="{{asset("home_page/images/logos/logo.png")}}" alt="SuiSco Logo" width="60" height="60"></div>
                         <p><span style="max-width: 250px;">
                             SuiSco est une société spécialisée dans la numérisation des services autour de l’éducation et l’enseignement.
                             Créée en 2017 sous la Référence N°RCCM TG-LOM 2017 A 3570.</span>
@@ -998,9 +896,8 @@
                         {{--<div class="row row-20 row-sm-35 text-center">--}}
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228  99 99 89 99</li>
-                            <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a>
-                            </li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
+                            <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>
                         <div class="group group-xs">
@@ -1009,14 +906,13 @@
                             </a>
 
                             <a class="link link-social-1 mdi mdi-twitter" target="_blank"
-                               href="https://twitter.com/ScolaireSuivi" title="Twitter" style="pointer-events: none;">
+                               href="https://twitter.com/ScolaireSuivi" title="Twitter" style="pointer-events: none;" >
                             </a>
 
                             {{--<a class="link link-social-1 mdi mdi-instagram" href="#"></a>--}}
 
-                            <a class="link link-social-1 mdi mdi-youtube-play" target="_blank"
-                               href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube"
-                               style="pointer-events: none;">
+                            <a  class="link link-social-1 mdi mdi-youtube-play" target="_blank"
+                                href="https://www.youtube.com/channel/UCfpTZEjAYvzoO4xNaFdeFjQ/" title="Youtube" style="pointer-events: none;">
                             </a>
                         </div>
                     </div>
@@ -1025,8 +921,7 @@
         </div>
         <div class="footer-classic-aside">
             <div class="container">
-                <p class="rights">
-                    <span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Transport | ITPLEX CONSULT.</span></p>
+                <p class="rights"><span>&copy;&nbsp; </span><span>Copyright 2020 SuiSco Transport | ITPLEX CONSULT.</span></p>
             </div>
         </div>
     </footer>
@@ -1036,6 +931,10 @@
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/@turf/turf"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+
 
 
 <!-- Script Reserver carte -->
@@ -1057,7 +956,7 @@
         // Fonction pour obtenir la position actuelle de l'utilisateur
         function locateUser() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
+                navigator.geolocation.getCurrentPosition(function(position) {
                         var lat = position.coords.latitude;
                         var lon = position.coords.longitude;
 
@@ -1075,7 +974,7 @@
                         // Mettre à jour le champ caché avec les coordonnées du point actuel
                         document.getElementById('home_address').value = `${lat},${lon}`;
                     },
-                    function () {
+                    function() {
                         alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
                     }, {
                         enableHighAccuracy: true
@@ -1089,12 +988,12 @@
         var currentMarker = null;
 
         // Ajouter un marqueur lorsqu'on clique sur la carte
-        map.on('click', function (e) {
+        map.on('click', function(e) {
             var lat = e.latlng.lat;
             var lon = e.latlng.lng;
 
             // Appeler reverseGeocode pour obtenir le nom du lieu
-            reverseGeocode(lat, lon, function (name) {
+            reverseGeocode(lat, lon, function(name) {
                 // Supprimer le marqueur précédent s'il existe
                 if (currentMarker) {
                     map.removeLayer(currentMarker);
@@ -1135,7 +1034,7 @@
         locateUser();
 
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me').addEventListener('click', function () {
+        document.getElementById('locate-me').addEventListener('click', function() {
             locateUser();
         });
     });
@@ -1143,6 +1042,9 @@
 </script>
 
 <!-- Script Evaluer carte  -->
+
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
@@ -1164,7 +1066,7 @@
         // Fonction pour obtenir la position actuelle de l'utilisateur
         function locateUser2() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
+                navigator.geolocation.getCurrentPosition(function(position) {
                         var lat2 = position.coords.latitude;
                         var lon2 = position.coords.longitude;
 
@@ -1176,15 +1078,18 @@
                             map2.removeLayer(startMarker2);
                         }
                         startLatLng2 = L.latLng(lat2, lon2);
-                        /* startMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                            .bindPopup('Point actuel')
-                            .openPopup();
-     */
+                        /*  startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                             .bindPopup('Point actuel')
+                             .openPopup(); */
+
                         // Mettre à jour le champ de formulaire pour le départ
-                        document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        var departureElem = document.getElementById('departure_address_evaluation');
+                        if (departureElem) {
+                            departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        }
 
                     },
-                    function () {
+                    function() {
                         alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
                     }, {
                         enableHighAccuracy: true
@@ -1224,24 +1129,61 @@
                     .bindPopup('École')
                     .openPopup();
 
-                // Calculer la distance entre les points
-                var distance2 = startLatLng2.distanceTo(endLatLng2);
+                // Ajouter le contrôle d'itinéraire à la carte
+                var routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(startLatLng2.lat, startLatLng2.lng),
+                        L.latLng(endLatLng2.lat, endLatLng2.lng)
+                    ],
+                    router: L.Routing.osrmv1({
+                        language: 'fr',
+                        profile: 'driving'
+                    }),
+                    createMarker: function() { return null; },
+                    routeWhileDragging: true
+                }).addTo(map2);
 
-                // Mettre à jour les champs de formulaire avec les coordonnées et la distance
-                document.getElementById('departure_address_evaluation').value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                document.getElementById('arrive_address_evaluation').value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
-                document.getElementById('distance_address_evaluation').value = `${(distance2 / 1000).toFixed(2)} km`; // Convertir la distance en kilomètres
+                // Calculer la distance en ligne droite
+                var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
 
-                // Afficher les valeurs dans la console
-                console.log(document.getElementById('departure_address_evaluation').value);
-                console.log(document.getElementById('arrive_address_evaluation').value);
-                console.log(document.getElementById('distance_address_evaluation').value);
+                // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
+                routingControl.on('routesfound', function(event) {
+                    var route = event.routes[0];
+                    var routeDistance = route.summary.totalDistance; // Distance en mètres
 
-                // Mise à jour des valeurs dans le popup
-                document.getElementById('modalDistance').textContent = 'Distance estimée: ' + document.getElementById('distance_address_evaluation').value;
-                document.getElementById('modalPrice').textContent = 'Prix: ' + price;
+                    // Mettre à jour les champs de formulaire avec les coordonnées et les distances
+                    var departureElem = document.getElementById('departure_address_evaluation');
+                    var arriveElem = document.getElementById('arrive_address_evaluation');
+                    var distanceElem = document.getElementById('distance_address_evaluation');
+                    var modalDistanceElem = document.getElementById('modalDistance');
+                    var modalPriceElem = document.getElementById('modalPrice');
+
+                    if (departureElem) {
+                        departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                    }
+                    if (arriveElem) {
+                        arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                    }
+                    if (distanceElem) {
+                        distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
+                    }
+
+                    // Afficher les valeurs dans le modal
+                    if (modalDistanceElem) {
+                        /*                     modalDistanceElem.textContent = 'Distance en ligne droite: ' + (distance2 / 1000).toFixed(2) + ' km | Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+                         */                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+
+                    }
+                    if (modalPriceElem) {
+                        modalPriceElem.textContent = 'Prix: ' + price;
+                    }
+
+                    // Afficher les valeurs dans la console
+                    console.log('Distance en ligne droite (Leaflet DistanceTo):', (distance2 / 1000).toFixed(2), 'km');
+                    console.log('Distance le long de l\'itinéraire (Leaflet Routing Machine):', (routeDistance / 1000).toFixed(2), 'km');
+                });
             } else {
-                alert("Choissisz votre école et réessayez.");
+                alert("Choisissez votre école et réessayez.");
             }
         }
 
@@ -1252,23 +1194,24 @@
         locateUser2();
 
         // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me2').addEventListener('click', function () {
+        document.getElementById('locate-me2').addEventListener('click', function() {
             locateUser2();
         });
     });
 </script>
 
 
+
 <!-- Script Masquer Evaluer carte  -->
 
 <script>
     var myMapvar2 = 0;
-    document.getElementById('toggleMapBtn2').addEventListener('click', function () {
+    document.getElementById('toggleMapBtn2').addEventListener('click', function() {
         var mapContainer = document.getElementById('mapContainer2');
 
         if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
             mapContainer.style.display = 'block';
-            myMapvar2 = 1;
+            myMapvar2= 1;
             console.log("myMapvar dans Afficher");
 
             console.log(myMapvar2);
@@ -1277,7 +1220,7 @@
         } else {
             mapContainer.style.display = 'none';
             this.textContent = 'Afficher'; // Changer le texte du bouton
-            myMapvar2 = 0;
+            myMapvar2= 0;
             console.log("myMapvar dans Masquer");
 
             console.log(myMapvar2);
@@ -1296,12 +1239,12 @@
     var span = document.getElementsByClassName("close")[0];
 
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
-    var departure = document.getElementById('departure_address_evaluation').value;
+    var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
     console.log(departure);
 
     var arrive = document.getElementById('arrive_address_evaluation').value;
-    var distance = document.getElementById('distance_address_evaluation').value;
+    var distance = document.getElementById('distance_address_evaluation').value ;
     var price = "20.000 FCFA";
 
 
@@ -1315,17 +1258,17 @@
 
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
-    btn.onclick = function () {
+    btn.onclick = function() {
         modal.style.display = "block";
     }
 
     // Lorsque l'utilisateur clique sur (x), fermer la modal
-    span.onclick = function () {
+    span.onclick = function() {
         modal.style.display = "none";
     }
 
     // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
-    window.onclick = function (event) {
+    window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
