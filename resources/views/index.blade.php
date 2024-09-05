@@ -271,7 +271,7 @@
                         <div class="form-wrap-2">
                             
                             <div class="form-wrap">
-                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prenez vos coordonnées">
+                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                             </div>
                             <div class="form-button">
