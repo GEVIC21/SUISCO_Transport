@@ -308,7 +308,7 @@
             </div>
         </div>
     </section> -->
-    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+    <!-- <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
              data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
         <div class="parallax-content">
             <div class="container">
@@ -317,6 +317,22 @@
                         <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
                             Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
+                        </p>
+                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+             style="background-image: url('{{ asset('template/bus/images/b3.jpg') }}'); background-size: cover; background-position: center;">
+        <div class="parallax-content">
+            <div class="container">
+                <div class="row row-50 justify-content-end">
+                    <div class="col-md-6 col-lg-5">
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
+                        <p class="big wow clipInLeft" data-wow-delay=".1s">
+                        Pour votre premier mois, et les 10 premières subscriptions.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>

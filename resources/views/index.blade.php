@@ -211,7 +211,7 @@
                                     <div class="contacts-default-icon mdi mdi-phone-incoming"></div>
                                 </div>
                                 <div class="unit-body">
-                                    <a class="contacts-default-link" href="tel:#">+228 99 99 89 98</a>
+                                    <a class="contacts-default-link" href="tel:#">+228 99 99 89 99</a>
                                 </div>
                             </div>
                         </div> <br>
@@ -228,7 +228,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Evaluer</span></a>
+                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Tarifs</span></a>
                                                 </li>
                                             </ul>
                                             <!-- Tab panes-->
@@ -271,7 +271,7 @@
                                                         <div class="form-wrap-2">
 
                                                             <div class="form-wrap">
-                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
+                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localisation de la maison">
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
                                                             <div class="form-button">
@@ -857,10 +857,9 @@
             <div class="container">
                 <div class="row row-50 justify-content-end">
                     <div class="col-md-6 col-lg-5">
-                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> on first order</h1>
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                            Our first-time customers get a great discount
-                            on their order.
+                        Pour votre premier mois, et les 10 premières subscriptions.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -896,7 +895,7 @@
                         {{--<div class="row row-20 row-sm-35 text-center">--}}
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 99</li>
                             <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>
