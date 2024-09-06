@@ -225,8 +225,8 @@
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand">
                             <a class="brand" href="{{ route('bus.index') }}">
-                                <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}"
-                                     alt="" width="144" height="18" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                                <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo.png') }}"
+                                     alt="" width="144" height="5px" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
                             </a>
                         </div>
                     </div>
@@ -277,7 +277,11 @@
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
-                        <h4 class="wow fadeIn">Réservez dès maintenant !</h4>
+                        <h4 class="wow fadeIn">
+                            <span class="tab-pane fade show active" id="tabs-1-1"> Réservez dès maintenant !</span>
+                            <span class="tab-pane fade" id="tabs-1-2">Stimuler le tarif maintenant !</span>
+                        </h4>
+
                         <div class="contacts-default">
                             <div class="unit align-items-center">
                                 <div class="unit-left">
@@ -300,7 +304,7 @@
                                             <ul class="nav nav-tabs">
                                                 <li class="nav-item" role="presentation">
                                                     <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
-                                                <li class="nav-item" role="presentation">
+                                                <li class="nav-item" role="presentation" >
                                                     <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Tarifs</span></a>
                                                 </li>
                                             </ul>
@@ -350,7 +354,7 @@
 
                                                             <div class="form-button">
                                                                 <button  id="openModal3" class="button button-block button-primary button-winona" type="button" >
-                                                                    Afficher
+                                                                    Carte
                                                                 </button>
 
                                                             </div>
@@ -601,7 +605,7 @@
                                                             </div>
                                                             <div class="form-button">
                                                                 <button  id="openModal2" class="button button-block button-primary button-winona" type="button" >
-                                                                    Masquer
+                                                                    Carte
                                                                 </button>
 
                                                             </div>
@@ -705,7 +709,7 @@
                 </div>
             </div>
             <div class="layout-4-item-left">
-                <img src="{{ asset('template/bus/images/index-1-700x587.png') }}" alt="" width="700" height="587"/>
+                <img src="{{ asset('template/bus/images/SLIDE-1.jpg.png') }}" alt="" width="700" height="587"/>
             </div>
         </div>
     </header>
@@ -803,7 +807,7 @@
                 class="row row-50 justify-content-center align-items-center align-items-lg-stretch flex-md-row-reverse">
                 <div class="col-sm-5 col-md-5 col-lg-6 wow fadeInLeftSmall">
                     <div class="phone-frame-2 text-right">
-                        <img class="phone-frame-2-outer" src="{{ asset('template/bus/images/frame-1-533x868.png') }}" alt="" width="533" height="868"/>
+                        <img class="phone-frame-2-outer" src="{{ asset('template/bus/images/SLIDE-2.jpg.png') }}" alt="" width="533" height="868"/>
                     </div>
                 </div>
                 <div class="col-md-7 col-lg-6 wow fadeInRightSmall">
