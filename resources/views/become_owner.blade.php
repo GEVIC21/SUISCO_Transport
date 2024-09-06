@@ -334,7 +334,7 @@
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
                         pour les 10 premières subscriptions pour le premier mois.
                         </p>
-                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
+                        <a class="button button-primary button-winona wow clipInLeft" href="{{url('/')}}" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
                 </div>
             </div>
@@ -351,7 +351,7 @@
                                  width="144" height="18" srcset="{{ asset('template/bus/images/logo.png') }} 2x"/>
                         </a>
                         <p><span style="max-width: 250px;">SuiSco assure le transport des élèves du primaire au lycée sur la région du GRAND LOMÉ..</span>
-                        </p><a class="button button-sm button-default-outline button-winona" href="#">Reservez Maintenant</a>
+                        </p><a class="button button-sm button-default-outline button-winona" href="{{url('/')}}">Reservez Maintenant</a>
                     </div>
 
                     <div class="col-md-4 col-sm-6 col-xs-12 text-center">
