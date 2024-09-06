@@ -104,6 +104,12 @@
             font-size: 28px;
             font-weight: bold;
         }
+        .close2 {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
         .close:hover,
         .close:focus {
@@ -111,6 +117,13 @@
             text-decoration: none;
             cursor: pointer;
         }
+        .close2:hover,
+        .close2:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
 
 
     </style>
@@ -274,12 +287,14 @@
                                                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localisation de la maison">
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
+
                                                             <div class="form-button">
                                                                 <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
                                                                     Masquer
                                                                 </button>
 
                                                             </div>
+                                                            
                                                         </div>
 
                                                         <div id="mapContainer"  class="form-wrap" style="display: ">
@@ -395,7 +410,7 @@
 
                                                             <!-- Script Masquer Reserver carte  -->
 
-                                                            <script>
+                                                            <!-- <script>
                                                                 var myMapvar;
                                                                 document.getElementById('toggleMapBtn').addEventListener('click', function() {
                                                                     var mapContainer = document.getElementById('mapContainer');
@@ -407,17 +422,17 @@
 
                                                                         console.log(myMapvar);
 
-                                                                        this.textContent = 'Masquer'; // Changer le texte du bouton
+                                                                        this.textContent = 'Masquer'; 
                                                                     } else {
                                                                         mapContainer.style.display = 'none';
-                                                                        this.textContent = 'Afficher'; // Changer le texte du bouton
+                                                                        this.textContent = 'Afficher'; 
                                                                         myMapvar= 0;
                                                                         console.log("myMapvar dans Masquer");
 
                                                                         console.log(myMapvar);
                                                                     }
                                                                 });
-                                                            </script>
+                                                            </script> -->
 
                                                         </div>
 
@@ -500,18 +515,18 @@
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
                                                             <div class="form-button">
-                                                                <button  id="toggleMapBtn2" class="button button-block button-primary button-winona" type="button" >
+                                                                <button  id="openModal2" class="button button-block button-primary button-winona" type="button" >
                                                                     Masquer
                                                                 </button>
 
                                                             </div>
                                                         </div>
 
-                                                        <div id="mapContainer2"  class="form-wrap" style="display: ">
+                                                        <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
                             -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map2" style="height: 350px;"></div>
+                                                            <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
                                                                 Aller à ma position
@@ -546,7 +561,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <!-- La Modal -->
+                                                        <!-- La Modal Essayer -->
                                                         <div id="myModal" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
@@ -555,6 +570,31 @@
                                                                   <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
                                                                 <p id="modalPrice"></p>
+                                                            </div>
+                                                        </div>
+
+                                                          <!-- La Modal Carte -->
+                                                          <div id="myModal2" class="modal">
+                                                            <div class="modal-content">
+                                                                <span class="close2">&times;</span>
+                                                                <h4>Carte:</h4>
+                                                                <!--   <p id="modalDeparture"></p>
+                                                                  <p id="modalArrival"></p> -->
+
+                                                                  <div id="mapContainer2"  class="form-wrap" style="display: auto">
+                                                            <br>
+                                                            <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
+                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div class="form-wrap" id="map2" style="height: 350px;"></div>  
+                                                            <div class="form-wrap">
+                                                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
+                                                                Aller à ma position
+                                                             </button> -->
+                                                            </div>
+
+
+
+                                                        </div>                                                               
                                                             </div>
                                                         </div>
 
@@ -1042,11 +1082,12 @@
 
 <!-- Script Evaluer carte  -->
 
-
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+        var mapContainer = document.getElementById('map2');
+    mapContainer.style.display = 'block';
+    map2.invalidateSize(); // Recalculer la taille de la carte
 
         // Charger les tuiles de la carte
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1203,7 +1244,7 @@
 
 <!-- Script Masquer Evaluer carte  -->
 
-<script>
+<!-- <script>
     var myMapvar2 = 0;
     document.getElementById('toggleMapBtn2').addEventListener('click', function() {
         var mapContainer = document.getElementById('mapContainer2');
@@ -1214,20 +1255,20 @@
             console.log("myMapvar dans Afficher");
 
             console.log(myMapvar2);
-
-            this.textContent = 'Masquer'; // Changer le texte du bouton
+s
+            this.textContent = 'Masquer'; 
         } else {
             mapContainer.style.display = 'none';
-            this.textContent = 'Afficher'; // Changer le texte du bouton
+            this.textContent = 'Afficher';
             myMapvar2= 0;
             console.log("myMapvar dans Masquer");
 
             console.log(myMapvar2);
         }
     });
-</script>
+</script> -->
 
-<!-- Script Ouvrir Modal  -->
+<!-- Script Ouvrir Modal Evaluer  -->
 
 <script>
     // script.js
@@ -1270,6 +1311,36 @@
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
+        }
+    }
+
+</script>
+
+<!-- Script Ouvrir Modal Carte  -->
+
+<script>
+    // script.js
+
+    // Récupérer les éléments
+    var modal2 = document.getElementById("myModal2");
+   var btn = document.getElementById("openModal2");
+    var span = document.getElementsByClassName("close2")[0];
+
+
+    // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+    btn.onclick = function() {
+        modal2.style.display = "block";
+    }
+
+    // Lorsque l'utilisateur clique sur (x), fermer la modal
+    span.onclick = function() {
+        modal2.style.display = "none";
+    }
+
+    // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+    window.onclick = function(event) {
+        if (event.target == modal2) {
+            modal2.style.display = "none";
         }
     }
 
