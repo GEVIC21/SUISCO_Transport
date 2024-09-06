@@ -104,25 +104,23 @@ class AdminController extends Controller
 
     public function do_update_school($id,Request $request)
     {
-        $validator = $request->validate([
-            'Acronym' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-        ]);
-
-        if (!$validator) {
-            return back()->withErrors($validator)->withInput();
-        }
-        dd('ok');
 
         $school = School::find($id);
         $school->name = $request->name;
-        $school->Acronym = $request->Acronym;
+        $school->Acronym = $request->accronym;
         $school->location = $request->location;
         $school->save();
 
         Flashy::message(__('Ecole modifiée avec sussès'));
         return redirect()->route('admin.ecoles');
+    }
 
+    public function del_school($id)
+    {
+        $school =  School::find($id);
+        $school->delete();
+        Flashy::message(__('Ecole supprimée avec sussès'));
+        return redirect()->back();
     }
 
 

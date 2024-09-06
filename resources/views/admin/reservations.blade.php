@@ -100,7 +100,7 @@
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td class="pe-0" >
+                                <td class="d-flex align-items-center" >
                                     <span class="fw-bolder">{{$reservation->house_location}}</span>
                                 </td>
                                 <!--end::Total=-->
