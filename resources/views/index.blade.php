@@ -289,24 +289,24 @@
                                                             </div>
 
                                                             <div class="form-button">
-                                                                <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
-                                                                    Masquer
+                                                                <button  id="openModalreser" class="button button-block button-primary button-winona" type="button" >
+                                                                    Afficher
                                                                 </button>
 
                                                             </div>
                                                             
                                                         </div>
-
+<!-- 
                                                         <div id="mapContainer"  class="form-wrap" style="display: ">
                                                             <br>
-                                                            <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                              <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                               <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
                                                             <div class="form-wrap">
-                                                                <!-- <button type="button" id="locate-me" class="button button-block button-primary">
+                                                                 <button type="button" id="locate-me" class="button button-block button-primary">
                                                                 Aller à ma position
-                                                                </button> -->
-                                                            </div>
+                                                                </button> 
+                                                            </div> -->
 
 
                                                             <!--  <script>
@@ -410,29 +410,31 @@
 
                                                             <!-- Script Masquer Reserver carte  -->
 
-                                                            <!-- <script>
-                                                                var myMapvar;
-                                                                document.getElementById('toggleMapBtn').addEventListener('click', function() {
-                                                                    var mapContainer = document.getElementById('mapContainer');
+<script>
 
-                                                                    if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-                                                                        mapContainer.style.display = 'block';
-                                                                        myMapvar= 1;
-                                                                        console.log("myMapvar dans Afficher");
+        var myMapvar;
+        document.getElementById('toggleMapBtn').addEventListener('click', function() {
+            var mapContainer = document.getElementById('mapContainer');
 
-                                                                        console.log(myMapvar);
+            if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                mapContainer.style.display = 'block';
+                myMapvar= 1;
+                console.log("myMapvar dans Afficher");
 
-                                                                        this.textContent = 'Masquer'; 
-                                                                    } else {
-                                                                        mapContainer.style.display = 'none';
-                                                                        this.textContent = 'Afficher'; 
-                                                                        myMapvar= 0;
-                                                                        console.log("myMapvar dans Masquer");
+                console.log(myMapvar);
 
-                                                                        console.log(myMapvar);
-                                                                    }
-                                                                });
-                                                            </script> -->
+                this.textContent = 'Masquer'; 
+            } else {
+                mapContainer.style.display = 'none';
+                this.textContent = 'Afficher'; 
+                myMapvar= 0;
+                console.log("myMapvar dans Masquer");
+
+                console.log(myMapvar);
+            }
+        });
+
+</script>
 
                                                         </div>
 
@@ -516,7 +518,7 @@
                                                             </div>
                                                             <div class="form-button">
                                                                 <button  id="openModal2" class="button button-block button-primary button-winona" type="button" >
-                                                                    Masquer
+                                                                    Afficher
                                                                 </button>
 
                                                             </div>
@@ -573,18 +575,45 @@
                                                             </div>
                                                         </div>
 
-                                                          <!-- La Modal Carte -->
+                                                              <!-- La Modal Carte reserver -->
+                                                        <div id="myModalreser" class="modal">
+                                                            <div class="modal-content">
+                                                                <span class="closereser">&times;</span>
+                                                                <h4>Carte res:</h4>
+                                                                <!--   <p id="modalDeparture"></p>
+                                                                  <p id="modalArrival"></p> -->
+
+                                                                  <div id="mapContainer"  class="form-wrap" style="display: auto">
+                                                            <br>
+                                                            <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                                            -->     
+                                                            <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                                            <div class="form-wrap">
+                                                                <!-- <button type="button" id="locate-me" class="button button-block button-primary">
+                                                                Aller à ma position
+                                                                </button> -->
+                                                            </div>
+
+
+
+                                                        </div>                                                               
+                                                            </div>
+                                                        </div>
+
+                                                          <!-- La Modal Carte evaluer -->
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Carte:</h4>
+                                                                <h4>Carte ev:</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
                                                                   <div id="mapContainer2"  class="form-wrap" style="display: auto">
                                                             <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            -->    
+                                                            <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>  
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -975,114 +1004,132 @@
 
 
 
-
 <!-- Script Reserver carte -->
+
 <script>
 
-    console.log("myMapvar dans le map");
-
-    console.log(myMapvar);
+    // Script JavaScript pour gérer la carte et le modal
 
     document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([6.1356, 1.2226], 15);
+        var modalreser = document.getElementById('myModalreser');
+        var btn = document.getElementById('openModalreser');
+        var span = document.getElementsByClassName('close')[0];
+                  var map; // Déclaration de la variable map pour une portée globale
+        var currentMarker = null;
 
-        // Charger les tuiles de la carte
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 20
-        }).addTo(map);
+        // Fonction pour initialiser la carte
+        function initializeMap() {
+            map = L.map('map').setView([6.1356, 1.2226], 15);
 
-        // Fonction pour obtenir la position actuelle de l'utilisateur
-        function locateUser() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                        var lat = position.coords.latitude;
-                        var lon = position.coords.longitude;
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 20
+            }).addTo(map);
 
-                        // Centrer la carte sur la position actuelle
-                        map.setView([lat, lon], 17);
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                            var lat = position.coords.latitude;
+                            var lon = position.coords.longitude;
 
-                        // Ajouter un marqueur à la position actuelle
-                        if (currentMarker) {
-                            map.removeLayer(currentMarker);
-                        }
-                        /*  currentMarker = L.marker([lat, lon]).addTo(map)
+                            map.setView([lat, lon], 17);
+
+                            if (currentMarker) {
+                                map.removeLayer(currentMarker);
+                            }
+                            currentMarker = L.marker([lat, lon]).addTo(map)
                                 .bindPopup('Vous êtes ici')
-                                .openPopup(); */
+                                .openPopup();
 
-                        // Mettre à jour le champ caché avec les coordonnées du point actuel
-                        document.getElementById('home_address').value = `${lat},${lon}`;
-                    },
-                    function() {
-                        alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                    }, {
-                        enableHighAccuracy: true
+                            document.getElementById('home_address').value = `${lat},${lon}`;
+                        },
+                        function() {
+                            alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                        }, {
+                            enableHighAccuracy: true
+                        });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Ajouter un marqueur lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                reverseGeocode(lat, lon, function(name) {
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+
+                    currentMarker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('Point cliqué: ' + name)
+                        .openPopup();
+
+                    document.getElementById('home_address').value = `${lat},${lon}`;
+                });
+            });
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
                     });
+            }
+
+            // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+            locateUser();
+
+            // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+            document.getElementById('locate-me').addEventListener('click', function() {
+                locateUser();
+            });
+        }
+
+        // Lorsque l'utilisateur clique sur le bouton, ouvrir le modal
+        btn.onclick = function() {
+            modalreser.style.display = "block";
+
+            // Initialiser la carte uniquement lorsqu'elle est visible
+            if (!map) {
+                initializeMap();
             } else {
-                alert("Géolocalisation non supportée.");
+                map.invalidateSize(); // Recalculer la taille de la carte
             }
         }
 
-        // Marqueur actuel
-        var currentMarker = null;
-
-        // Ajouter un marqueur lorsqu'on clique sur la carte
-        map.on('click', function(e) {
-            var lat = e.latlng.lat;
-            var lon = e.latlng.lng;
-
-            // Appeler reverseGeocode pour obtenir le nom du lieu
-            reverseGeocode(lat, lon, function(name) {
-                // Supprimer le marqueur précédent s'il existe
-                if (currentMarker) {
-                    map.removeLayer(currentMarker);
-                }
-
-                // Ajouter un nouveau marqueur au point cliqué
-                currentMarker = L.marker([lat, lon]).addTo(map)
-                    .bindPopup('Point cliqué: ' + name)
-                    .openPopup();
-
-                // Mettre à jour le champ caché avec les coordonnées du point cliqué
-                document.getElementById('home_address').value = `${lat},${lon}`;
-            });
-        });
-
-        // Fonction de géocodage inverse pour obtenir le nom géographique
-        function reverseGeocode(lat, lon, callback) {
-            var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    var address = data.address;
-                    var name = address ? [
-                        address.road || '',
-                        address.suburb || '',
-                        address.city || '',
-                        address.state || '',
-                        address.country || ''
-                    ].filter(part => part).join(', ') : 'N/A';
-                    callback(name);
-                })
-                .catch(() => {
-                    callback('N/A');
-                });
+        // Lorsque l'utilisateur clique sur (x), fermer le modal
+        span.onclick = function() {
+            modalreser.style.display = "none";
         }
 
-        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
-        locateUser();
-
-        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me').addEventListener('click', function() {
-            locateUser();
-        });
+        // Lorsque l'utilisateur clique en dehors du modal, fermer le modal
+        window.onclick = function(event) {
+            if (event.target == modalreser) {
+                modalreser.style.display = "none";
+            }
+        }
     });
-
 </script>
-
 <!-- Script Evaluer carte  -->
 
-<script>
+<!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
         var mapContainer = document.getElementById('map2');
@@ -1238,7 +1285,7 @@
             locateUser2();
         });
     });
-</script>
+</script> -->
 
 
 
@@ -1316,20 +1363,176 @@ s
 
 </script>
 
-<!-- Script Ouvrir Modal Carte  -->
+<!-- Script Ouvrir Modal Carte Evaluer  -->
 
 <script>
     // script.js
 
     // Récupérer les éléments
     var modal2 = document.getElementById("myModal2");
-   var btn = document.getElementById("openModal2");
+    var btn = document.getElementById("openModal2");
     var span = document.getElementsByClassName("close2")[0];
-
+    var map2; // Déclaration de la variable map2 pour une portée globale
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
         modal2.style.display = "block";
+
+        // Initialiser la carte uniquement lorsqu'elle est visible
+        if (!map2) {
+            // Initialisation de la carte
+            map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 20
+            }).addTo(map2);
+
+            // Marqueurs pour les points de départ et d'arrivée
+            var startMarker2 = null;
+            var endMarker2 = null;
+
+            // Variables pour stocker les coordonnées des points
+            var startLatLng2 = null;
+            var endLatLng2 = null;
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser2() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                            var lat2 = position.coords.latitude;
+                            var lon2 = position.coords.longitude;
+
+                            // Centrer la carte sur la position actuelle
+                            map2.setView([lat2, lon2], 17);
+
+                            // Ajouter un marqueur à la position actuelle
+                            if (startMarker2) {
+                                map2.removeLayer(startMarker2);
+                            }
+                            startLatLng2 = L.latLng(lat2, lon2);
+                            /* startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                                 .bindPopup('Point actuel')
+                                 .openPopup(); */
+
+                            // Mettre à jour le champ de formulaire pour le départ
+                            var departureElem = document.getElementById('departure_address_evaluation');
+                            if (departureElem) {
+                                departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                            }
+
+                        },
+                        function() {
+                            alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                        }, {
+                            enableHighAccuracy: true
+                        });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Fonction pour gérer les clics sur la carte
+            function handleMapClick(e) {
+                var lat2 = e.latlng.lat;
+                var lon2 = e.latlng.lng;
+
+                // Mettre à jour le point de départ avec la position cliquée
+                if (startMarker2) {
+                    map2.removeLayer(startMarker2);
+                }
+                startLatLng2 = e.latlng; // Définir le point de départ
+                startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                    .bindPopup('Point choisi')
+                    .openPopup();
+
+                // Récupérer les coordonnées de l'école à partir du champ
+                var schoolCoords = document.getElementById('school_address_evaluation').value;
+                var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
+
+                if (schoolLatLng.length === 2) {
+                    // Créer un latlng pour le point de l'école
+                    endLatLng2 = L.latLng(schoolLatLng[0], schoolLatLng[1]);
+
+                    // Supprimer le marqueur d'arrivée précédent s'il existe
+                    if (endMarker2) {
+                        map2.removeLayer(endMarker2);
+                    }
+                    endMarker2 = L.marker(endLatLng2).addTo(map2)
+                        .bindPopup('École')
+                        .openPopup();
+
+                    // Ajouter le contrôle d'itinéraire à la carte
+                    var routingControl = L.Routing.control({
+                        waypoints: [
+                            L.latLng(startLatLng2.lat, startLatLng2.lng),
+                            L.latLng(endLatLng2.lat, endLatLng2.lng)
+                        ],
+                        router: L.Routing.osrmv1({
+                            language: 'fr',
+                            profile: 'driving'
+                        }),
+                        createMarker: function() { return null; },
+                        routeWhileDragging: true
+                    }).addTo(map2);
+
+                    // Calculer la distance en ligne droite
+                    var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
+
+                    // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
+                    routingControl.on('routesfound', function(event) {
+                        var route = event.routes[0];
+                        var routeDistance = route.summary.totalDistance; // Distance en mètres
+
+                        // Mettre à jour les champs de formulaire avec les coordonnées et les distances
+                        var departureElem = document.getElementById('departure_address_evaluation');
+                        var arriveElem = document.getElementById('arrive_address_evaluation');
+                        var distanceElem = document.getElementById('distance_address_evaluation');
+                        var modalDistanceElem = document.getElementById('modalDistance');
+                        var modalPriceElem = document.getElementById('modalPrice');
+
+                        if (departureElem) {
+                            departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        }
+                        if (arriveElem) {
+                            arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                        }
+                        if (distanceElem) {
+                            distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
+                        }
+
+                        // Afficher les valeurs dans le modal
+                        if (modalDistanceElem) {
+                            modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+                        }
+                        if (modalPriceElem) {
+                            modalPriceElem.textContent = 'Prix: ' + price;
+                        }
+
+                        // Afficher les valeurs dans la console
+                        console.log('Distance en ligne droite (Leaflet DistanceTo):', (distance2 / 1000).toFixed(2), 'km');
+                        console.log('Distance le long de l\'itinéraire (Leaflet Routing Machine):', (routeDistance / 1000).toFixed(2), 'km');
+                    });
+                } else {
+                    alert("Choisissez votre école et réessayez.");
+                }
+            }
+
+            // Ajouter un écouteur d'événement pour cliquer sur la carte
+            map2.on('click', handleMapClick);
+
+            // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+            locateUser2();
+
+            // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+            document.getElementById('locate-me2').addEventListener('click', function() {
+                locateUser2();
+            });
+        } else {
+            // La carte est déjà initialisée, donc nous devons seulement redimensionner
+            map2.invalidateSize();
+        }
     }
 
     // Lorsque l'utilisateur clique sur (x), fermer la modal
@@ -1343,7 +1546,6 @@ s
             modal2.style.display = "none";
         }
     }
-
 </script>
 
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
