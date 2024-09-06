@@ -1711,7 +1711,7 @@ s
         }
     }
 </script>
-
+ 
 
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
