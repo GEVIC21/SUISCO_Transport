@@ -526,7 +526,7 @@
                                                 <div id="myModal3" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close3">&times;</span>
-                                                                <h4>Carte Reservation:</h4>
+                                                                <h4>Carte Reservation</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> --> 
                                                                 
@@ -652,7 +652,7 @@
                                                         <div id="myModal" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
-                                                                <h4>Résultats de la simulation:</h4>
+                                                                <h4>Résultats de la simulation</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
@@ -664,7 +664,7 @@
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Carte:</h4>
+                                                                <h4>Carte</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -986,7 +986,7 @@
                     <div class="col-md-6 col-lg-5">
                         <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                        Pour votre premier mois, et les 10 premières subscriptions.
+                         pour les 10 premières subscriptions pour le premier mois
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -1002,8 +1002,8 @@
                 <div class="row row-50 justify-content-lg-between">
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
                         <a class="brand" href="#">
-                            <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}" alt=""
-                                 width="144" height="18" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                            <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo.png') }}" alt=""
+                                 width="144" height="18" srcset="{{ asset('template/bus/images/logo.png') }} 2x"/>
                         </a>
                         <p><span style="max-width: 250px;">SuiSco assure le transport des élèves du primaire au lycée sur la région du GRAND LOMÉ..</span>
                         </p><a class="button button-sm button-default-outline button-winona" href="#">Reservez Maintenant</a>
