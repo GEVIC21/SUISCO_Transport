@@ -122,18 +122,7 @@
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <span class="menu-link px-3">View</span>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
                                             <span class="menu-link px-3">Edit</span>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                        <span class="menu-link px-3"
-                                              data-kt-ecommerce-order-filter="delete_row">Delete</span>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
