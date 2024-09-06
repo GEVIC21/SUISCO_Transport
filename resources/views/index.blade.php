@@ -1207,10 +1207,10 @@
                             }
 
                             // Marqueur de la position actuelle
-                            currentMarker = L.marker([lat, lon]).addTo(map)
+                            /* currentMarker = L.marker([lat, lon]).addTo(map)
                                 .bindPopup('Vous êtes ici')
                                 .openPopup();
-
+ */
                             // Mettre à jour le champ caché avec les coordonnées du point actuel
                             document.getElementById('home_address').value = `${lat},${lon}`;
                         },
