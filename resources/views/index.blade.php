@@ -848,7 +848,7 @@
                         <a href="#"><img src="{{ asset('template/bus/images/button-2-170x53.png') }}"
                                          alt="" width="170" height="53"/></a>
 
-                        <a><img src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}"
+                        <a><img src="{{ asset('template/bus/images/logo.png') }}"
                                 alt="" width="170" height="53"/></a>
                     </div>
                 </div>
