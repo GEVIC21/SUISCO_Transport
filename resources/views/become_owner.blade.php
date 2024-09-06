@@ -146,7 +146,7 @@
                        <li><b class="item-text">3- Quelle est la procédure pour devenir CONSIGNATAIRE ?</b>
                            <ul class="list-marked">
                                <li>Il faut soumettre la demande en remplissant le formulaire <a href="{{ route('bus.become.owner') . '#' . __('become-owner') }}" class="box-default-text">suivant</a>,
-                                   ou en appelant notre service client au 99998998,<br></li>
+                                   ou en appelant notre service client au  99 99 89 99,<br></li>
                                Une fois la demande validée, il faut procéder :
                                <li>à la dotation d’un bon de carburant de 100 litres/siège à chaque début d’année scolaire,</li>
                                <li>au versement du montant de la consignation relative au nombre de sièges consignés.<br><br></li>
@@ -308,7 +308,7 @@
             </div>
         </div>
     </section> -->
-    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+    <!-- <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
              data-parallax-img="{{ asset('template/bus/images/b3.jpg') }}">
         <div class="parallax-content">
             <div class="container">
@@ -317,6 +317,22 @@
                         <h1 class="wow clipInLeft"><span class="font-weight-light">Demi prix</span> au premier mois</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
                             Pour votre premier mois, profitez de 50% de reduction sour vos tarifs.
+                        </p>
+                        <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="section parallax-container section-lg bg-gray-4 bg-overlay-1 text-center"
+             style="background-image: url('{{ asset('template/bus/images/b3.jpg') }}'); background-size: cover; background-position: center;">
+        <div class="parallax-content">
+            <div class="container">
+                <div class="row row-50 justify-content-end">
+                    <div class="col-md-6 col-lg-5">
+                        <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
+                        <p class="big wow clipInLeft" data-wow-delay=".1s">
+                        Pour votre premier mois, et les 10 premières subscriptions.
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -350,7 +366,7 @@
                         <h5 class="footer-classic-title">Nos Contacts</h5>
                         <ul class="list footer-classic-list">
                             <li><span class="mdi mdi-map-marker"></span> Qt TERRAIN LYCEE AGOE, Lomé</li>
-                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 98</li>
+                            <li><span class="mdi mdi-phone"></span> +228 99 99 89 99</li>
                             <li><span class="mdi mdi-pencil"></span> <a href="mailto:info@ops.tg">info@suisco.net</a></li>
                             <li><span class="mdi mdi-clock"></span> Lun-Ven: 8:00-19:00, Sam: 10:00-15:00</li>
                         </ul>

@@ -19,7 +19,7 @@ Route::name('bus.')->group(function (){
 
     Route::post('/subscription/store', 'App\Http\Controllers\BusController@store_subscription')->name('subscription.store');
     Route::post('/consignment/store', 'App\Http\Controllers\BusController@store_consignment')->name('consignment.store');
-    
+
 });
 
 Route::name('admin.')->group(function (){
@@ -29,6 +29,10 @@ Route::name('admin.')->group(function (){
     Route::get('/parametres', [\App\Http\Controllers\AdminController::class, 'parametres'])->name('parametres');
     Route::get('/ajouter_ecole', [\App\Http\Controllers\AdminController::class, 'ajouter_ecole'])->name('add.ecole');
     Route::get('/ajouter_utilisateur', [\App\Http\Controllers\AdminController::class, 'ajouter_utilisateur'])->name('add.utilisateur');
+    Route::get('/modifier_ecole/{id}', [\App\Http\Controllers\AdminController::class, 'update_school'])->name('update.school');
+    Route::post('/do_update_school/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_school'])->name('do.update.school');
+    Route::post('/add_user', [\App\Http\Controllers\AdminController::class, 'add_user'])->name('add.user');
+    Route::post('/add_school', [\App\Http\Controllers\AdminController::class, 'add_school'])->name('add.school');
 });
 
 Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');

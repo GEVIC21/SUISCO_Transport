@@ -9,6 +9,7 @@ use App\Models\Consignment;
 use App\Models\Parameter;
 use App\Models\Reservation;
 use App\Models\School;
+use Illuminate\Http\Request;
 use App\Models\Subscription;
 use App\Models\SubscriptionHistory;
 use MercurySeries\Flashy\Flashy;
@@ -31,8 +32,26 @@ class BusController extends Controller
     }
 
 
-    public function store_subscription(CreateSubscriptionRequest $request)
+    public function store_subscription(Request $request)
     {
+       /* $validator = $this->validate($request, [
+            'service' => 'required',
+            'house_location' => 'required',
+            'school_location' => 'required',
+            'trajectory' => 'required',
+            'phone_numbre' => 'required',
+        ]
+            , [
+                'service.required' => 'Ce champ est obligatoire',
+                'phone_numbre.required' => 'Ce champ est obligatoire',
+            ]
+        );
+
+
+        if (!$validator) {
+            Flashy::warning($validator->messages());
+            return back()->withErrors($validator)->withInput();
+        }*/
           $subscription = Reservation::create(
               [
                   'service' => $request->service,
@@ -42,8 +61,7 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-
-        Flashy::message(__('Subscription saved successfully.') . ' ' . __('We will contact you as soon as possible.'));
+        Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back();
      }
     }

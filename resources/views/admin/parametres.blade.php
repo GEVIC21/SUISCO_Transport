@@ -36,8 +36,8 @@
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         <!--end::Flatpickr-->
                         <!--begin::Add product-->
-                        <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-instagram" ><i class="bi bi-plus-circle-fill"></i>Ajouter
-                            Paramètre</a>
+                       {{-- <a href="../../demo1/dist/apps/ecommerce/catalog/add-product.html" class="btn btn-instagram" ><i class="bi bi-plus-circle-fill"></i>Ajouter
+                            Paramètre</a>--}}
                         <!--end::Add product-->
                     </div>
                     <!--end::Card toolbar-->
@@ -164,7 +164,11 @@
 
     <script>
         $(document).ready(function () {
-            $('#kt_ecommerce_sales_table').DataTable();
+            $('#kt_ecommerce_sales_table').DataTable(
+                {
+                    "order": [[3, 'desc']]
+                }
+            );
         });
     </script>
 @endsection
