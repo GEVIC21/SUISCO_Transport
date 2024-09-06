@@ -72,7 +72,7 @@
         .modal {
             display: none; /* Cachée par défaut */
             position: fixed; /* Reste en place lors du défilement */
-            z-index: 1; /* Au-dessus du contenu */
+          z-index: 1000; /* Met la modal au-dessus du contenu */
             left: 0;
             top: 0;
             width: 100%; /* Occupe toute la largeur */
@@ -80,49 +80,109 @@
             overflow: auto; /* Ajoute une barre de défilement si nécessaire */
             background-color: rgb(0,0,0); /* Fond semi-transparent */
             background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
+            
         }
 
         /* Contenu de la Modal */
         .modal-content {
             color: #000;
-            background-color: #fefefe;
+            background-color: #ffffff; /* Fond blanc pour un contraste élégant */
             margin: 15% auto; /* Centre verticalement et horizontalement */
             padding: 20px;
-            border: 1px solid #888;
-            width: 40%; /* Réduit la largeur pour permettre le déplacement */
-            margin-left: 10%; /* Ajuste la marge à gauche pour déplacer le contenu vers la gauche */
-        }
-        .modal-content h4{
-            color: #000;
+            border-radius: 20px; /* Coins arrondis élégants */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre douce pour un effet de profondeur */
+            width: 50%; /* Réduit la largeur pour permettre le déplacement */
+            transform: scale(0.9); /* Départ de l'animation */
+            animation: scaleUp 0.4s forwards; /* Animation d'agrandissement */
+            border: 1px solid #239dd4; /* Bordure colorée pour un effet pop */
+            background: linear-gradient(135deg,#7eba42,#ffffff); /* Fond dégradé */
+
 
         }
-
-        /* Le bouton de fermeture */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .modal-content h4 {
+            color: #2c343b; /* Titre plus doux et élégant */
+            font-size: 26px; /* Taille de police agrandie */
+            margin-bottom: 15px; /* Espacement en dessous du titre */
+            text-align: center; /* Centre le texte */
         }
+        /* Animation d'agrandissement */
+        @keyframes scaleUp {
+            to {
+                transform: scale(1); /* Passe à 100% de la taille */
+            }
+        }
+        .modal-content p {
+            color: #000; /* Texte en gris foncé */
+            font-size: 18px; /* Taille de police ajustée */
+            margin-bottom: 20px; /* Espacement en dessous du texte */
+            text-align: center; /* Centre le texte */
+        }
+            /* Le bouton de fermeture */
+     .close {
+        position: absolute; /* Positionné dans le coin supérieur droit */
+                    right: 20px;
+                    top: 20px;
+                    color: #000; /* Couleur grise douce */
+                    font-size: 28px; /* Taille augmentée */
+                    font-weight: bold; /* En gras */
+                    cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                    transition: color 0.3s; /* Animation douce au survol */
+        }
+        @media (max-width: 600px) {
+    .modal-content {
+        width: 90%; /* Occupe presque toute la largeur sur petits écrans */
+        padding: 20px; /* Réduit le padding sur mobiles */
+    }
+
+    .close {
+        position: absolute; /* Positionné dans le coin supérieur droit */
+                    right: 20px;
+                    top: 20px;
+                    color: #000; /* Couleur grise douce */
+                    font-size: 28px; /* Taille augmentée */
+                    font-weight: bold; /* En gras */
+                    cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                    transition: color 0.3s; /* Animation douce au survol */
+    }
+}
+      
         .close2 {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+            position: absolute; /* Positionné dans le coin supérieur droit */
+                    right: 20px;
+                    top: 20px;
+                    color: #000; /* Couleur grise douce */
+                    font-size: 28px; /* Taille augmentée */
+                    font-weight: bold; /* En gras */
+                    cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                    transition: color 0.3s; /* Animation douce au survol */
         }
+        .close3 {
+            position: absolute; /* Positionné dans le coin supérieur droit */
+                right: 20px;
+                top: 20px;
+                color: #000; /* Couleur rosée élégante */
+                font-size: 28px; /* Taille augmentée */
+                font-weight: bold; /* En gras */
+                cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                transition: color 0.3s; /* Animation douce au survol */
+                        }
 
         .close:hover,
         .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+            color: #000; /* Change la couleur au noir */
+            text-decoration: none; /* Enlève la décoration sous forme de lien */
         }
         .close2:hover,
         .close2:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+            color: #000; /* Change la couleur au noir */
+    text-decoration: none; /* Enlève la décoration sous forme de lien */
         }
+        .close3:hover,
+        .close3:focus {
+            color: #000; /* Change la couleur au noir */
+            text-decoration: none; /* Enlève la décoration sous forme de lien */
+        }
+
 
 
 
@@ -289,20 +349,20 @@
                                                             </div>
 
                                                             <div class="form-button">
-                                                                <button  id="toggleMapBtn" class="button button-block button-primary button-winona" type="button" >
-                                                                    Masquer
+                                                                <button  id="openModal3" class="button button-block button-primary button-winona" type="button" >
+                                                                    Afficher
                                                                 </button>
 
                                                             </div>
                                                             
                                                         </div>
 
-                                                        <div id="mapContainer"  class="form-wrap" style="display: ">
-                                                            <br>
+<div id="mapContainer"  class="form-wrap" style="display: ">
+                                                            
                                                             <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
                               -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>
-                                                            <div class="form-wrap">
+<!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
+ -->                                                            <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                                                                 Aller à ma position
                                                                 </button> -->
@@ -434,9 +494,9 @@
             }
         });
 
-</script>
+</script> 
 
-                                                        </div>
+</div>
 
 
                                                         <div class="form-wrap">
@@ -461,8 +521,31 @@
                                                                 </button>
                                                             </div>
                                                         </div>
+                                                        <!-- Debut La Modal Carte Reserver -->
+                                                <div id="myModal3" class="modal">
+                                                            <div class="modal-content">
+                                                                <span class="close3">&times;</span>
+                                                                <h4>Carte Reservation:</h4>
+                                                                <!--   <p id="modalDeparture"></p>
+                                                                  <p id="modalArrival"></p> --> 
+                                                                
+                                                <div id="mapContainer"  class="form-wrap" style="display: auto">
+                                                             <br>
+                                                              <!-- <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" > -->
+                                                     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>  
+                                                            <div class="form-wrap"> 
+                                                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
+                                                                Aller à ma position
+                                                             </button> -->
+                                                            </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                        <!-- Fin La Modal Carte Reserver -->
                                                     </form>
 
+                                                    
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tabs-1-2">
@@ -523,11 +606,10 @@
 
                                                             </div>
                                                         </div>
-
+                                                    
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
-                                                            <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            -->                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -563,6 +645,8 @@
                                                             </div>
                                                         </div>
 
+                                                           
+
                                                         <!-- La Modal Essayer -->
                                                         <div id="myModal" class="modal">
                                                             <div class="modal-content">
@@ -575,7 +659,7 @@
                                                             </div>
                                                         </div>
 
-                                                          <!-- La Modal Carte -->
+                                                          <!-- La Modal Carte Evaluer -->
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
@@ -584,9 +668,9 @@
                                                                   <p id="modalArrival"></p> -->
 
                                                                   <div id="mapContainer2"  class="form-wrap" style="display: auto">
-                                                            <br>
+                                                             <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            -->                              <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>  
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -979,7 +1063,7 @@
 
 
 <!-- Script Reserver carte -->
-<script>
+<!-- <script>
 
     console.log("myMapvar dans le map");
 
@@ -1080,7 +1164,129 @@
         });
     });
 
+</script> -->
+
+<!-- Script Reserver carte Modal -->
+
+<script>
+    // Récupérer les éléments
+    var modal3 = document.getElementById("myModal3");
+    var btn = document.getElementById("openModal3");
+    var span = document.getElementsByClassName("close3")[0];
+    var map; // Déclare la variable map en dehors pour la rendre accessible globalement
+    var currentMarker = null;
+
+    // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+    btn.onclick = function() {
+        modal3.style.display = "block";
+
+        // Initialiser la carte seulement lorsque la modal est ouverte
+        if (!map) { // Vérifier si la carte n'est pas déjà initialisée
+            map = L.map('map').setView([6.1356, 1.2226], 15);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 20
+            }).addTo(map);
+
+            // Fonction pour obtenir la position actuelle de l'utilisateur
+            function locateUser() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                            var lat = position.coords.latitude;
+                            var lon = position.coords.longitude;
+
+                            // Centrer la carte sur la position actuelle
+                            map.setView([lat, lon], 17);
+
+                            // Ajouter un marqueur à la position actuelle
+                            if (currentMarker) {
+                                map.removeLayer(currentMarker);
+                            }
+
+                            // Marqueur de la position actuelle
+                            currentMarker = L.marker([lat, lon]).addTo(map)
+                                .bindPopup('Vous êtes ici')
+                                .openPopup();
+
+                            // Mettre à jour le champ caché avec les coordonnées du point actuel
+                            document.getElementById('home_address').value = `${lat},${lon}`;
+                        },
+                        function() {
+                            alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                        }, {
+                            enableHighAccuracy: true
+                        });
+                } else {
+                    alert("Géolocalisation non supportée.");
+                }
+            }
+
+            // Ajouter un marqueur lorsqu'on clique sur la carte
+            map.on('click', function(e) {
+                var lat = e.latlng.lat;
+                var lon = e.latlng.lng;
+
+                // Appeler reverseGeocode pour obtenir le nom du lieu
+                reverseGeocode(lat, lon, function(name) {
+                    // Supprimer le marqueur précédent s'il existe
+                    if (currentMarker) {
+                        map.removeLayer(currentMarker);
+                    }
+
+                    // Ajouter un nouveau marqueur au point cliqué
+                    currentMarker = L.marker([lat, lon]).addTo(map)
+                        .bindPopup('Point cliqué: ' + name)
+                        .openPopup();
+
+                    // Mettre à jour le champ caché avec les coordonnées du point cliqué
+                    document.getElementById('home_address').value = `${lat},${lon}`;
+                });
+            });
+
+            // Fonction de géocodage inverse pour obtenir le nom géographique
+            function reverseGeocode(lat, lon, callback) {
+                var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        var address = data.address;
+                        var name = address ? [
+                            address.road || '',
+                            address.suburb || '',
+                            address.city || '',
+                            address.state || '',
+                            address.country || ''
+                        ].filter(part => part).join(', ') : 'N/A';
+                        callback(name);
+                    })
+                    .catch(() => {
+                        callback('N/A');
+                    });
+            }
+
+            // Localiser l'utilisateur automatiquement à l'ouverture de la modal
+            locateUser();
+        }
+
+    }
+
+    // Lorsque l'utilisateur clique sur (x), fermer la modal
+    span.onclick = function() {
+        modal3.style.display = "none";
+    }
+
+    // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+    window.onclick = function(event) {
+        if (event.target == modal3) {
+            modal3.style.display = "none";
+        }
+    }
+
 </script>
+
+
 
 <!-- Script Evaluer carte  -->
 
