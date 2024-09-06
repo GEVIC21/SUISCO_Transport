@@ -277,11 +277,8 @@
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
-                        <h4 class="wow fadeIn">
-                            <span class="tab-pane fade show active" id="tabs-1-1"> Réservez dès maintenant !</span>
-                            <span class="tab-pane fade" id="tabs-1-2">Stimuler le tarif maintenant !</span>
-                        </h4>
-
+                        <h4  class="wow fadeIn">Réservez dès maintenant !</h4>
+                        <!-- <h4 class="wow fadeIn">Stimuler le tarif maintenant !</h4> -->
                         <div class="contacts-default">
                             <div class="unit align-items-center">
                                 <div class="unit-left">
