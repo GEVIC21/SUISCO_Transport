@@ -115,5 +115,13 @@ class AdminController extends Controller
         return redirect()->route('admin.ecoles');
     }
 
+    public function del_school($id)
+    {
+        $school =  School::find($id);
+        $school->delete();
+        Flashy::message(__('Ecole supprimée avec sussès'));
+        return redirect()->back();
+    }
+
 
 }
