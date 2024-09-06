@@ -1044,7 +1044,6 @@
 <!-- Script Evaluer carte  -->
  
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
@@ -1143,6 +1142,8 @@
                 routeWhileDragging: true
             }).addTo(map2);
 
+            
+
             // Calculer la distance en ligne droite
             var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
 
@@ -1170,8 +1171,7 @@
 
                 // Afficher les valeurs dans le modal
                 if (modalDistanceElem) {
-/*                     modalDistanceElem.textContent = 'Distance en ligne droite: ' + (distance2 / 1000).toFixed(2) + ' km | Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km'; 
- */                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km'; 
+        /*                     modalDistanceElem.textContent = 'Distance en ligne droite: ' + (distance2 / 1000).toFixed(2) + ' km | Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';  */                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km'; 
 
                 }
                 if (modalPriceElem) {
@@ -1197,9 +1197,8 @@
     document.getElementById('locate-me2').addEventListener('click', function() {
         locateUser2();
     });
-});
+    });
 </script>
-
 
 
  <!-- Script Masquer Evaluer carte  -->
