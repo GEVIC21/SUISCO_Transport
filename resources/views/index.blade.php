@@ -226,7 +226,7 @@
                         <div class="rd-navbar-brand">
                             <a class="brand" href="{{ route('bus.index') }}">
                                 <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo.png') }}"
-                                     alt="" width="144" height="5px" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                                     alt="" width="144" height="5px" srcset="{{ asset('template/bus/images/logo.png') }} 2x"/>
                             </a>
                         </div>
                     </div>
