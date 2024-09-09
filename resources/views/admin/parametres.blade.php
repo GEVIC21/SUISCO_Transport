@@ -122,7 +122,7 @@
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <span class="menu-link px-3">Edit</span>
+                                            <a class="menu-link px-3" href="{{route('admin.update.parametre',$parameter->id)}}">Edit</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>

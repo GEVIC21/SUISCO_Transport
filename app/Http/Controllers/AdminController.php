@@ -96,10 +96,46 @@ class AdminController extends Controller
 
     }
 
+    public function do_update_user(Request $request,$id)
+    {
+        $validator = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'confirmed',
+        ]);
+
+        if (!$validator) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($user->password)
+        {
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+        Flashy::message(__('Utilisateur modifie avec sussès'));
+        return redirect()->route('admin.utilisateurs');
+
+    }
+
     public function update_school($id)
     {
         $school = School::find($id);
         return view('admin.update.ecoles',compact('school'));
+    }
+    public function update_utilisateur($id)
+    {
+        $user = User::find($id);
+        return view('admin.update.utilisateurs',compact('user'));
+    }
+
+    public function update_parametre($id)
+    {
+        $school = School::find($id);
+        $parametre= Parameter::find($id);
+        return view('admin.update.parametres',compact('school','parametre'));
     }
 
     public function do_update_school($id,Request $request)
@@ -114,6 +150,18 @@ class AdminController extends Controller
         Flashy::message(__('Ecole modifiée avec sussès'));
         return redirect()->route('admin.ecoles');
     }
+    public function do_update_parameter($id,Request $request)
+    {
+
+        $parameter = Parameter::find($id);
+        $parameter->value = $request->value;
+        $parameter->description = $request->description;
+        $parameter->save();
+
+        Flashy::message(__('Ecole modifiée avec sussès'));
+        return redirect()->route('admin.parametres');
+    }
+
 
     public function del_school($id)
     {
