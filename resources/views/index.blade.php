@@ -183,6 +183,24 @@
             text-decoration: none; /* Enlève la décoration sous forme de lien */
         }
 
+/* Style du bouton Valider - moins large */
+.button-validate {
+    width: 90px;
+    display: inline-block;
+    padding: 8px 16px; /* Réduction du padding pour un bouton plus étroit */
+    background-color: #239dd4; /* Couleur verte pour valider */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet hover sur le bouton */
+.button-validate:hover {
+    background-color: #239dd4;
+}
 
 
 
@@ -522,27 +540,27 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <!-- Debut La Modal Carte Reserver -->
-                                                <div id="myModal3" class="modal">
-                                                            <div class="modal-content">
-                                                                <span class="close3">&times;</span>
-                                                                <h4>Carte Reservation</h4>
-                                                                <!--   <p id="modalDeparture"></p>
-                                                                  <p id="modalArrival"></p> -->
+                                                    <!-- Debut La Modal Carte Reserver -->
+<div id="myModal3" class="modal">
+    <div class="modal-content">
+        <span class="close3">&times;</span>
+        <h4>Carte Réservation</h4>
+      <!-- Bouton Valider -->
+<button class="button-validate" id="validateBtn">Valider</button>
 
-                                                <div id="mapContainer"  class="form-wrap" style="display: auto">
-                                                             <br>
-                                                              <!-- <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" > -->
-                                                     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>
-                                                            <div class="form-wrap">
-                                                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
-                                                                Aller à ma position
-                                                             </button> -->
-                                                            </div>
-                                                </div>
-                                                </div>
-                                                </div>
+        <!-- Carte et contenu de la modal -->
+        <div id="mapContainer" class="form-wrap">
+            <br>
+            <label class="form-label" for="form-location"></label>
+            <span class="form-icon mdi mdi-map-marker"></span>
+            <div class="form-wrap" id="map" style="height: 350px;"></div>
+            <div class="form-wrap">
+                <!-- Espace pour bouton ou autre contenu -->
+            </div>
+        </div>
+    </div>
+</div>
+
                                                         <!-- Fin La Modal Carte Reserver -->
                                                     </form>
 
@@ -665,6 +683,8 @@
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Carte</h4>
+                                                                     <!-- Bouton Valider -->
+                                                                <button class="button-validate" id="validateBtn1">Valider</button>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -1174,6 +1194,15 @@
     var modal3 = document.getElementById("myModal3");
     var btn = document.getElementById("openModal3");
     var span = document.getElementsByClassName("close3")[0];
+    // Récupérer le bouton Valider et le modal
+var validateBtn = document.getElementById('validateBtn');
+var modal3 = document.getElementById('myModal3');
+
+// Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+validateBtn.onclick = function() {
+    modal3.style.display = "none";
+}
+ 
     var map; // Déclare la variable map en dehors pour la rendre accessible globalement
     var currentMarker = null;
 
@@ -1536,7 +1565,14 @@ s
     var modal2 = document.getElementById("myModal2");
     var btn = document.getElementById("openModal2");
     var span = document.getElementsByClassName("close2")[0];
+    var validateBtn1 = document.getElementById('validateBtn1');
+    
     var map2; // Déclaration de la variable map2 pour une portée globale
+    // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+validateBtn1.onclick = function() {
+    modal2.style.display = "none";
+}
+ 
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
