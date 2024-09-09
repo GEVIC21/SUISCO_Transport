@@ -171,5 +171,43 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    public function del_user($id)
+    {
+        $user =  User::find($id);
+        $user->delete();
+        Flashy::message(__('Utilisateur supprimée avec sussès'));
+        return redirect()->back();
+    }
+
+
+    public function login(Request $request)
+    {
+
+        $email_or_username = $request->input('name');
+        //check if $email_or_username is an email
+        if (filter_var($email_or_username, FILTER_VALIDATE_EMAIL)) { // user sent his email
+            //check if user email exists in database
+            $user_email = User::where('email', '=', $request->input('name'))->first();
+            if ($user_email) { //email exists in database
+                if (Auth::attempt(['email' => $email_or_username, 'password' => $request->input('password')])) {
+                    //success
+                    Flashy::message('Bienvenue à notre page admin');
+                    return redirect(route('admin.reservations'));
+                }
+            }
+        } else { //user sent his username
+            //check if username exists in database
+            $username = User::where('name', '=', $request->input('name'))->first();
+            if ($username) { //username exists in database
+                if (Auth::attempt(['name' => $email_or_username, 'password' => $request->input('password')])) {
+                    //success
+                    Flashy::message('Bienvenue à notre page admin');
+                    return redirect(route('admin.reservations'));
+                }
+            }
+        }
+        return back();
+    }
+
 
 }

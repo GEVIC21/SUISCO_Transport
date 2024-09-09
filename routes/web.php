@@ -39,6 +39,7 @@ Route::name('admin.')->group(function (){
 
 
     Route::post('/supprimer_ecole{id}', [\App\Http\Controllers\AdminController::class, 'del_school'])->name('del.school');
+    Route::post('/supprimer_utilisateur{id}', [\App\Http\Controllers\AdminController::class, 'del_user'])->name('del.user');
 
 
     Route::post('/do_update_school/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_school'])->name('do.update.school');
@@ -51,4 +52,5 @@ Route::name('admin.')->group(function (){
 });
 
 Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
+Route::post('/admin-logged', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
 

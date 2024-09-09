@@ -114,8 +114,15 @@
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                        <span class="menu-link px-3"
-                                              data-kt-ecommerce-order-filter="delete_row">Delete</span>
+                                        <a class="menu-link px-3" onclick="event.preventDefault();
+                                                   if (confirm('Êtes-vous sûr de vouloir supprimer ce utilisateur ?')) {
+                                                       document.getElementById('delete-form-{{$user->id}}').submit();
+                                                   }"
+                                              data-kt-ecommerce-order-filter="delete_row">Delete</a>
+                                            <form id="delete-form-{{$user->id}}" action="{{ route('admin.del.user', $user->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('POST')
+                                            </form>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
