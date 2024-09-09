@@ -195,6 +195,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    
 }
 
 /* Effet hover sur le bouton */
@@ -362,17 +363,17 @@
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
 
-                                                            <div class="form-wrap">
-                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localisation de la maison">
+                                                            <div id="openModal3" class="form-wrap">
+                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
-
+<!-- 
                                                             <div class="form-button">
-                                                                <button  id="openModal3" class="button button-block button-primary button-winona" type="button" >
+                                                                <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
                                                                 </button>
 
-                                                            </div>
+                                                            </div> -->
 
                                                         </div>
 
@@ -521,10 +522,11 @@
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none">Votre trajet</option>
-                                                                <option value="Aller Simple">Aller Simple</option>
-                                                                <option value="Retour Simple">Retour Simple</option>
-                                                                <option value="Aller-Retour">Aller-Retour</option>
+                                                                <option value="" selected style="display: none"> precisez votre itinéraire
+                                                                </option>
+                                                                <option value="Aller Simple">Maison -> Ecole</option>
+                                                                <option value="Retour Simple">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-wrap-2">
@@ -544,9 +546,10 @@
 <div id="myModal3" class="modal">
     <div class="modal-content">
         <span class="close3">&times;</span>
-        <h4>Carte Réservation</h4>
+        <h4> Sélectionnez votre emplacement 
+        </h4>
       <!-- Bouton Valider -->
-<button class="button-validate" id="validateBtn">Valider</button>
+
 
         <!-- Carte et contenu de la modal -->
         <div id="mapContainer" class="form-wrap">
@@ -558,6 +561,7 @@
                 <!-- Espace pour bouton ou autre contenu -->
             </div>
         </div>
+        <button class="button-validate" id="validateBtn">Valider</button>
     </div>
 </div>
 
@@ -614,16 +618,16 @@
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
 
-                                                            <div class="form-wrap">
-                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
+                                                            <div id="openModal2" class="form-wrap" >
+                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
-                                                            <div class="form-button">
-                                                                <button  id="openModal2" class="button button-block button-primary button-winona" type="button" >
+                                                            <!-- <div class="form-button">
+                                                                <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
                                                                 </button>
 
-                                                            </div>
+                                                            </div> -->
                                                         </div>
 
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
@@ -644,10 +648,16 @@
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none">Votre trajet</option>
+                                                                <!-- <option value="" selected style="display: none">Votre trajet</option>
                                                                 <option value="Aller Simple">Aller Simple</option>
                                                                 <option value="Retour Simple">Retour Simple</option>
                                                                 <option value="Aller-Retour">Aller-Retour</option>
+                                                            </select> -->
+                                                            <option value="" selected style="display: none"> precisez votre itinéraire
+                                                                </option>
+                                                                <option value="Aller Simple">Maison -> Ecole</option>
+                                                                <option value="Retour Simple">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-wrap">
@@ -682,9 +692,9 @@
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Carte</h4>
+                                                                <h4>Sélectionnez votre emplacement </h4>
                                                                      <!-- Bouton Valider -->
-                                                                <button class="button-validate" id="validateBtn1">Valider</button>
+                                                               
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -698,7 +708,7 @@
                                                                 Aller à ma position
                                                              </button> -->
                                                             </div>
-
+                                                            <button class="button-validate" id="validateBtn1" >Valider</button>
 
 
                                                         </div>
