@@ -18,6 +18,9 @@
 
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
+        input::placeholder {
+            color: black; /* Gray color */
+        }
         .ie-panel {
             display: none;
             background: #212121;
@@ -346,6 +349,8 @@
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-bank"></span>
                                                         </div>
 
                                                         <div class="form-wrap">
@@ -356,6 +361,8 @@
                                                                     <option value="{{$school->name}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-school"></span>
                                                         </div>
 
 
@@ -366,6 +373,8 @@
                                                             <div id="openModal3" class="form-wrap">
                                                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
                                                                 <label class="form-label" for="form-location"></label>
+                                                                <span
+                                                                    class="form-icon mdi mdi-home"></span>
                                                                 <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
 <!--
@@ -530,6 +539,8 @@
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
                                                                 <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
+                                                            <span
+                                                            class="form-icon mdi mdi-map"></span>
                                                         </div>
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
@@ -590,6 +601,8 @@
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-bank"></span>
                                                         </div>
 
                                                         <div class="form-wrap">
@@ -600,6 +613,8 @@
                                                                     <option value="{{$school->location}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-school"></span>
                                                         </div>
 
 
@@ -623,6 +638,8 @@
                                                             <div id="openModal2" class="form-wrap" >
                                                                 <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
                                                                 <label class="form-label" for="form-location"></label>
+                                                                <span
+                                                                    class="form-icon mdi mdi-home"></span>
                                                                 <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
                                                             <!-- <div class="form-button">
@@ -663,6 +680,8 @@
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
                                                                 <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-map"></span>
                                                         </div>
                                                         <div class="form-wrap">
                                                             <!-- <div class="form-wrap">
