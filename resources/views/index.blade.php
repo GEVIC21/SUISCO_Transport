@@ -365,7 +365,8 @@
 
                                                             <div id="openModal3" class="form-wrap">
                                                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
-                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                                <label class="form-label" for="form-location"></label>
+                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
 <!--
                                                             <div class="form-button">
@@ -380,7 +381,8 @@
 <div id="mapContainer"  class="form-wrap" style="display: ">
 
                                                             <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                              -->              <label class="form-label" for="form-location"></label>
+                                                  <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
 <!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
  -->                                                            <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
@@ -620,7 +622,8 @@
 
                                                             <div id="openModal2" class="form-wrap" >
                                                                 <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
-                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                                <label class="form-label" for="form-location"></label>
+                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
@@ -632,7 +635,8 @@
 
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            -->                                 <label class="form-label" for="form-location"></label>
+                                                               <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
