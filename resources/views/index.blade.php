@@ -80,7 +80,7 @@
             overflow: auto; /* Ajoute une barre de défilement si nécessaire */
             background-color: rgb(0,0,0); /* Fond semi-transparent */
             background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
-            
+
         }
 
         /* Contenu de la Modal */
@@ -145,7 +145,7 @@
                     transition: color 0.3s; /* Animation douce au survol */
     }
 }
-      
+
         .close2 {
             position: absolute; /* Positionné dans le coin supérieur droit */
                     right: 20px;
@@ -183,6 +183,25 @@
             text-decoration: none; /* Enlève la décoration sous forme de lien */
         }
 
+/* Style du bouton Valider - moins large */
+.button-validate {
+    width: 90px;
+    display: inline-block;
+    padding: 8px 16px; /* Réduction du padding pour un bouton plus étroit */
+    background-color: #239dd4; /* Couleur verte pour valider */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    
+}
+
+/* Effet hover sur le bouton */
+.button-validate:hover {
+    background-color: #239dd4;
+}
 
 
 
@@ -226,7 +245,7 @@
                         <div class="rd-navbar-brand">
                             <a class="brand" href="{{ route('bus.index') }}">
                                 <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo.png') }}"
-                                     alt="" width="144" height="5px" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                                     alt="" width="144" height="5px" srcset="{{ asset('template/bus/images/logo.png') }} 2x"/>
                             </a>
                         </div>
                     </div>
@@ -256,7 +275,7 @@
                     </div>
                     <div class="rd-navbar-element bg-gray-4">
                         <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
-                            Simulation Tarifs</a>
+                            CONSIGNATION</a>
                     </div>
                     <div class="rd-navbar-dummy"></div>
                 </div>
@@ -344,24 +363,26 @@
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
 
-                                                            <div class="form-wrap">
-                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localisation de la maison">
-                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div id="openModal3" class="form-wrap">
+                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
+                                                                <label class="form-label" for="form-location"></label>
+                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
-
+<!-- 
                                                             <div class="form-button">
-                                                                <button  id="openModal3" class="button button-block button-primary button-winona" type="button" >
+                                                                <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
                                                                 </button>
 
-                                                            </div>
-                                                            
+                                                            </div> -->
+
                                                         </div>
 
 <div id="mapContainer"  class="form-wrap" style="display: ">
-                                                            
+
                                                             <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                              -->              <label class="form-label" for="form-location"></label>
+                                                  <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
 <!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
  -->                                                            <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
@@ -484,10 +505,10 @@
 
                 console.log(myMapvar);
 
-                this.textContent = 'Masquer'; 
+                this.textContent = 'Masquer';
             } else {
                 mapContainer.style.display = 'none';
-                this.textContent = 'Afficher'; 
+                this.textContent = 'Afficher';
                 myMapvar= 0;
                 console.log("myMapvar dans Masquer");
 
@@ -495,7 +516,7 @@
             }
         });
 
-</script> 
+</script>
 
 </div>
 
@@ -503,10 +524,11 @@
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none">Votre trajet</option>
-                                                                <option value="Aller Simple">Aller Simple</option>
-                                                                <option value="Retour Simple">Retour Simple</option>
-                                                                <option value="Aller-Retour">Aller-Retour</option>
+                                                                <option value="" selected style="display: none"> precisez votre itinéraire
+                                                                </option>
+                                                                <option value="Aller Simple">Maison -> Ecole</option>
+                                                                <option value="Retour Simple">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-wrap-2">
@@ -522,30 +544,33 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <!-- Debut La Modal Carte Reserver -->
-                                                <div id="myModal3" class="modal">
-                                                            <div class="modal-content">
-                                                                <span class="close3">&times;</span>
-                                                                <h4>Carte Reservation:</h4>
-                                                                <!--   <p id="modalDeparture"></p>
-                                                                  <p id="modalArrival"></p> --> 
-                                                                
-                                                <div id="mapContainer"  class="form-wrap" style="display: auto">
-                                                             <br>
-                                                              <!-- <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" > -->
-                                                     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map" style="height: 350px;"></div>  
-                                                            <div class="form-wrap"> 
-                                                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
-                                                                Aller à ma position
-                                                             </button> -->
-                                                            </div>
-                                                </div>
-                                                </div>
-                                                </div>
+                                                    <!-- Debut La Modal Carte Reserver -->
+<div id="myModal3" class="modal">
+    <div class="modal-content">
+        <span class="close3">&times;</span>
+        <h4> Sélectionnez votre emplacement 
+        </h4>
+      <!-- Bouton Valider -->
+
+
+        <!-- Carte et contenu de la modal -->
+        <div id="mapContainer" class="form-wrap">
+            <br>
+            <label class="form-label" for="form-location"></label>
+            <span class="form-icon mdi mdi-map-marker"></span>
+            <div class="form-wrap" id="map" style="height: 350px;"></div>
+            <div class="form-wrap">
+                <!-- Espace pour bouton ou autre contenu -->
+            </div>
+        </div>
+        <button class="button-validate" id="validateBtn">Valider</button>
+    </div>
+</div>
+
                                                         <!-- Fin La Modal Carte Reserver -->
                                                     </form>
-                                                    
+
+
                                                 </div>
 
                                                 <div class="tab-pane fade" id="tabs-1-2">
@@ -595,21 +620,23 @@
                                                         <!-- Bouton pour afficher la div -->
                                                         <div class="form-wrap-2">
 
-                                                            <div class="form-wrap">
-                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Prendre vos coordonnées">
-                                                                <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                            <div id="openModal2" class="form-wrap" >
+                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
+                                                                <label class="form-label" for="form-location"></label>
+                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
-                                                            <div class="form-button">
-                                                                <button  id="openModal2" class="button button-block button-primary button-winona" type="button" >
+                                                            <!-- <div class="form-button">
+                                                                <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
                                                                 </button>
 
-                                                            </div>
+                                                            </div> -->
                                                         </div>
-                                                    
+
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            -->                                 <label class="form-label" for="form-location"></label>
+                                                               <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -617,16 +644,24 @@
                                                              </button> -->
                                                             </div>
 
+
+
                                                         </div>
 
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none">Votre trajet</option>
+                                                                <!-- <option value="" selected style="display: none">Votre trajet</option>
                                                                 <option value="Aller Simple">Aller Simple</option>
                                                                 <option value="Retour Simple">Retour Simple</option>
                                                                 <option value="Aller-Retour">Aller-Retour</option>
+                                                            </select> -->
+                                                            <option value="" selected style="display: none"> precisez votre itinéraire
+                                                                </option>
+                                                                <option value="Aller Simple">Maison -> Ecole</option>
+                                                                <option value="Retour Simple">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-wrap">
@@ -643,13 +678,13 @@
                                                             </div>
                                                         </div>
 
-                                                           
+
 
                                                         <!-- La Modal Essayer -->
                                                         <div id="myModal" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
-                                                                <h4>Résultats de la simulation:</h4>
+                                                                <h4>Résultats de la simulation</h4>
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
@@ -661,7 +696,9 @@
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Carte:</h4>
+                                                                <h4>Sélectionnez votre emplacement </h4>
+                                                                     <!-- Bouton Valider -->
+                                                               
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -669,16 +706,16 @@
                                                              <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
                             -->                              <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
-                                                            <div class="form-wrap" id="map2" style="height: 350px;"></div>  
+                                                            <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
                                                                 Aller à ma position
                                                              </button> -->
                                                             </div>
+                                                            <button class="button-validate" id="validateBtn1" >Valider</button>
 
 
-
-                                                        </div>                                                               
+                                                        </div>
                                                             </div>
                                                         </div>
 
@@ -845,7 +882,7 @@
                         <a href="#"><img src="{{ asset('template/bus/images/button-2-170x53.png') }}"
                                          alt="" width="170" height="53"/></a>
 
-                        <a><img src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}"
+                        <a><img src="{{ asset('template/bus/images/logo.png') }}"
                                 alt="" width="170" height="53"/></a>
                     </div>
                 </div>
@@ -983,7 +1020,7 @@
                     <div class="col-md-6 col-lg-5">
                         <h1 class="wow clipInLeft"><span class="font-weight-light">-50%</span> de Reduction</h1>
                         <p class="big wow clipInLeft" data-wow-delay=".1s">
-                        Pour votre premier mois, et les 10 premières subscriptions.
+                         pour les 10 premières subscriptions pour le premier mois
                         </p>
                         <a class="button button-primary button-winona wow clipInLeft" href="#" data-wow-delay=".1s">Reservez Maintenant</a>
                     </div>
@@ -999,8 +1036,8 @@
                 <div class="row row-50 justify-content-lg-between">
                     <div class="{{--col-sm-6 col-lg-3 col-xl-3--}} col-md-4 col-sm-6 col-xs-12 text-center">
                         <a class="brand" href="#">
-                            <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }}" alt=""
-                                 width="144" height="18" srcset="{{ asset('template/bus/images/logo-suiscobus-288X36.png') }} 2x"/>
+                            <img class="brand-logo-dark" src="{{ asset('template/bus/images/logo.png') }}" alt=""
+                                 width="144" height="18" srcset="{{ asset('template/bus/images/logo.png') }} 2x"/>
                         </a>
                         <p><span style="max-width: 250px;">SuiSco assure le transport des élèves du primaire au lycée sur la région du GRAND LOMÉ..</span>
                         </p><a class="button button-sm button-default-outline button-winona" href="#">Reservez Maintenant</a>
@@ -1171,6 +1208,15 @@
     var modal3 = document.getElementById("myModal3");
     var btn = document.getElementById("openModal3");
     var span = document.getElementsByClassName("close3")[0];
+    // Récupérer le bouton Valider et le modal
+var validateBtn = document.getElementById('validateBtn');
+var modal3 = document.getElementById('myModal3');
+
+// Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+validateBtn.onclick = function() {
+    modal3.style.display = "none";
+}
+ 
     var map; // Déclare la variable map en dehors pour la rendre accessible globalement
     var currentMarker = null;
 
@@ -1462,7 +1508,7 @@
 
             console.log(myMapvar2);
 s
-            this.textContent = 'Masquer'; 
+            this.textContent = 'Masquer';
         } else {
             mapContainer.style.display = 'none';
             this.textContent = 'Afficher';
@@ -1533,7 +1579,14 @@ s
     var modal2 = document.getElementById("myModal2");
     var btn = document.getElementById("openModal2");
     var span = document.getElementsByClassName("close2")[0];
+    var validateBtn1 = document.getElementById('validateBtn1');
+    
     var map2; // Déclaration de la variable map2 pour une portée globale
+    // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+validateBtn1.onclick = function() {
+    modal2.style.display = "none";
+}
+ 
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
@@ -1708,7 +1761,7 @@ s
         }
     }
 </script>
- 
+
 
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
 @include('flashy::message')
