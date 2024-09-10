@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Modifier une École')
+@section('title','Modifier un Utilisateur')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
 @endsection
@@ -14,7 +14,7 @@
                  data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                  class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Modifier une Ecole</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Modifier un Utilisateur</h1>
                 <!--end::Title-->
             </div>
             <!--end::Page title-->
@@ -37,7 +37,7 @@
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--end::Flatpickr-->
                                     <!--begin::Add product-->
-                                    <a href="{{route('admin.ecoles')}}" class="btn btn-instagram"><i
+                                    <a href="{{route('admin.utilisateurs')}}" class="btn btn-instagram"><i
                                             class="bi bi-back"></i>Retour
                                     </a>
                                     <!--end::Add product-->
@@ -49,45 +49,23 @@
                             <!--begin::Card body-->
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
-                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.do.update.school',$school->id)}}" method="post">
+                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.do.update.user',$user->id)}}" method="post">
+                                    <!--begin::Input group-->
                                     @csrf
-                                    <!--begin::Input group-->
-                                    <div class="row fv-row mb-7">
-                                        <div class="col-md-3 text-md-end">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-bold form-label mt-3">
-                                                <span>Accronym</span>
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="le sigle de l'école ex: EPDG"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                        </div>
-                                        <div class="col-md-9">
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" name="accronym"
-                                                   value="{{$school->Acronym}}"/>
-                                            <!--end::Input-->
-                                            @error('accronym')
-                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
                                                 <span class="required">Nom</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Le nom complet de l'école"></i>
+                                                   title="Set the title of the store for SEO."></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" required name="name"
-                                                   value="{{$school->name}}"/>
+                                            <input type="text" class="form-control form-control-solid" name="name"
+                                                   value="{{$user->name}}"/>
                                             <!--end::Input-->
                                             @error('name')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
@@ -100,19 +78,65 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Coordonnée Géographique</span>
+                                                <span class="required">E-mail</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="la longitude et latitude de l'école ex: "></i>
+                                                   title="Set keywords for the store separated by a comma."></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                   name="location" value="{{$school->location}}" required
+                                                   name="email" value="{{$user->email}}"
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
-                                            @error('location')
+                                            @error('email')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span >Mot de passe</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Set keywords for the store separated by a comma."></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                   name="password" value=""
+                                                   data-kt-ecommerce-settings-type="tagify"/>
+                                            <!--end::Input-->
+                                            @error('password')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span >Confirmer Mot de passe</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Set keywords for the store separated by a comma."></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <input type="password" class="form-control form-control-solid"
+                                                   name="password_confirmation" value="" id="password_confirmation"
+                                                   data-kt-ecommerce-settings-type="tagify"/>
+                                            <!--end::Input-->
+                                            @error('password')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>

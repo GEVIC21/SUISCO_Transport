@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Ajouter une École')
+@section('title','Ajouter un utilisateur')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
 @endsection
