@@ -118,6 +118,7 @@ License: For each use you must have a valid license purchased only from above li
 			</div>
 			<!--end::Authentication - Sign-in-->
 		</div>
+        @include('flashy::message')
 		<!--end::Root-->
 		<!--end::Main-->
 		<!--begin::Javascript-->

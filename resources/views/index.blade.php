@@ -195,7 +195,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    
+
 }
 
 /* Effet hover sur le bouton */
@@ -367,7 +367,7 @@
                                                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
                                                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             </div>
-<!-- 
+<!--
                                                             <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -546,7 +546,7 @@
 <div id="myModal3" class="modal">
     <div class="modal-content">
         <span class="close3">&times;</span>
-        <h4> Sélectionnez votre emplacement 
+        <h4> Sélectionnez votre emplacement
         </h4>
       <!-- Bouton Valider -->
 
@@ -694,7 +694,7 @@
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Sélectionnez votre emplacement </h4>
                                                                      <!-- Bouton Valider -->
-                                                               
+
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -1212,7 +1212,7 @@ var modal3 = document.getElementById('myModal3');
 validateBtn.onclick = function() {
     modal3.style.display = "none";
 }
- 
+
     var map; // Déclare la variable map en dehors pour la rendre accessible globalement
     var currentMarker = null;
 
@@ -1576,13 +1576,13 @@ s
     var btn = document.getElementById("openModal2");
     var span = document.getElementsByClassName("close2")[0];
     var validateBtn1 = document.getElementById('validateBtn1');
-    
+
     var map2; // Déclaration de la variable map2 pour une portée globale
     // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
 validateBtn1.onclick = function() {
     modal2.style.display = "none";
 }
- 
+
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {

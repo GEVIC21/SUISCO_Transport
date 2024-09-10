@@ -7,7 +7,11 @@ use App\Models\Reservation;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use MercurySeries\Flashy\Flashy;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminController extends Controller
 {
@@ -182,32 +186,24 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        $credentials = $request->only('email', 'password');
+        $validator = Validator::make($credentials, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        $email_or_username = $request->input('name');
-        //check if $email_or_username is an email
-        if (filter_var($email_or_username, FILTER_VALIDATE_EMAIL)) { // user sent his email
-            //check if user email exists in database
-            $user_email = User::where('email', '=', $request->input('name'))->first();
-            if ($user_email) { //email exists in database
-                if (Auth::attempt(['email' => $email_or_username, 'password' => $request->input('password')])) {
-                    //success
-                    Flashy::message('Bienvenue à notre page admin');
-                    return redirect(route('admin.reservations'));
-                }
-            }
-        } else { //user sent his username
-            //check if username exists in database
-            $username = User::where('name', '=', $request->input('name'))->first();
-            if ($username) { //username exists in database
-                if (Auth::attempt(['name' => $email_or_username, 'password' => $request->input('password')])) {
-                    //success
-                    Flashy::message('Bienvenue à notre page admin');
-                    return redirect(route('admin.reservations'));
-                }
-            }
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
         }
-        return back();
+        if (Auth::attempt($credentials)) {
+            // Authentication passed, redirect to the intended location
+            return redirect()->route('admin.reservations');
+        }
+
+        // Authentication failed, redirect back with error
+        return Redirect::back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
+
 
 
 }
