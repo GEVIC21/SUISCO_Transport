@@ -18,6 +18,9 @@
 
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
+        input::placeholder {
+            color: black; /* Gray color */
+        }
         .ie-panel {
             display: none;
             background: #212121;
@@ -195,7 +198,7 @@
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    
+
 }
 
 /* Effet hover sur le bouton */
@@ -346,6 +349,8 @@
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-bank"></span>
                                                         </div>
 
                                                         <div class="form-wrap">
@@ -356,6 +361,8 @@
                                                                     <option value="{{$school->name}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-school"></span>
                                                         </div>
 
 
@@ -366,9 +373,11 @@
                                                             <div id="openModal3" class="form-wrap">
                                                                 <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
                                                                 <label class="form-label" for="form-location"></label>
+                                                                <span
+                                                                    class="form-icon mdi mdi-home"></span>
                                                                 <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
-<!-- 
+<!--
                                                             <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -530,6 +539,8 @@
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
                                                                 <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
+                                                            <span
+                                                            class="form-icon mdi mdi-map"></span>
                                                         </div>
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
@@ -548,7 +559,7 @@
 <div id="myModal3" class="modal">
     <div class="modal-content">
         <span class="close3">&times;</span>
-        <h4> Sélectionnez votre emplacement 
+        <h4> Sélectionnez votre emplacement
         </h4>
       <!-- Bouton Valider -->
 
@@ -590,6 +601,8 @@
                                                                 <option value="Standard">Standard</option>
                                                                 <option value="Premium">Premium</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-bank"></span>
                                                         </div>
 
                                                         <div class="form-wrap">
@@ -600,6 +613,8 @@
                                                                     <option value="{{$school->location}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-school"></span>
                                                         </div>
 
 
@@ -623,6 +638,8 @@
                                                             <div id="openModal2" class="form-wrap" >
                                                                 <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
                                                                 <label class="form-label" for="form-location"></label>
+                                                                <span
+                                                                    class="form-icon mdi mdi-home"></span>
                                                                 <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
                                                             <!-- <div class="form-button">
@@ -663,6 +680,8 @@
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
                                                                 <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
+                                                            <span
+                                                                class="form-icon mdi mdi-map"></span>
                                                         </div>
                                                         <div class="form-wrap">
                                                             <!-- <div class="form-wrap">
@@ -698,7 +717,7 @@
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Sélectionnez votre emplacement </h4>
                                                                      <!-- Bouton Valider -->
-                                                               
+
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
@@ -1216,7 +1235,7 @@ var modal3 = document.getElementById('myModal3');
 validateBtn.onclick = function() {
     modal3.style.display = "none";
 }
- 
+
     var map; // Déclare la variable map en dehors pour la rendre accessible globalement
     var currentMarker = null;
 
@@ -1580,13 +1599,13 @@ s
     var btn = document.getElementById("openModal2");
     var span = document.getElementsByClassName("close2")[0];
     var validateBtn1 = document.getElementById('validateBtn1');
-    
+
     var map2; // Déclaration de la variable map2 pour une portée globale
     // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
 validateBtn1.onclick = function() {
     modal2.style.display = "none";
 }
- 
+
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
