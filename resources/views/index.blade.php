@@ -207,6 +207,10 @@
 }
 
 
+.hidden {
+    display: none;
+}
+
 
     </style>
 </head>
@@ -299,8 +303,9 @@
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
-                        <h4  class="wow fadeIn">Réservez dès maintenant !</h4>
-                        <!-- <h4 class="wow fadeIn">Stimuler le tarif maintenant !</h4> -->
+                        <h4 class="show-on-reserver">Réservez dès maintenant !</h4>
+                        <h4 class="show-on-tarifs" style="display:none;">Évaluer vôtre tarif !</h4>
+
                         <div class="contacts-default">
                             <div class="unit align-items-center">
                                 <div class="unit-left">
@@ -322,9 +327,11 @@
                                             <!-- Nav tabs-->
                                             <ul class="nav nav-tabs">
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
+                                                    <!-- <a class="nav-link active" href="#tabs-1-1" data-toggle="tab" ><span>Reserver</span></a> -->
+                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab" id="reserver-link"><span>Reserver</span></a>
+                                                </li>
                                                 <li class="nav-item" role="presentation" >
-                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Tarifs</span></a>
+                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab" id="tarifs-link"><span>Tarifs</span></a>
                                                 </li>
                                             </ul>
                                             <!-- Tab panes-->
@@ -340,7 +347,7 @@
                                                     <li>Services personnalisés </li>
                                                 </ul> -->
 
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                                       <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
@@ -375,7 +382,6 @@
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
 <!--
                                                             <div class="form-button">
@@ -387,10 +393,11 @@
 
                                                         </div>
 
-<div id="mapContainer"  class="form-wrap" style="display: ">
+                                                        <div id="mapContainer"  class="form-wrap" style="display: ">
 
-                                                            <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              -->     <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                                    <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                              -->                                          <label class="form-label" for="form-location"></label>
+                                                                        <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
 <!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
  -->                                                            <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
@@ -500,33 +507,33 @@
 
                                                             <!-- Script Masquer Reserver carte  -->
 
-<script>
+                                                            <script>
 
-        var myMapvar;
-        document.getElementById('toggleMapBtn').addEventListener('click', function() {
-            var mapContainer = document.getElementById('mapContainer');
+                                                                    var myMapvar;
+                                                                    document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                                                                        var mapContainer = document.getElementById('mapContainer');
 
-            if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-                mapContainer.style.display = 'block';
-                myMapvar= 1;
-                console.log("myMapvar dans Afficher");
+                                                                        if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                                                                            mapContainer.style.display = 'block';
+                                                                            myMapvar= 1;
+                                                                            console.log("myMapvar dans Afficher");
 
-                console.log(myMapvar);
+                                                                            console.log(myMapvar);
 
-                this.textContent = 'Masquer';
-            } else {
-                mapContainer.style.display = 'none';
-                this.textContent = 'Afficher';
-                myMapvar= 0;
-                console.log("myMapvar dans Masquer");
+                                                                            this.textContent = 'Masquer';
+                                                                        } else {
+                                                                            mapContainer.style.display = 'none';
+                                                                            this.textContent = 'Afficher';
+                                                                            myMapvar= 0;
+                                                                            console.log("myMapvar dans Masquer");
 
-                console.log(myMapvar);
-            }
-        });
+                                                                            console.log(myMapvar);
+                                                                        }
+                                                                    });
 
-</script>
+                                                            </script>
 
-</div>
+                                                    </div>
 
 
                                                         <div class="form-wrap">
@@ -544,7 +551,7 @@
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
                                                                 <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                                                       data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                                                     data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
                                                                 <label class="form-label" for="form-phone"></label><span
                                                                     class="form-icon mdi mdi-cellphone"></span>
                                                             </div>
@@ -554,28 +561,27 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    <!-- Debut La Modal Carte Reserver -->
-<div id="myModal3" class="modal">
-    <div class="modal-content">
-        <span class="close3">&times;</span>
-        <h4> Sélectionnez votre emplacement
-        </h4>
-      <!-- Bouton Valider -->
+                                                      <!-- Debut La Modal Carte Reserver -->
+                                                        <div id="myModal3" class="modal">
+                                                            <div class="modal-content">
+                                                                <span class="close3">&times;</span>
+                                                                <h4>Sélectionnez votre maison</h4>
+                                                            <!-- Bouton Valider -->
 
 
-        <!-- Carte et contenu de la modal -->
-        <div id="mapContainer" class="form-wrap">
-            <br>
-            <label class="form-label" for="form-location"></label>
-            <span class="form-icon mdi mdi-map-marker"></span>
-            <div class="form-wrap" id="map" style="height: 350px;"></div>
-            <div class="form-wrap">
-                <!-- Espace pour bouton ou autre contenu -->
-            </div>
-        </div>
-        <button class="button-validate" id="validateBtn">Valider</button>
-    </div>
-</div>
+                                                                <!-- Carte et contenu de la modal -->
+                                                                <div id="mapContainer" class="form-wrap">
+                                                                    <br>
+                                                                    <label class="form-label" for="form-location"></label>
+                                                                    <span class="form-icon mdi mdi-map-marker"></span>
+                                                                    <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                                                    <div class="form-wrap">
+                                                                        <!-- Espace pour bouton ou autre contenu -->
+                                                                    </div>
+                                                                </div>
+                                                                <button class="button-validate" id="validateBtn">Valider</button>
+                                                            </div>
+                                                        </div>
 
                                                         <!-- Fin La Modal Carte Reserver -->
                                                     </form>
@@ -639,7 +645,7 @@
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
+                                                            
                                                             </div>
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
@@ -651,7 +657,8 @@
 
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                                 <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                            -->                                 <label class="form-label" for="form-location"></label>
+                                                             <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -713,7 +720,7 @@
                                                           <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Sélectionnez votre emplacement </h4>
+                                                                <h4>Sélectionnez votre maison </h4>
                                                                      <!-- Bouton Valider -->
 
                                                                 <!--   <p id="modalDeparture"></p>
@@ -951,7 +958,7 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite"> Dr Tsolenyanu</cite>
+                                        <cite class="quote-modern-cite">  Tsolenyanu</cite>
                                         <p class="quote-modern-position">Diplomate</p>
                                     </div>
                                 </div>
@@ -977,8 +984,8 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Yao-Amuama</cite>
-                                        <p class="quote-modern-position">Miss Togo</p>
+                                        <cite class="quote-modern-cite">S.Natacha</cite>
+                                        <p class="quote-modern-position">secrétaire</p>
                                     </div>
                                 </div>
                             </div>
@@ -1003,8 +1010,8 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">kako Nubukpo </cite>
-                                        <p class="quote-modern-position">Economiste</p>
+                                        <cite class="quote-modern-cite">Lawson-Late </cite>
+                                        <p class="quote-modern-position">Cadre de Banque</p>
                                     </div>
                                 </div>
                             </div>
@@ -1537,6 +1544,8 @@ s
     });
 </script> -->
 
+
+
 <!-- Script Ouvrir Modal Evaluer  -->
 
 <script>
@@ -1582,6 +1591,20 @@ s
             modal.style.display = "none";
         }
     }
+
+
+    // Fonction pour afficher "Réservez" et cacher "Tarifs"
+document.getElementById("reserver-link").addEventListener("click", function() {
+    document.querySelector(".show-on-reserver").style.display = "block";
+    document.querySelector(".show-on-tarifs").style.display = "none";
+});
+
+// Fonction pour afficher "Tarifs" et cacher "Réservez"
+document.getElementById("tarifs-link").addEventListener("click", function() {
+    document.querySelector(".show-on-reserver").style.display = "none";
+    document.querySelector(".show-on-tarifs").style.display = "block";
+});
+
 
 </script>
 
