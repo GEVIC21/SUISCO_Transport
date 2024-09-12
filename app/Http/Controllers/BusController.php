@@ -94,9 +94,28 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-        Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back();
+     }
+
+    public function store_consignment(Request $request)
+    {
+        Consignment::create(
+            [
+                'last_name' => $request->last_name,
+                'first_name' => $request->first_name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'seats_number' => $request->seats_number,
+                'children_number' => $request->children_number
+
+            ]
+        );
+        Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back();
      }
     }
+
+
 
 
