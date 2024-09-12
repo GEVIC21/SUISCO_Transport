@@ -137,13 +137,13 @@
         padding: 20px; /* Réduit le padding sur mobiles */
         top:2rem;
     }
-    #phoneInputContainer #submitBtn #validateBtn1 #validateBtn  {
+    #phoneInputContainer #submitBtn  {
         right: 150px;
         position: relative;
        
     }
 
-    #validateBtn1 #validateBtn  {
+    #validateBtn1   {
         right: 150px;
         position: relative;
        
