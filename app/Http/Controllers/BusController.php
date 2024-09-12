@@ -48,7 +48,7 @@ class BusController extends Controller
 
         // Traitez les données comme vous le souhaitez
         // Exemple : enregistrer les données dans la base de données, envoyer un email, etc.
-        
+
         // Redirection ou réponse après traitement
         $subscription = Reservation::create(
             [
@@ -59,8 +59,8 @@ class BusController extends Controller
                 'phone_numbre' => $request->phoneInput,
                 ]
         );
-      Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-      return redirect()->back();
+      //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
     }
 
 
@@ -94,8 +94,8 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-        Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back();
+        //Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
      }
 
     public function store_consignment(Request $request)
@@ -111,8 +111,8 @@ class BusController extends Controller
 
             ]
         );
-        Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back();
+        //Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back()->with('success', 'Consignation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
      }
     }
 
