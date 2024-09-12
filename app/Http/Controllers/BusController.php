@@ -31,6 +31,39 @@ class BusController extends Controller
         return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools'));
     }
 
+    public function submitForm(Request $request)
+    {
+        // Valider les données si nécessaire
+        $validated = $request->validate([
+            'service_evaluation' => 'required|string',
+            'school_address_evaluation' => 'required|string',
+            'departure_address_evaluation' => 'nullable|string',
+            'arrive_address_evaluation' => 'nullable|string',
+            'distance_address_evaluation' => 'nullable|string',
+            'trajectory' => 'required|string',
+            'phoneInput' => 'required|string',
+
+        ]);
+        //  dd($validated);
+
+        // Traitez les données comme vous le souhaitez
+        // Exemple : enregistrer les données dans la base de données, envoyer un email, etc.
+        
+        // Redirection ou réponse après traitement
+        $subscription = Reservation::create(
+            [
+                'service' => $request->service_evaluation,
+                'house_location' => $request->departure_address_evaluation,
+                'school_location' => $request->school_address_evaluation,
+                'route' => $request->trajectory,
+                'phone_numbre' => $request->phoneInput,
+                ]
+        );
+      Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+      return redirect()->back();
+    }
+
+
 
     public function store_subscription(Request $request)
     {

@@ -75,7 +75,7 @@
         .modal {
             display: none; /* Cachée par défaut */
             position: fixed; /* Reste en place lors du défilement */
-          z-index: 1000; /* Met la modal au-dessus du contenu */
+             z-index: 1000; /* Met la modal au-dessus du contenu */
             left: 0;
             top: 0;
             width: 100%; /* Occupe toute la largeur */
@@ -90,7 +90,7 @@
         .modal-content {
             color: #000;
             background-color: #ffffff; /* Fond blanc pour un contraste élégant */
-            margin: 15% auto; /* Centre verticalement et horizontalement */
+            margin: 8% auto; /* Centre verticalement et horizontalement */
             padding: 20px;
             border-radius: 20px; /* Coins arrondis élégants */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre douce pour un effet de profondeur */
@@ -123,7 +123,7 @@
             /* Le bouton de fermeture */
      .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -135,11 +135,12 @@
     .modal-content {
         width: 90%; /* Occupe presque toute la largeur sur petits écrans */
         padding: 20px; /* Réduit le padding sur mobiles */
+        top:2rem;
     }
 
     .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -151,7 +152,7 @@
 
         .close2 {
             position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -161,7 +162,7 @@
         }
         .close3 {
             position: absolute; /* Positionné dans le coin supérieur droit */
-                right: 20px;
+                right: 10px;
                 top: 20px;
                 color: #000; /* Couleur rosée élégante */
                 font-size: 28px; /* Taille augmentée */
@@ -207,6 +208,106 @@
 }
 
 
+.hidden {
+    display: none;
+}
+
+
+
+/* Centrage des boutons */
+
+/* Style pour les boutons */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les boutons */
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-buttons button#continueBtn {
+    background-color: #7eba42; /* Vert pour le bouton Continuer */
+    color: white;
+}
+
+.modal-buttons button#continueBtn:hover {
+    background-color: #45a049; /* Changement de couleur au survol */
+}
+
+.modal-buttons button#cancelBtn {
+    background-color: #239dd4; /* Rouge pour le bouton Annuler */
+    color: white;
+}
+
+.modal-buttons button#cancelBtn:hover {
+    background-color: #e53935; /* Changement de couleur au survol */
+}
+
+
+/* Centrage de la modal-footer */
+.modal-foter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Assurer que l'input soit centré */
+    margin-top: 20px;
+}
+
+/* Style pour l'input et le bouton Valider */
+#phoneInputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center;
+    margin-top: 20px;
+}
+#phoneInputContainer input {
+    width: 100%;
+    max-width: 300px; /* Limite la largeur de l'input */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* #submitBtn {
+    background-color: #008CBA; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+} */
+#phoneInputContainer button {
+    background-color: #239dd4; /* Bleu pour le bouton Valider */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: block; /* Assure que le bouton prend toute la largeur nécessaire */
+    text-align: center;
+}
+
+#phoneInputContainer button:hover {
+    background-color: #007bb5; /* Changement de couleur au survol */
+}
 
     </style>
 </head>
@@ -299,8 +400,9 @@
                         <p class="{{--big --}}wow fadeIn" data-wow-delay=".2s">
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
-                        <h4  class="wow fadeIn">Réservez dès maintenant !</h4>
-                        <!-- <h4 class="wow fadeIn">Stimuler le tarif maintenant !</h4> -->
+                        <h4 class="show-on-reserver">Réservez dès maintenant !</h4>
+                        <h4 class="show-on-tarifs" style="display:none;">Évaluer votre tarif !</h4>
+
                         <div class="contacts-default">
                             <div class="unit align-items-center">
                                 <div class="unit-left">
@@ -322,9 +424,11 @@
                                             <!-- Nav tabs-->
                                             <ul class="nav nav-tabs">
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab"><span>Reserver</span></a></li>
+                                                    <!-- <a class="nav-link active" href="#tabs-1-1" data-toggle="tab" ><span>Reserver</span></a> -->
+                                                    <a class="nav-link active" href="#tabs-1-1" data-toggle="tab" id="reserver-link"><span>Reserver</span></a>
+                                                </li>
                                                 <li class="nav-item" role="presentation" >
-                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab"><span>Tarifs</span></a>
+                                                    <a class="nav-link" href="#tabs-1-2" data-toggle="tab" id="tarifs-link"><span>Tarifs</span></a>
                                                 </li>
                                             </ul>
                                             <!-- Tab panes-->
@@ -340,7 +444,7 @@
                                                     <li>Services personnalisés </li>
                                                 </ul> -->
 
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
+                                       <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.subscription.store') }}">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
@@ -371,11 +475,10 @@
                                                         <div class="form-wrap-2">
 
                                                             <div id="openModal3" class="form-wrap">
-                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison">
+                                                                <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison" required>
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             </div>
 <!--
                                                             <div class="form-button">
@@ -387,13 +490,13 @@
 
                                                         </div>
 
-<div id="mapContainer"  class="form-wrap" style="display: ">
+               <div id="mapContainer"  class="form-wrap" style="display: ">
 
-                                                            <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
-                              -->              <label class="form-label" for="form-location"></label>
-                                                  <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
-<!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
- -->                                                            <div class="form-wrap">
+                                                                        <!--  <input class="form-input" id="home_address" type="text" name="home_address" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez l'adresse de votre maison">
+                                        -->              <label class="form-label" for="form-location"></label>
+                                                            <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
+            <!--                                                             <div class="form-wrap" id="map" style="height: 350px;"></div>
+            -->                                                            <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me" class="button button-block button-primary">
                                                                 Aller à ma position
                                                                 </button> -->
@@ -501,39 +604,39 @@
 
                                                             <!-- Script Masquer Reserver carte  -->
 
-<script>
+                                                            <script>
 
-        var myMapvar;
-        document.getElementById('toggleMapBtn').addEventListener('click', function() {
-            var mapContainer = document.getElementById('mapContainer');
+                                                                    var myMapvar;
+                                                                    document.getElementById('toggleMapBtn').addEventListener('click', function() {
+                                                                        var mapContainer = document.getElementById('mapContainer');
 
-            if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-                mapContainer.style.display = 'block';
-                myMapvar= 1;
-                console.log("myMapvar dans Afficher");
+                                                                        if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                                                                            mapContainer.style.display = 'block';
+                                                                            myMapvar= 1;
+                                                                            console.log("myMapvar dans Afficher");
 
-                console.log(myMapvar);
+                                                                            console.log(myMapvar);
 
-                this.textContent = 'Masquer';
-            } else {
-                mapContainer.style.display = 'none';
-                this.textContent = 'Afficher';
-                myMapvar= 0;
-                console.log("myMapvar dans Masquer");
+                                                                            this.textContent = 'Masquer';
+                                                                        } else {
+                                                                            mapContainer.style.display = 'none';
+                                                                            this.textContent = 'Afficher';
+                                                                            myMapvar= 0;
+                                                                            console.log("myMapvar dans Masquer");
 
-                console.log(myMapvar);
-            }
-        });
+                                                                            console.log(myMapvar);
+                                                                        }
+                                                                    });
 
-</script>
+                                                            </script>
 
-</div>
+                                                            </div>
 
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
-                                                                <option value="" selected style="display: none"> precisez votre itinéraire
+                                                                <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
                                                                 <option value="Aller Simple">Maison -> Ecole</option>
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
@@ -545,7 +648,7 @@
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
                                                                 <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                                                       data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                                                     data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
                                                                 <label class="form-label" for="form-phone"></label><span
                                                                     class="form-icon mdi mdi-cellphone"></span>
                                                             </div>
@@ -555,28 +658,27 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    <!-- Debut La Modal Carte Reserver -->
-<div id="myModal3" class="modal">
-    <div class="modal-content">
-        <span class="close3">&times;</span>
-        <h4> Sélectionnez votre emplacement
-        </h4>
-      <!-- Bouton Valider -->
+                                                      <!-- Debut La Modal Carte Reserver -->
+                                                        <div id="myModal3" class="modal">
+                                                            <div class="modal-content">
+                                                                <span class="close3">&times;</span>
+                                                                <h4>Sélectionnez votre maison</h4>
+                                                            <!-- Bouton Valider -->
 
 
-        <!-- Carte et contenu de la modal -->
-        <div id="mapContainer" class="form-wrap">
-            <br>
-            <label class="form-label" for="form-location"></label>
-            <span class="form-icon mdi mdi-map-marker"></span>
-            <div class="form-wrap" id="map" style="height: 350px;"></div>
-            <div class="form-wrap">
-                <!-- Espace pour bouton ou autre contenu -->
-            </div>
-        </div>
-        <button class="button-validate" id="validateBtn">Valider</button>
-    </div>
-</div>
+                                                                <!-- Carte et contenu de la modal -->
+                                                                <div id="mapContainer" class="form-wrap">
+                                                                    <br>
+                                                                    <label class="form-label" for="form-location"></label>
+                                                                    <span class="form-icon mdi mdi-map-marker"></span>
+                                                                    <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                                                    <div class="form-wrap">
+                                                                        <!-- Espace pour bouton ou autre contenu -->
+                                                                    </div>
+                                                                </div>
+                                                                <button class="button-validate" id="validateBtn">Valider</button>
+                                                            </div>
+                                                        </div>
 
                                                         <!-- Fin La Modal Carte Reserver -->
                                                     </form>
@@ -592,7 +694,7 @@
                                                         <li>Pay for taxi without a credit card;</li>
                                                         <li>Great discounts for regular clients.</li>
                                                     </ul> -->
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
+                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.form.submit') }}">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 4-->
@@ -610,7 +712,7 @@
                                                             <select class="form-input select" id="school_address_evaluation" name="school_address_evaluation" data-constraints="@Required" required>
                                                                 <option value="" selected style="display: none">Choisir votre école</option>
                                                                 @foreach($schools as $school)
-                                                                    <option value="{{$school->location}}">{{$school->name}}</option>
+                                                                    <option value="{{$school->location}}" >{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             <span
@@ -618,10 +720,15 @@
                                                         </div>
 
 
-                                                        <div class="form-wrap" >
+                                                        <!-- <div class="form-wrap" >
                                                             <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
-                                                        </div>
+                                                        </div> 
+
+                                                        <div class="form-wrap" >
+                                                            <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
+
+                                                        </div> -->
 
                                                         <div class="form-wrap">
                                                             <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
@@ -633,15 +740,19 @@
 
                                                         </div>
                                                         <!-- Bouton pour afficher la div -->
+
+                                                        <!--  id d'avant home_address_evaluation -->
                                                         <div class="form-wrap-2">
 
                                                             <div id="openModal2" class="form-wrap" >
-                                                                <input class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="localiser votre maison ">
+                                                                <input class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" placeholder="Localiser votre maison ">
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                                <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
+                                                            
                                                             </div>
+
+                                                            
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -652,8 +763,8 @@
 
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                                 <label class="form-label" for="form-location"></label>
-                                                               <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
+                                                            -->  <label class="form-label" for="form-location"></label>
+                                                             <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -674,7 +785,7 @@
                                                                 <option value="Retour Simple">Retour Simple</option>
                                                                 <option value="Aller-Retour">Aller-Retour</option>
                                                             </select> -->
-                                                            <option value="" selected style="display: none"> precisez votre itinéraire
+                                                            <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
                                                                 <option value="Aller Simple">Maison -> Ecole</option>
                                                                 <option value="Retour Simple">Ecole -> Maison </option>
@@ -683,14 +794,16 @@
                                                             <span
                                                                 class="form-icon mdi mdi-map"></span>
                                                         </div>
+
+                                                         
                                                         <div class="form-wrap">
-                                                            <!-- <div class="form-wrap">
-                                    <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
-                                    <label class="form-label" for="form-phone"></label><span
-                                        class="form-icon mdi mdi-cellphone"></span>
-                                </div> -->
-                                                            <div class="form-button">
+                                                                            <!-- <div class="form-wrap">
+                                                            <input class="form-input" id="form-phone" type="text" name="phone_number"
+                                                                data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                                            <label class="form-label" for="form-phone"></label><span
+                                                                class="form-icon mdi mdi-cellphone"></span>
+                                                        </div> -->
+                                                                            <div class="form-button">
                                                                 <button id="openModal" class="button button-block button-primary button-winona" type="button" >
                                                                     Essayer
                                                                 </button>
@@ -704,18 +817,39 @@
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
                                                                 <h4>Résultats de la simulation</h4>
-                                                                <!--   <p id="modalDeparture"></p>
-                                                                  <p id="modalArrival"></p> -->
+                                                                <!-- <p id="modalDeparture"></p>
+                                                                <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
                                                                 <p id="modalPrice"></p>
+
+                                                                <!-- Ajouter les boutons Continuer et Annuler -->
+                                                                 <p class="modal-title">Vous desirez faire une reservation</p>
+                                                                <div class="modal-buttons">
+                                                                    <button id="continueBtn" type="button">Continuer</button>
+                                                                    <button id="cancelBtn">Annuler</button>
+                                                                </div>
+
+
+                                                                <!-- Input caché pour saisir le numéro de téléphone -->
+                                                                 <div class="modal-footers">
+                                                                   <div id="phoneInputContainer" style="display: none; margin-top: 20px;">
+                                                                    <label for="phoneInput">Veuillez saisir votre numéro de téléphone :</label>
+                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required> <br>
+                                                                    <button id="submitBtn" style="margin-top: 10px;">Valider</button>
+                                                                </div>
+                                                                 
+
+                                                                 </div>                                                                
                                                             </div>
                                                         </div>
 
+
+
                                                           <!-- La Modal Carte Evaluer -->
-                                                          <div id="myModal2" class="modal">
+                                                        <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
-                                                                <h4>Sélectionnez votre emplacement </h4>
+                                                                <h4>Sélectionnez votre maison </h4>
                                                                      <!-- Bouton Valider -->
 
                                                                 <!--   <p id="modalDeparture"></p>
@@ -724,7 +858,7 @@
                                                                   <div id="mapContainer2"  class="form-wrap" style="display: auto">
                                                              <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                              <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                              --> <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -735,10 +869,10 @@
 
 
                                                         </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <!--fin Button trigger modal -->
+                                                            <!--fin Button trigger modal -->
 
                                                     </form>
                                                 </div>
@@ -901,7 +1035,7 @@
                         <a href="#"><img src="{{ asset('template/bus/images/button-2-170x53.png') }}"
                                          alt="" width="170" height="53"/></a>
 
-                        <a><img src="{{ asset('template/bus/images/logo.png') }}"
+                        <a><img src="{{ asset('template/bus/images/suisco_transport.jpeg') }}"
                                 alt="" width="170" height="53"/></a>
                     </div>
                 </div>
@@ -953,8 +1087,8 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite"> Dr Tsolenyanu</cite>
-                                        <p class="quote-modern-position">Diplomate</p>
+                                        <cite class="quote-modern-cite"> Poutouli Achile</cite>
+                                        <p class="quote-modern-position">Fonctionnaire à BOAD</p>
                                     </div>
                                 </div>
                             </div>
@@ -977,10 +1111,10 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/tacha.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">Yao-Amuama</cite>
-                                        <p class="quote-modern-position">Miss Togo</p>
+                                        <cite class="quote-modern-cite">S.Natacha</cite>
+                                        <p class="quote-modern-position">Secrétaire</p>
                                     </div>
                                 </div>
                             </div>
@@ -1005,8 +1139,8 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">kako Nubukpo </cite>
-                                        <p class="quote-modern-position">Economiste</p>
+                                        <cite class="quote-modern-cite">Lawson-Late </cite>
+                                        <p class="quote-modern-position">Cadre de Banque</p>
                                     </div>
                                 </div>
                             </div>
@@ -1228,13 +1362,13 @@
     var btn = document.getElementById("openModal3");
     var span = document.getElementsByClassName("close3")[0];
     // Récupérer le bouton Valider et le modal
-var validateBtn = document.getElementById('validateBtn');
-var modal3 = document.getElementById('myModal3');
+    var validateBtn = document.getElementById('validateBtn');
+    var modal3 = document.getElementById('myModal3');
 
-// Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
-validateBtn.onclick = function() {
-    modal3.style.display = "none";
-}
+    // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+    validateBtn.onclick = function() {
+        modal3.style.display = "none";
+    }
 
     var map; // Déclare la variable map en dehors pour la rendre accessible globalement
     var currentMarker = null;
@@ -1271,10 +1405,7 @@ validateBtn.onclick = function() {
                             // Marqueur de la position actuelle
                             /* currentMarker = L.marker([lat, lon]).addTo(map)
                                 .bindPopup('Vous êtes ici')
-                                .openPopup();
- */
-                            // Mettre à jour le champ caché avec les coordonnées du point actuel
-                            document.getElementById('home_address').value = `${lat},${lon}`;
+                                .openPopup(); */
                         },
                         function() {
                             alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
@@ -1348,7 +1479,6 @@ validateBtn.onclick = function() {
     }
 
 </script>
-
 
 
 <!-- Script Evaluer carte  -->
@@ -1511,8 +1641,6 @@ validateBtn.onclick = function() {
     });
 </script> -->
 
-
-
 <!-- Script Masquer Evaluer carte  -->
 
 <!-- <script>
@@ -1526,7 +1654,7 @@ validateBtn.onclick = function() {
             console.log("myMapvar dans Afficher");
 
             console.log(myMapvar2);
-s
+        s
             this.textContent = 'Masquer';
         } else {
             mapContainer.style.display = 'none';
@@ -1539,7 +1667,7 @@ s
     });
 </script> -->
 
-<!-- Script Ouvrir Modal Evaluer  -->
+<!-- Script Ouvrir Modal Evaluer Résultats  -->
 
 <script>
     // script.js
@@ -1549,6 +1677,43 @@ s
     var btn = document.getElementById("openModal");
     var span = document.getElementsByClassName("close")[0];
 
+    var continueBtn = document.getElementById("continueBtn");
+    var cancelBtn = document.getElementById("cancelBtn");
+    var phoneInputContainer = document.getElementById("phoneInputContainer");
+    var submitBtn = document.getElementById("submitBtn");
+    var phoneInput = document.getElementById("phoneInput");
+
+    // Quand l'utilisateur clique sur "Continuer"
+    continueBtn.onclick = function() {
+        console.log("L'utilisateur a choisi de continuer.");
+        // Afficher l'input pour le numéro de téléphone
+        phoneInputContainer.style.display = "block";
+    };
+
+    // Quand l'utilisateur clique sur "Annuler"
+    cancelBtn.onclick = function() {
+        console.log("L'utilisateur a choisi d'annuler.");
+        modal.style.display = "none"; // Fermer le modal
+        // Réinitialiser le champ de téléphone si nécessaire
+        phoneInputContainer.style.display = "none";
+        phoneInput.value = ""; // Réinitialiser l'input
+    };
+
+    // Quand l'utilisateur clique sur "Valider"
+    submitBtn.onclick = function() {
+    var phoneNumber = phoneInput.value.trim();
+    
+        if (phoneNumber) {
+            console.log("Numéro de téléphone soumis :", phoneNumber);
+        // alert("Numéro de téléphone validé : " + phoneNumber);
+            modal.style.display = "none"; // Fermer le modal après validation
+        // phoneInput.value = ""; // Réinitialiser l'input
+        } else {
+            console.log("Veuillez entrer un numéro de téléphone valide.");
+        } 
+    };
+
+    
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
     var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
@@ -1556,7 +1721,7 @@ s
 
     var arrive = document.getElementById('arrive_address_evaluation').value;
     var distance = document.getElementById('distance_address_evaluation').value ;
-    var price = "20.000 FCFA";
+    var price = "40.000 FCFA";
 
 
     // Mettre à jour le contenu de la modal
@@ -1578,16 +1743,32 @@ s
         modal.style.display = "none";
     }
 
-    // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+   // Fermer le modal si l'utilisateur clique en dehors du modal
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    if (event.target == modal) {
+        modal.style.display = "none";
+        phoneInputContainer.style.display = "none"; // Cacher l'input si modal fermé
+        phoneInput.value = ""; // Réinitialiser l'input
+      }
+    };
+
+ 
+
+
+        // Fonction pour afficher "Réservez" et cacher "Tarifs"
+    document.getElementById("reserver-link").addEventListener("click", function() {
+        document.querySelector(".show-on-reserver").style.display = "block";
+        document.querySelector(".show-on-tarifs").style.display = "none";
+    });
+
+    // Fonction pour afficher "Tarifs" et cacher "Réservez"
+    document.getElementById("tarifs-link").addEventListener("click", function() {
+        document.querySelector(".show-on-reserver").style.display = "none";
+        document.querySelector(".show-on-tarifs").style.display = "block";
+    });
+
 
 </script>
-
-<!-- Script Ouvrir Modal Carte  -->
 
 <!-- Script Ouvrir Modal Carte Evaluer  -->
 
@@ -1601,11 +1782,12 @@ s
     var validateBtn1 = document.getElementById('validateBtn1');
 
     var map2; // Déclaration de la variable map2 pour une portée globale
-    // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
-validateBtn1.onclick = function() {
-    modal2.style.display = "none";
-}
+    var routingControl = null; // Variable pour stocker le contrôle de routage
 
+    // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
+    validateBtn1.onclick = function() {
+        modal2.style.display = "none";
+    }
 
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
@@ -1650,10 +1832,10 @@ validateBtn1.onclick = function() {
                                  .openPopup(); */
 
                             // Mettre à jour le champ de formulaire pour le départ
-                            var departureElem = document.getElementById('departure_address_evaluation');
+                           /*  var departureElem = document.getElementById('departure_address_evaluation');
                             if (departureElem) {
                                 departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                            }
+                            } */
 
                         },
                         function() {
@@ -1692,12 +1874,34 @@ validateBtn1.onclick = function() {
                     if (endMarker2) {
                         map2.removeLayer(endMarker2);
                     }
+                    
                     endMarker2 = L.marker(endLatLng2).addTo(map2)
                         .bindPopup('École')
                         .openPopup();
 
+                    // Supprimer la route précédente si elle existe
+                    if (routingControl) {
+                        map2.removeControl(routingControl);
+                    }
+
                     // Ajouter le contrôle d'itinéraire à la carte
-                    var routingControl = L.Routing.control({
+                    routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(startLatLng2.lat, startLatLng2.lng),
+                        L.latLng(endLatLng2.lat, endLatLng2.lng)
+                    ],
+                    router: L.Routing.osrmv1({
+                        language: 'fr',
+                        profile: 'driving'
+                    }),
+                    createMarker: function() { return null; },
+                    routeWhileDragging: true,
+                    showAlternatives: false, // Masquer les alternatives
+                    show: false // Cette option ne sera pas utilisée directement, mais assurez-vous de la configurer selon vos besoins
+                }).addTo(map2);
+
+                        // Route avec itinéraire a suivre
+                    /* routingControl = L.Routing.control({
                         waypoints: [
                             L.latLng(startLatLng2.lat, startLatLng2.lng),
                             L.latLng(endLatLng2.lat, endLatLng2.lng)
@@ -1709,7 +1913,7 @@ validateBtn1.onclick = function() {
                         createMarker: function() { return null; },
                         routeWhileDragging: true
                     }).addTo(map2);
-
+ */
                     // Calculer la distance en ligne droite
                     var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
 
@@ -1725,11 +1929,16 @@ validateBtn1.onclick = function() {
                         var modalDistanceElem = document.getElementById('modalDistance');
                         var modalPriceElem = document.getElementById('modalPrice');
 
+                        /* 
+                        Latitude avec lat et long au debut
                         if (departureElem) {
                             departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        } */
+                        if (departureElem) {
+                            departureElem.value = ` ${startLatLng2.lat}, ${startLatLng2.lng}`;
                         }
                         if (arriveElem) {
-                            arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                            arriveElem.value = `${endLatLng2.lat}, ${endLatLng2.lng}`;
                         }
                         if (distanceElem) {
                             distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite

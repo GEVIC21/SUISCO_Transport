@@ -154,7 +154,7 @@
                        </li>
 
                        <li><b class="item-text">4- Quel est le montant de consignation du Siège ?</b>{{--<br>--}}
-                           <p>Le montant de consignation est <b>1.000.000 FCFA/Siège</b>.</p><br>
+                           <p>Le montant de consignation est <b>2.500.000 FCFA/Siège</b>.</p><br>
                        </li>
 
                        <li><b class="item-text">5- Quel est la durée de consignation du Siège ?</b>{{--<br>--}}
@@ -163,7 +163,7 @@
 
                        <li><b class="item-text">6- Comment le montant consigné est-elle restituée au CONSIGNATAIRE ?</b>{{--<br>--}}
                            <p>Le montant consigné est restitué sur une fréquence trimestrielle à partir la date de versement
-                               du montant de la consignation, à hauteur de <b>125.000 Fcfa/Siège</b>.</p><br>
+                               du montant de la consignation, à hauteur de <b>312.500 Fcfa/Siège</b>.</p><br>
                        </li>
 
                        <li><b class="item-text">7- Pour un CONSIGNATAIRE, quels sont les taux de réductions sur les frais d’abonnement sur les

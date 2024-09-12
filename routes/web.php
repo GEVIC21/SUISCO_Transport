@@ -19,6 +19,10 @@ Route::name('bus.')->group(function (){
     Route::view('/'.__('become-owner'), 'become_owner')->name('become.owner');
     Route::post('/subscription/store', 'App\Http\Controllers\BusController@store_subscription')->name('subscription.store');
     Route::post('/consignment/store', 'App\Http\Controllers\BusController@store_consignment')->name('consignment.store');
+    Route::post('/submit-form', 'App\Http\Controllers\BusController@submitForm')->name('form.submit');
+
+    // Route::post('/submit-form', [FormController::class, 'submitForm'])->name('form.submit');
+
 });
 
 
