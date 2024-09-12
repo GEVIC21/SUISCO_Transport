@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 
 
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
@@ -150,20 +152,20 @@
         position:fixed;
         right: 130px;
         bottom: 4px;
-       
+
     }
 
     #validateBtn1   {
         position:fixed;
         right: 130px;
        bottom: 8px;
-       
+
     }
     #validateBtn  {
         position:fixed;
         right: 130px;
         bottom: 8px;
-    
+
     }
 
     .close {
@@ -309,7 +311,7 @@
 }
 
 /* #submitBtn {
-    background-color: #008CBA; 
+    background-color: #008CBA;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -708,7 +710,7 @@
                                                                   <button class="button-validate" id="validateBtn" >Valider</button>
 
                                                                 </div>
-                                                                
+
                                                             </div>
                                                         </div>
 
@@ -755,7 +757,7 @@
                                                         <!-- <div class="form-wrap" >
                                                             <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
-                                                        </div> 
+                                                        </div>
 
                                                         <div class="form-wrap" >
                                                             <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
@@ -781,10 +783,10 @@
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                            
+
                                                             </div>
 
-                                                            
+
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -827,7 +829,7 @@
                                                                 class="form-icon mdi mdi-map"></span>
                                                         </div>
 
-                                                         
+
                                                         <div class="form-wrap">
                                                                             <!-- <div class="form-wrap">
                                                             <input class="form-input" id="form-phone" type="text" name="phone_number"
@@ -866,15 +868,15 @@
                                                                  <div >
                                                                    <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
                                                                     <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
-                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>  
+                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>
                                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                                 <button id="submitBtn" >Valider</button>
                                                                          </div>
-                                                                   
-                                                                </div>
-                                                                 
 
-                                                                 </div>                                                                
+                                                                </div>
+
+
+                                                                 </div>
                                                             </div>
                                                         </div>
 
@@ -903,7 +905,7 @@
                                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                 <button class="button-validate"  id="validateBtn1" >Valider</button>
                                                             </div>
-                                                            
+
 
 
                                                         </div>
@@ -1741,7 +1743,7 @@
     // Quand l'utilisateur clique sur "Valider"
     submitBtn.onclick = function() {
     var phoneNumber = phoneInput.value.trim();
-    
+
         if (phoneNumber) {
             console.log("Numéro de téléphone soumis :", phoneNumber);
         // alert("Numéro de téléphone validé : " + phoneNumber);
@@ -1749,10 +1751,10 @@
         // phoneInput.value = ""; // Réinitialiser l'input
         } else {
             console.log("Veuillez entrer un numéro de téléphone valide.");
-        } 
+        }
     };
 
-    
+
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
     var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
@@ -1775,9 +1777,9 @@
     /*         // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
             btn.onclick = function() {
             // Récupérer et vérifier la valeur du champ spécifique
-            
+
             var departureValue = document.getElementById('departure_address_evaluation').value ;
-            
+
             // Vérifiez si la valeur est non nulle et non vide
             if (departureValue) {
                 // Vérifiez tous les champs
@@ -1796,27 +1798,27 @@
             var schoolValue = document.getElementById('school_address_evaluation').value ;
             var trajectoryValue = document.getElementById('trajectory').value ;
 
-            
+
             console.log("1");
             console.log(serviceValue);
             console.log(departureValue);
             console.log(schoolValue);
             console.log(trajectoryValue);
 
-           
+
             if (departureValue) {
                 // Vérifiez tous les champs
                 console.log("departure existe.");
-            } 
+            }
             if (schoolValue) {
                 console.log("schoolValue existe.");
-            } 
+            }
 
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
                 // Vérifiez tous les champs
                 modal.style.display = "block";
-            } 
+            }
             else {
                 console.log("Un champ est vide.");
                 alert("Veuillez vous assurer de remplir tous les champs avant de continuer.");
@@ -1838,7 +1840,7 @@
       }
     };
 
- 
+
 
 
         // Fonction pour afficher "Réservez" et cacher "Tarifs"
@@ -1960,7 +1962,7 @@
                     if (endMarker2) {
                         map2.removeLayer(endMarker2);
                     }
-                    
+
                     endMarker2 = L.marker(endLatLng2).addTo(map2)
                         .bindPopup('École')
                         .openPopup();
@@ -2015,7 +2017,7 @@
                         var modalDistanceElem = document.getElementById('modalDistance');
                         var modalPriceElem = document.getElementById('modalPrice');
 
-                        /* 
+                        /*
                         Latitude avec lat et long au debut
                         if (departureElem) {
                             departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
@@ -2076,9 +2078,25 @@
     }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example of showing a success message directly
+        @if(session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        @endif
+    });
+</script>
+
 
 {{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
-@include('flashy::message')
+{{--@include('flashy::message')--}}
 <!-- coded by Ragnar-->
 </body>
 </html>
