@@ -137,6 +137,22 @@
         padding: 20px; /* Réduit le padding sur mobiles */
         top:2rem;
     }
+    #phoneInputContainer #submitBtn #validateBtn1 #validateBtn  {
+        right: 150px;
+        position: relative;
+       
+    }
+
+    #validateBtn1 #validateBtn  {
+        right: 150px;
+        position: relative;
+       
+    }
+    #validateBtn  {
+        right: 150px;
+        position: relative;
+       
+    }
 
     .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
@@ -676,7 +692,7 @@
                                                                         <!-- Espace pour bouton ou autre contenu -->
                                                                     </div>
                                                                 </div>
-                                                                <button class="button-validate" id="validateBtn">Valider</button>
+                                                                <button class="button-validate" id="validateBtn" style="margin-left: 245px;">Valider</button>
                                                             </div>
                                                         </div>
 
@@ -779,7 +795,7 @@
 
                                                         <div class="form-wrap">
                                                             <!-- Select 2-->
-                                                            <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
+                                                            <select class="form-input select button-shadow " id="trajectory" name="trajectory" data-constraints="@Required" required>
                                                                 <!-- <option value="" selected style="display: none">Votre trajet</option>
                                                                 <option value="Aller Simple">Aller Simple</option>
                                                                 <option value="Retour Simple">Retour Simple</option>
@@ -831,11 +847,11 @@
 
 
                                                                 <!-- Input caché pour saisir le numéro de téléphone -->
-                                                                 <div class="modal-footers">
-                                                                   <div id="phoneInputContainer" style="display: none; margin-top: 20px;">
-                                                                    <label for="phoneInput">Veuillez saisir votre numéro de téléphone :</label>
-                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required> <br>
-                                                                    <button id="submitBtn" style="margin-top: 10px;">Valider</button>
+                                                                 <div >
+                                                                   <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
+                                                                    <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
+                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>  
+                                                                    <button id="submitBtn" style="margin-left: 245px;">Valider</button>
                                                                 </div>
                                                                  
 
@@ -865,7 +881,7 @@
                                                                 Aller à ma position
                                                              </button> -->
                                                             </div>
-                                                            <button class="button-validate" id="validateBtn1" >Valider</button>
+                                                            <button class="button-validate"  id="validateBtn1" style="margin-left: 245px;">Valider</button>
 
 
                                                         </div>
@@ -1087,7 +1103,7 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite"> Poutouli Achile</cite>
+                                        <cite class="quote-modern-cite"> Poutouli Achille</cite>
                                         <p class="quote-modern-position">Fonctionnaire à BOAD</p>
                                     </div>
                                 </div>
@@ -1733,10 +1749,57 @@
     console.log(document.getElementById('distance_address_evaluation').value);
 
 
-    // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+    /*         // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
+            btn.onclick = function() {
+            // Récupérer et vérifier la valeur du champ spécifique
+            
+            var departureValue = document.getElementById('departure_address_evaluation').value ;
+            
+            // Vérifiez si la valeur est non nulle et non vide
+            if (departureValue) {
+                // Vérifiez tous les champs
+                modal.style.display = "block";
+            } else {
+                console.log("Le champ 'departure_address_evaluation' est vide.");
+                alert("Veuillez remplir le champ 'Departure Address' avant de continuer.");
+            }
+        } */
+
+        btn.onclick = function() {
+            // Récupérer et vérifier la valeur du champ spécifique
+
+            var serviceValue = document.getElementById('service_evaluation').value ;
+            var departureValue = document.getElementById('departure_address_evaluation').value ;
+            var schoolValue = document.getElementById('school_address_evaluation').value ;
+            var trajectoryValue = document.getElementById('trajectory').value ;
+
+            
+            console.log("1");
+            console.log(serviceValue);
+            console.log(departureValue);
+            console.log(schoolValue);
+            console.log(trajectoryValue);
+
+           
+            if (departureValue) {
+                // Vérifiez tous les champs
+                console.log("departure existe.");
+            } 
+            if (schoolValue) {
+                console.log("schoolValue existe.");
+            } 
+
+            // Vérifiez si la valeur est non nulle et non vide
+            if (serviceValue && schoolValue && departureValue && trajectoryValue) {
+                // Vérifiez tous les champs
+                modal.style.display = "block";
+            } 
+            else {
+                console.log("Un champ est vide.");
+                alert("Veuillez vous assurer de remplir tous les champs avant de continuer.");
+            }
+        }
+
 
     // Lorsque l'utilisateur clique sur (x), fermer la modal
     span.onclick = function() {
