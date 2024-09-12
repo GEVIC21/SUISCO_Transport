@@ -694,7 +694,7 @@
                                                         <li>Pay for taxi without a credit card;</li>
                                                         <li>Great discounts for regular clients.</li>
                                                     </ul> -->
-                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="get" action="#">
+                                                    <form class="rd-form {{--rd-mailform--}} form-style-1" method="post" action="{{ route('bus.form.submit') }}">
                                                         @csrf
                                                         <div class="form-wrap">
                                                             <!-- Select 4-->
@@ -763,7 +763,7 @@
 
                                                         <div id="mapContainer2"  class="form-wrap" style="display:auto ">
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                                 <label class="form-label" for="form-location"></label>
+                                                            -->  <label class="form-label" for="form-location"></label>
                                                              <!-- <span class="form-icon mdi mdi-map-marker"></span> -->
                                                             <!-- <div class="form-wrap" id="map2" style="height: 350px;"></div> -->
                                                             <div class="form-wrap">
@@ -794,14 +794,16 @@
                                                             <span
                                                                 class="form-icon mdi mdi-map"></span>
                                                         </div>
+
+                                                         
                                                         <div class="form-wrap">
-                                                            <!-- <div class="form-wrap">
-                                    <input class="form-input" id="form-phone" type="text" name="phone_number"
-                                           data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
-                                    <label class="form-label" for="form-phone"></label><span
-                                        class="form-icon mdi mdi-cellphone"></span>
-                                </div> -->
-                                                            <div class="form-button">
+                                                                            <!-- <div class="form-wrap">
+                                                            <input class="form-input" id="form-phone" type="text" name="phone_number"
+                                                                data-constraints="@Required{{-- @PhoneNumber--}}" required placeholder="Votre téléphone mobile">
+                                                            <label class="form-label" for="form-phone"></label><span
+                                                                class="form-icon mdi mdi-cellphone"></span>
+                                                        </div> -->
+                                                                            <div class="form-button">
                                                                 <button id="openModal" class="button button-block button-primary button-winona" type="button" >
                                                                     Essayer
                                                                 </button>
@@ -832,9 +834,11 @@
                                                                  <div class="modal-footers">
                                                                    <div id="phoneInputContainer" style="display: none; margin-top: 20px;">
                                                                     <label for="phoneInput">Veuillez saisir votre numéro de téléphone :</label>
-                                                                    <input type="tel" id="phoneInput" placeholder="Numéro de téléphone"> <br>
+                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required> <br>
                                                                     <button id="submitBtn" style="margin-top: 10px;">Valider</button>
                                                                 </div>
+                                                                 
+
                                                                  </div>                                                                
                                                             </div>
                                                         </div>
@@ -842,7 +846,7 @@
 
 
                                                           <!-- La Modal Carte Evaluer -->
-                                                          <div id="myModal2" class="modal">
+                                                        <div id="myModal2" class="modal">
                                                             <div class="modal-content">
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Sélectionnez votre maison </h4>
@@ -854,7 +858,7 @@
                                                                   <div id="mapContainer2"  class="form-wrap" style="display: auto">
                                                              <br>
                                                             <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                            -->                              <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                              --> <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>
                                                             <div class="form-wrap">
                                                                 <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
@@ -865,10 +869,10 @@
 
 
                                                         </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <!--fin Button trigger modal -->
+                                                            <!--fin Button trigger modal -->
 
                                                     </form>
                                                 </div>
@@ -1699,15 +1703,15 @@
     submitBtn.onclick = function() {
     var phoneNumber = phoneInput.value.trim();
     
-    if (phoneNumber) {
-        console.log("Numéro de téléphone soumis :", phoneNumber);
-        alert("Numéro de téléphone validé : " + phoneNumber);
-        modal.style.display = "none"; // Fermer le modal après validation
-        phoneInput.value = ""; // Réinitialiser l'input
-    } else {
-        alert("Veuillez entrer un numéro de téléphone valide.");
-    }
-};
+        if (phoneNumber) {
+            console.log("Numéro de téléphone soumis :", phoneNumber);
+        // alert("Numéro de téléphone validé : " + phoneNumber);
+            modal.style.display = "none"; // Fermer le modal après validation
+        // phoneInput.value = ""; // Réinitialiser l'input
+        } else {
+            console.log("Veuillez entrer un numéro de téléphone valide.");
+        } 
+    };
 
     
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
@@ -1745,23 +1749,23 @@
         modal.style.display = "none";
         phoneInputContainer.style.display = "none"; // Cacher l'input si modal fermé
         phoneInput.value = ""; // Réinitialiser l'input
-    }
-};
+      }
+    };
 
  
 
 
-    // Fonction pour afficher "Réservez" et cacher "Tarifs"
-document.getElementById("reserver-link").addEventListener("click", function() {
-    document.querySelector(".show-on-reserver").style.display = "block";
-    document.querySelector(".show-on-tarifs").style.display = "none";
-});
+        // Fonction pour afficher "Réservez" et cacher "Tarifs"
+    document.getElementById("reserver-link").addEventListener("click", function() {
+        document.querySelector(".show-on-reserver").style.display = "block";
+        document.querySelector(".show-on-tarifs").style.display = "none";
+    });
 
-// Fonction pour afficher "Tarifs" et cacher "Réservez"
-document.getElementById("tarifs-link").addEventListener("click", function() {
-    document.querySelector(".show-on-reserver").style.display = "none";
-    document.querySelector(".show-on-tarifs").style.display = "block";
-});
+    // Fonction pour afficher "Tarifs" et cacher "Réservez"
+    document.getElementById("tarifs-link").addEventListener("click", function() {
+        document.querySelector(".show-on-reserver").style.display = "none";
+        document.querySelector(".show-on-tarifs").style.display = "block";
+    });
 
 
 </script>
@@ -1925,11 +1929,16 @@ document.getElementById("tarifs-link").addEventListener("click", function() {
                         var modalDistanceElem = document.getElementById('modalDistance');
                         var modalPriceElem = document.getElementById('modalPrice');
 
+                        /* 
+                        Latitude avec lat et long au debut
                         if (departureElem) {
                             departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        } */
+                        if (departureElem) {
+                            departureElem.value = ` ${startLatLng2.lat}, ${startLatLng2.lng}`;
                         }
                         if (arriveElem) {
-                            arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                            arriveElem.value = `${endLatLng2.lat}, ${endLatLng2.lng}`;
                         }
                         if (distanceElem) {
                             distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
