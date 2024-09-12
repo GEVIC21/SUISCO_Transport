@@ -615,7 +615,7 @@
                                                             <select class="form-input select" id="school_address_evaluation" name="school_address_evaluation" data-constraints="@Required" required>
                                                                 <option value="" selected style="display: none">Choisir votre école</option>
                                                                 @foreach($schools as $school)
-                                                                    <option value="{{$school->location}}">{{$school->name}}</option>
+                                                                    <option value="{{$school->location}}" >{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             <span
@@ -654,6 +654,8 @@
                                                                     class="form-icon mdi mdi-home"></span>
                                                             
                                                             </div>
+
+                                                            
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -1562,7 +1564,7 @@
 
     var arrive = document.getElementById('arrive_address_evaluation').value;
     var distance = document.getElementById('distance_address_evaluation').value ;
-    var price = "20.000 FCFA";
+    var price = "40.000 FCFA";
 
 
     // Mettre à jour le contenu de la modal
@@ -1711,6 +1713,7 @@ document.getElementById("tarifs-link").addEventListener("click", function() {
                     if (endMarker2) {
                         map2.removeLayer(endMarker2);
                     }
+                    
                     endMarker2 = L.marker(endLatLng2).addTo(map2)
                         .bindPopup('École')
                         .openPopup();
