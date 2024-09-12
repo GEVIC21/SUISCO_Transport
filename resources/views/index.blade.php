@@ -143,7 +143,7 @@
        
     }
 
-    #validateBtn1   {
+    #validateBtn1   { 
         right: 150px;
         position: relative;
        
