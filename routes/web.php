@@ -31,6 +31,7 @@ Route::name('admin.')->middleware('auth')->group(function (){
     Route::get('/utilisateurs', [\App\Http\Controllers\AdminController::class, 'utilisateurs'])->name('utilisateurs');
     Route::get('/ecoles', [\App\Http\Controllers\AdminController::class, 'ecoles'])->name('ecoles');
     Route::get('/parametres', [\App\Http\Controllers\AdminController::class, 'parametres'])->name('parametres');
+    Route::get('/Consignations', [\App\Http\Controllers\AdminController::class, 'Consignations'])->name('Consignations');
 
     Route::get('/ajouter_ecole', [\App\Http\Controllers\AdminController::class, 'ajouter_ecole'])->name('add.ecole');
     Route::get('/ajouter_utilisateur', [\App\Http\Controllers\AdminController::class, 'ajouter_utilisateur'])->name('add.utilisateur');

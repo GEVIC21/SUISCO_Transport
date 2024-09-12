@@ -131,27 +131,39 @@
                     cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
                     transition: color 0.3s; /* Animation douce au survol */
         }
-        @media (max-width: 600px) {
+    @media (max-width: 600px) {
     .modal-content {
         width: 90%; /* Occupe presque toute la largeur sur petits écrans */
         padding: 20px; /* Réduit le padding sur mobiles */
         top:2rem;
     }
+    #responsive {
+        width: 90%;
+        height: 63%;
+    }
+    #responsive1{
+        height: 63%;
+    }
+
+
     #phoneInputContainer #submitBtn  {
-        right: 150px;
-        position: relative;
+        position:fixed;
+        right: 130px;
+        bottom: 4px;
        
     }
 
-    #validateBtn1   { 
-        right: 150px;
-        position: relative;
+    #validateBtn1   {
+        position:fixed;
+        right: 130px;
+       bottom: 8px;
        
     }
     #validateBtn  {
-        right: 150px;
-        position: relative;
-       
+        position:fixed;
+        right: 130px;
+        bottom: 8px;
+    
     }
 
     .close {
@@ -692,7 +704,11 @@
                                                                         <!-- Espace pour bouton ou autre contenu -->
                                                                     </div>
                                                                 </div>
-                                                                <button class="button-validate" id="validateBtn" style="margin-left: 245px;">Valider</button>
+                                                                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                                  <button class="button-validate" id="validateBtn" >Valider</button>
+
+                                                                </div>
+                                                                
                                                             </div>
                                                         </div>
 
@@ -830,7 +846,7 @@
 
                                                         <!-- La Modal Essayer -->
                                                         <div id="myModal" class="modal">
-                                                            <div class="modal-content">
+                                                            <div id="responsive" class="modal-content" >
                                                                 <span class="close">&times;</span>
                                                                 <h4>Résultats de la simulation</h4>
                                                                 <!-- <p id="modalDeparture"></p>
@@ -839,7 +855,7 @@
                                                                 <p id="modalPrice"></p>
 
                                                                 <!-- Ajouter les boutons Continuer et Annuler -->
-                                                                 <p class="modal-title">Vous desirez faire une reservation</p>
+                                                                 <p class="modal-title">Vous desirez faire une reservation ?</p>
                                                                 <div class="modal-buttons">
                                                                     <button id="continueBtn" type="button">Continuer</button>
                                                                     <button id="cancelBtn">Annuler</button>
@@ -851,7 +867,10 @@
                                                                    <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
                                                                     <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
                                                                     <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>  
-                                                                    <button id="submitBtn" style="margin-left: 245px;">Valider</button>
+                                                                       <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                                                <button id="submitBtn" >Valider</button>
+                                                                         </div>
+                                                                   
                                                                 </div>
                                                                  
 
@@ -863,7 +882,7 @@
 
                                                           <!-- La Modal Carte Evaluer -->
                                                         <div id="myModal2" class="modal">
-                                                            <div class="modal-content">
+                                                            <div id="responsive1" class="modal-content">
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Sélectionnez votre maison </h4>
                                                                      <!-- Bouton Valider -->
@@ -881,7 +900,10 @@
                                                                 Aller à ma position
                                                              </button> -->
                                                             </div>
-                                                            <button class="button-validate"  id="validateBtn1" style="margin-left: 245px;">Valider</button>
+                                                            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                                                <button class="button-validate"  id="validateBtn1" >Valider</button>
+                                                            </div>
+                                                            
 
 
                                                         </div>
@@ -1256,6 +1278,7 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
+
 
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>

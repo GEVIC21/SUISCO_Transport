@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consignment;
 use App\Models\Parameter;
 use App\Models\Reservation;
 use App\Models\School;
@@ -42,6 +43,13 @@ class AdminController extends Controller
         $parameters=  Parameter::all();
         return view('admin.parametres',compact('parameters'));
     }
+    public function Consignations()
+    {
+        $consignations=  Consignment::all();
+        return view('admin.consignations',compact('consignations'));
+    }
+
+
 
     public function ajouter_ecole()
     {

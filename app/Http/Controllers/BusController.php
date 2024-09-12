@@ -53,10 +53,10 @@ class BusController extends Controller
         $subscription = Reservation::create(
             [
                 'service' => $request->service_evaluation,
-                'house_location' => $request->departure_address_evaluation,
+               'phone_numbre' => $request->phoneInput,
+                 'house_location' => $request->departure_address_evaluation,
                 'school_location' => $request->school_address_evaluation,
                 'route' => $request->trajectory,
-                'phone_numbre' => $request->phoneInput,
                 ]
         );
       Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
@@ -94,9 +94,28 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-        Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back();
+     }
+
+    public function store_consignment(Request $request)
+    {
+        Consignment::create(
+            [
+                'last_name' => $request->last_name,
+                'first_name' => $request->first_name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'seats_number' => $request->seats_number,
+                'children_number' => $request->children_number
+
+            ]
+        );
+        Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back();
      }
     }
+
+
 
 

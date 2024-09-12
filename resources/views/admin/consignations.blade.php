@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Réservations')
+@section('title','Consignations')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
 @endsection
@@ -12,7 +12,7 @@
             <!--begin::Page title-->
             <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Réservations</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Consignation</h1>
                 <!--end::Title-->
             </div>
             <!--end::Page title-->
@@ -52,15 +52,14 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-100px">Numero de Telephone</th>
-                            <th class="min-w-100px">Service</th>
-                            <th class="min-w-100px">Trajet</th>
+                            <th class="min-w-100px">Nom</th>
+                            <th class="min-w-100px">Prénom(s)</th>
 {{--                            <th class="min-w-100px">Trajet</th>--}}
-                            <th class="min-w-100px">Adresse de la maison</th>
-                            <th class="min-w-100px">Adresse de l'école</th>
+                            <th class="min-w-100px">E-mail</th>
+                            <th class="min-w-100px">Nombre de places</th>
+                            <th class="min-w-100px">Nombre d'enfants</th>
                             <th class="min-w-100px">Date et Heure</th>
-{{--
-                            <th class="text-end min-w-100px">Actions</th>
---}}
+                           {{-- <th class="text-end min-w-100px">Actions</th>--}}
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -68,12 +67,12 @@
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach($reservations as $reservation)
+                        @foreach($consignations as $consignation)
                             <tr>
                                 <!--begin::Order ID=-->
                                 <td data-kt-ecommerce-order-filter="order_id">
                                     <span
-                                       class="text-gray-800 text-hover-primary fw-bolder">{{$reservation->phone_numbre}}
+                                       class="text-gray-800 text-hover-primary fw-bolder">{{$consignation->phone_number}}
                                     </span>
                                 </td>
                                 <!--end::Order ID=-->
@@ -81,7 +80,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800 text-hover-primary fs-5 fw-bolder">{{$reservation->service}}</span>
+                                        <span class="text-gray-800 text-hover-primary fs-5 fw-bolder">{{$consignation->last_name}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -89,7 +88,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800">{{$reservation->route}}</span>
+                                        <span class="text-gray-800">{{$consignation->first_name}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -97,27 +96,32 @@
                                 <!--begin::Status=-->
                                 {{--<td class="text-end pe-0 d-flex align-items-center" data-order="Completed">
                                     <!--begin::Badges-->
-                                    <div class="badge badge-light-success">{{$reservation->route}}</div>
+                                    <div class="badge badge-light-success">{{$consignation->route}}</div>
                                     <!--end::Badges-->
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td>
-                                    <span class="fw-bolder">{{$reservation->house_location}}</span>
+                                <td >
+                                    <span class="fw-bolder">{{$consignation->email}}</span>
                                 </td>
                                 <!--end::Total=-->
                                 <!--begin::Date Added=-->
                                 <td class="pe-0" data-order="2022-02-07">
-                                    <span class="fw-bolder">{{$reservation->school_location}}</span>
+                                    <span class="fw-bolder">{{$consignation->seats_number}}</span>
+                                </td>
+                                <!--end::Date Added=-->
+                                <!--begin::Date Added=-->
+                                <td class="pe-0" data-order="2022-02-07">
+                                    <span class="fw-bolder">{{$consignation->children_number}}</span>
                                 </td>
                                 <!--end::Date Added=-->
                                 <!--begin::Date Modified=-->
                                 <td class="pe-0" >
-                                    <span class="fw-bolder">{{$reservation->created_at}}</span>
+                                    <span class="fw-bolder">{{$consignation->updated_at}}</span>
                                 </td>
                                 <!--end::Date Modified=-->
                                 <!--begin::Action=-->
-                                {{--<td class="text-end">
+                               {{-- <td class="text-end">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -131,7 +135,7 @@
 														</span>
                                         <!--end::Svg Icon--></a>
                                     <!--begin::Menu-->
-                                    <div
+                                   <div
                                         class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
