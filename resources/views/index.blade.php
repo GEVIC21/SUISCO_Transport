@@ -75,7 +75,7 @@
         .modal {
             display: none; /* Cachée par défaut */
             position: fixed; /* Reste en place lors du défilement */
-          z-index: 1000; /* Met la modal au-dessus du contenu */
+             z-index: 1000; /* Met la modal au-dessus du contenu */
             left: 0;
             top: 0;
             width: 100%; /* Occupe toute la largeur */
@@ -90,7 +90,7 @@
         .modal-content {
             color: #000;
             background-color: #ffffff; /* Fond blanc pour un contraste élégant */
-            margin: 15% auto; /* Centre verticalement et horizontalement */
+            margin: 8% auto; /* Centre verticalement et horizontalement */
             padding: 20px;
             border-radius: 20px; /* Coins arrondis élégants */
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre douce pour un effet de profondeur */
@@ -123,7 +123,7 @@
             /* Le bouton de fermeture */
      .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -135,11 +135,12 @@
     .modal-content {
         width: 90%; /* Occupe presque toute la largeur sur petits écrans */
         padding: 20px; /* Réduit le padding sur mobiles */
+        top:2rem;
     }
 
     .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -151,7 +152,7 @@
 
         .close2 {
             position: absolute; /* Positionné dans le coin supérieur droit */
-                    right: 20px;
+                     right: 10px;
                     top: 20px;
                     color: #000; /* Couleur grise douce */
                     font-size: 28px; /* Taille augmentée */
@@ -161,7 +162,7 @@
         }
         .close3 {
             position: absolute; /* Positionné dans le coin supérieur droit */
-                right: 20px;
+                right: 10px;
                 top: 20px;
                 color: #000; /* Couleur rosée élégante */
                 font-size: 28px; /* Taille augmentée */
@@ -211,6 +212,102 @@
     display: none;
 }
 
+
+
+/* Centrage des boutons */
+
+/* Style pour les boutons */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacement entre les boutons */
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-buttons button#continueBtn {
+    background-color: #7eba42; /* Vert pour le bouton Continuer */
+    color: white;
+}
+
+.modal-buttons button#continueBtn:hover {
+    background-color: #45a049; /* Changement de couleur au survol */
+}
+
+.modal-buttons button#cancelBtn {
+    background-color: #239dd4; /* Rouge pour le bouton Annuler */
+    color: white;
+}
+
+.modal-buttons button#cancelBtn:hover {
+    background-color: #e53935; /* Changement de couleur au survol */
+}
+
+
+/* Centrage de la modal-footer */
+.modal-foter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Assurer que l'input soit centré */
+    margin-top: 20px;
+}
+
+/* Style pour l'input et le bouton Valider */
+#phoneInputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments horizontalement */
+    justify-content: center;
+    margin-top: 20px;
+}
+#phoneInputContainer input {
+    width: 100%;
+    max-width: 300px; /* Limite la largeur de l'input */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* #submitBtn {
+    background-color: #008CBA; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+} */
+#phoneInputContainer button {
+    background-color: #239dd4; /* Bleu pour le bouton Valider */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    display: block; /* Assure que le bouton prend toute la largeur nécessaire */
+    text-align: center;
+}
+
+#phoneInputContainer button:hover {
+    background-color: #007bb5; /* Changement de couleur au survol */
+}
 
     </style>
 </head>
@@ -304,7 +401,7 @@
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
                         <h4 class="show-on-reserver">Réservez dès maintenant !</h4>
-                        <h4 class="show-on-tarifs" style="display:none;">Évaluer vôtre tarif !</h4>
+                        <h4 class="show-on-tarifs" style="display:none;">Évaluer votre tarif !</h4>
 
                         <div class="contacts-default">
                             <div class="unit align-items-center">
@@ -718,12 +815,31 @@
                                                             <div class="modal-content">
                                                                 <span class="close">&times;</span>
                                                                 <h4>Résultats de la simulation</h4>
-                                                                <!--   <p id="modalDeparture"></p>
-                                                                  <p id="modalArrival"></p> -->
+                                                                <!-- <p id="modalDeparture"></p>
+                                                                <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
                                                                 <p id="modalPrice"></p>
+
+                                                                <!-- Ajouter les boutons Continuer et Annuler -->
+                                                                 <p class="modal-title">Vous desirez faire une reservation</p>
+                                                                <div class="modal-buttons">
+                                                                    <button id="continueBtn" type="button">Continuer</button>
+                                                                    <button id="cancelBtn">Annuler</button>
+                                                                </div>
+
+
+                                                                <!-- Input caché pour saisir le numéro de téléphone -->
+                                                                 <div class="modal-footers">
+                                                                   <div id="phoneInputContainer" style="display: none; margin-top: 20px;">
+                                                                    <label for="phoneInput">Veuillez saisir votre numéro de téléphone :</label>
+                                                                    <input type="tel" id="phoneInput" placeholder="Numéro de téléphone"> <br>
+                                                                    <button id="submitBtn" style="margin-top: 10px;">Valider</button>
+                                                                </div>
+                                                                 </div>                                                                
                                                             </div>
                                                         </div>
+
+
 
                                                           <!-- La Modal Carte Evaluer -->
                                                           <div id="myModal2" class="modal">
@@ -915,7 +1031,7 @@
                         <a href="#"><img src="{{ asset('template/bus/images/button-2-170x53.png') }}"
                                          alt="" width="170" height="53"/></a>
 
-                        <a><img src="{{ asset('template/bus/images/logo.png') }}"
+                        <a><img src="{{ asset('template/bus/images/suisco_transport.jpeg') }}"
                                 alt="" width="170" height="53"/></a>
                     </div>
                 </div>
@@ -967,8 +1083,8 @@
                                     <img class="quote-modern-avatar"
                                          src="{{ asset('template/bus/images/dr.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
-                                        <cite class="quote-modern-cite">  Tsolenyanu</cite>
-                                        <p class="quote-modern-position">Diplomate</p>
+                                        <cite class="quote-modern-cite"> Poutouli Achile</cite>
+                                        <p class="quote-modern-position">Fonctionnaire à BOAD</p>
                                     </div>
                                 </div>
                             </div>
@@ -991,10 +1107,10 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/Nathalie Yao-Amuama.jpeg')  }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/tacha.jpg')  }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">S.Natacha</cite>
-                                        <p class="quote-modern-position">secrétaire</p>
+                                        <p class="quote-modern-position">Secrétaire</p>
                                     </div>
                                 </div>
                             </div>
@@ -1557,6 +1673,43 @@
     var btn = document.getElementById("openModal");
     var span = document.getElementsByClassName("close")[0];
 
+    var continueBtn = document.getElementById("continueBtn");
+    var cancelBtn = document.getElementById("cancelBtn");
+    var phoneInputContainer = document.getElementById("phoneInputContainer");
+    var submitBtn = document.getElementById("submitBtn");
+    var phoneInput = document.getElementById("phoneInput");
+
+    // Quand l'utilisateur clique sur "Continuer"
+    continueBtn.onclick = function() {
+        console.log("L'utilisateur a choisi de continuer.");
+        // Afficher l'input pour le numéro de téléphone
+        phoneInputContainer.style.display = "block";
+    };
+
+    // Quand l'utilisateur clique sur "Annuler"
+    cancelBtn.onclick = function() {
+        console.log("L'utilisateur a choisi d'annuler.");
+        modal.style.display = "none"; // Fermer le modal
+        // Réinitialiser le champ de téléphone si nécessaire
+        phoneInputContainer.style.display = "none";
+        phoneInput.value = ""; // Réinitialiser l'input
+    };
+
+    // Quand l'utilisateur clique sur "Valider"
+    submitBtn.onclick = function() {
+    var phoneNumber = phoneInput.value.trim();
+    
+    if (phoneNumber) {
+        console.log("Numéro de téléphone soumis :", phoneNumber);
+        alert("Numéro de téléphone validé : " + phoneNumber);
+        modal.style.display = "none"; // Fermer le modal après validation
+        phoneInput.value = ""; // Réinitialiser l'input
+    } else {
+        alert("Veuillez entrer un numéro de téléphone valide.");
+    }
+};
+
+    
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
     var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
@@ -1586,12 +1739,16 @@
         modal.style.display = "none";
     }
 
-    // Lorsque l'utilisateur clique en dehors de la modal, fermer la modal
+   // Fermer le modal si l'utilisateur clique en dehors du modal
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+    if (event.target == modal) {
+        modal.style.display = "none";
+        phoneInputContainer.style.display = "none"; // Cacher l'input si modal fermé
+        phoneInput.value = ""; // Réinitialiser l'input
     }
+};
+
+ 
 
 
     // Fonction pour afficher "Réservez" et cacher "Tarifs"
