@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('template/bus/css/fonts.css') }}">
     <link rel="stylesheet" href="{{ asset('template/bus/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset("template/css/icon_flashy.css") }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <style>
         .ie-panel {
             display: none;
@@ -394,7 +396,24 @@
 <div class="snackbars" id="form-output-global"></div>
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example of showing a success message directly
+        @if(session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        @endif
+    });
+</script>
+{{--
 @include('flashy::message')
+--}}
 <!-- coded by Ragnar-->
 </body>
 </html>
