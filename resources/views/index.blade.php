@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 
-
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
     <style>
         input::placeholder {
@@ -133,6 +132,8 @@
                     cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
                     transition: color 0.3s; /* Animation douce au survol */
         }
+
+
     @media (max-width: 600px) {
     .modal-content {
         width: 90%; /* Occupe presque toute la largeur sur petits écrans */
@@ -141,18 +142,13 @@
     }
     #responsive {
         width: 90%;
-        height: 63%;
+        height: 36rem;
     }
-    #responsive1{
-        height: 63%;
-    }
-
-
+    
     #phoneInputContainer #submitBtn  {
         position:fixed;
         right: 130px;
         bottom: 4px;
-
     }
 
     #validateBtn1   {
@@ -339,7 +335,36 @@
     background-color: #007bb5; /* Changement de couleur au survol */
 }
 
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px; /* Limite la largeur de l'input */
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding-left: 40px; 
+    padding-right: 10px;
+    height: 40px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-wrapper .form-icon {
+    position: absolute;
+    left: 17rem; 
+    top: 60%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
+
     </style>
+
+    
 </head>
 <body>
 <div class="ie-panel">
@@ -431,7 +456,7 @@
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
                         <h4 class="show-on-reserver">Réservez dès maintenant !</h4>
-                        <h4 class="show-on-tarifs" style="display:none;">Évaluer votre tarif !</h4>
+                        <h4 class="show-on-tarifs" style="display:none;">Évaluez votre tarif !</h4>
 
                         <div class="contacts-default">
                             <div class="unit align-items-center">
@@ -710,7 +735,7 @@
                                                                   <button class="button-validate" id="validateBtn" >Valider</button>
 
                                                                 </div>
-
+                                                                
                                                             </div>
                                                         </div>
 
@@ -757,7 +782,7 @@
                                                         <!-- <div class="form-wrap" >
                                                             <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
-                                                        </div>
+                                                        </div> 
 
                                                         <div class="form-wrap" >
                                                             <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
@@ -783,10 +808,10 @@
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-
+                                                            
                                                             </div>
 
-
+                                                            
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -829,7 +854,7 @@
                                                                 class="form-icon mdi mdi-map"></span>
                                                         </div>
 
-
+                                                         
                                                         <div class="form-wrap">
                                                                             <!-- <div class="form-wrap">
                                                             <input class="form-input" id="form-phone" type="text" name="phone_number"
@@ -857,7 +882,7 @@
                                                                 <p id="modalPrice"></p>
 
                                                                 <!-- Ajouter les boutons Continuer et Annuler -->
-                                                                 <p class="modal-title">Vous desirez faire une reservation ?</p>
+                                                                 <p class="modal-title">Vous desirez faire une reservation</p>
                                                                 <div class="modal-buttons">
                                                                     <button id="continueBtn" type="button">Continuer</button>
                                                                     <button id="cancelBtn">Annuler</button>
@@ -865,18 +890,27 @@
 
 
                                                                 <!-- Input caché pour saisir le numéro de téléphone -->
-                                                                 <div >
-                                                                   <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
-                                                                    <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
-                                                                    <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>
+                                                                 <!-- <div>
+                                                                    <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
+                                                                        <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
+                                                                        <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>  
                                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                                 <button id="submitBtn" >Valider</button>
                                                                          </div>
-
+                                                                   
+                                                                </div>
+                                                                 </div>      -->
+                                                                    <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center;">
+                                                                    <label for="phoneInput">Votre numéro de téléphone :</label> <br>
+                                                                    <div class="input-wrapper">
+                                                                        <span class="form-icon mdi mdi-cellphone"></span>
+                                                                        <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>
+                                                                    </div>
+                                                                    <div class="d-grid gap-2 d-md-flex justify-content-md-center" style="margin-top: 10px;">
+                                                                        <button id="submitBtn">Valider</button>
+                                                                    </div>
                                                                 </div>
 
-
-                                                                 </div>
                                                             </div>
                                                         </div>
 
@@ -884,7 +918,7 @@
 
                                                           <!-- La Modal Carte Evaluer -->
                                                         <div id="myModal2" class="modal">
-                                                            <div id="responsive1" class="modal-content">
+                                                            <div class="modal-content">
                                                                 <span class="close2">&times;</span>
                                                                 <h4>Sélectionnez votre maison </h4>
                                                                      <!-- Bouton Valider -->
@@ -892,25 +926,19 @@
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
-                                                                  <div id="mapContainer2"  class="form-wrap" style="display: auto">
+                                                        <div id="mapContainer2"  class="form-wrap" style="display: auto">
                                                              <br>
-                                                            <!--   <input class="form-input" id="" type="text" name="" data-constraints="@Required" style="pointer-events: none;" placeholder="Choisissez votre adresse" >
-                                                              --> <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
+                                                             <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>
-                                                            <div class="form-wrap">
-                                                                <!-- <button type="button" id="locate-me2" class="button button-block button-primary">
-                                                                Aller à ma position
-                                                             </button> -->
-                                                            </div>
+                                                            <div class="form-wrap"></div>
+                                                          </div>
                                                             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                 <button class="button-validate"  id="validateBtn1" >Valider</button>
                                                             </div>
 
-
-
                                                         </div>
-                                                                </div>
-                                                            </div>
+                                                                
+                                                     </div>
 
                                                             <!--fin Button trigger modal -->
 
@@ -1280,7 +1308,6 @@
     </footer>
 </div>
 <div class="snackbars" id="form-output-global"></div>
-
 
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
@@ -1743,7 +1770,7 @@
     // Quand l'utilisateur clique sur "Valider"
     submitBtn.onclick = function() {
     var phoneNumber = phoneInput.value.trim();
-
+    
         if (phoneNumber) {
             console.log("Numéro de téléphone soumis :", phoneNumber);
         // alert("Numéro de téléphone validé : " + phoneNumber);
@@ -1751,10 +1778,10 @@
         // phoneInput.value = ""; // Réinitialiser l'input
         } else {
             console.log("Veuillez entrer un numéro de téléphone valide.");
-        }
+        } 
     };
 
-
+    
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
     var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
@@ -1777,9 +1804,9 @@
     /*         // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
             btn.onclick = function() {
             // Récupérer et vérifier la valeur du champ spécifique
-
+            
             var departureValue = document.getElementById('departure_address_evaluation').value ;
-
+            
             // Vérifiez si la valeur est non nulle et non vide
             if (departureValue) {
                 // Vérifiez tous les champs
@@ -1798,27 +1825,27 @@
             var schoolValue = document.getElementById('school_address_evaluation').value ;
             var trajectoryValue = document.getElementById('trajectory').value ;
 
-
+            
             console.log("1");
             console.log(serviceValue);
             console.log(departureValue);
             console.log(schoolValue);
             console.log(trajectoryValue);
 
-
+           
             if (departureValue) {
                 // Vérifiez tous les champs
                 console.log("departure existe.");
-            }
+            } 
             if (schoolValue) {
                 console.log("schoolValue existe.");
-            }
+            } 
 
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
                 // Vérifiez tous les champs
                 modal.style.display = "block";
-            }
+            } 
             else {
                 console.log("Un champ est vide.");
                 alert("Veuillez vous assurer de remplir tous les champs avant de continuer.");
@@ -1840,7 +1867,7 @@
       }
     };
 
-
+ 
 
 
         // Fonction pour afficher "Réservez" et cacher "Tarifs"
@@ -1962,7 +1989,7 @@
                     if (endMarker2) {
                         map2.removeLayer(endMarker2);
                     }
-
+                    
                     endMarker2 = L.marker(endLatLng2).addTo(map2)
                         .bindPopup('École')
                         .openPopup();
@@ -2017,7 +2044,7 @@
                         var modalDistanceElem = document.getElementById('modalDistance');
                         var modalPriceElem = document.getElementById('modalPrice');
 
-                        /*
+                        /* 
                         Latitude avec lat et long au debut
                         if (departureElem) {
                             departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
@@ -2077,7 +2104,6 @@
         }
     }
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -2092,11 +2118,12 @@
 
         @endif
     });
-</script>
+    </script>
 
 
-{{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
-{{--@include('flashy::message')--}}
-<!-- coded by Ragnar-->
+
+<!-- <script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script> -->
+<!-- @include('flashy::message')
+ --><!-- coded by Ragnar-->
 </body>
 </html>
