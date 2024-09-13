@@ -455,7 +455,7 @@
                             Transport Scolaire dans GRAND LOMÉ.
                         </p>
                         <h4 class="show-on-reserver">Réservez dès maintenant !</h4>
-                        <h4 class="show-on-tarifs" style="display:none;">Évaluer votre tarif !</h4>
+                        <h4 class="show-on-tarifs" style="display:none;">Évaluez votre tarif !</h4>
 
                         <div class="contacts-default">
                             <div class="unit align-items-center">
