@@ -106,8 +106,9 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-        Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back();
+       // Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
+
      }
 
     public function store_consignment(Request $request)
