@@ -61,6 +61,7 @@ class BusController extends Controller
         );
       //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
+
     }
 
 
