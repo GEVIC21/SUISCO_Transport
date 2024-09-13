@@ -49,13 +49,24 @@ class BusController extends Controller
         // Traitez les données comme vous le souhaitez
         // Exemple : enregistrer les données dans la base de données, envoyer un email, etc.
 
+         // Rechercher le nom de l'école à partir de l'adresse
+        $school = School::where('location', $request->school_address_evaluation)->first();
+
+        if ($school) {
+            $schoolName = $school->name;
+        } else {
+            // Si l'école n'est pas trouvée, vous pouvez gérer cette situation ici
+            // Par exemple, retourner une erreur ou une valeur par défaut
+            $schoolName = 'Nom de l\'école inconnu'; // ou bien gérer cela autrement
+        }
+
         // Redirection ou réponse après traitement
         $subscription = Reservation::create(
             [
                 'service' => $request->service_evaluation,
                'phone_numbre' => $request->phoneInput,
                  'house_location' => $request->departure_address_evaluation,
-                'school_location' => $request->school_address_evaluation,
+                'school_location' => $schoolName,
                 'route' => $request->trajectory,
                 ]
         );
@@ -94,8 +105,8 @@ class BusController extends Controller
                   'phone_numbre' => $request->phone_number,
                   ]
           );
-        //Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
+        Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back();
      }
 
     public function store_consignment(Request $request)
@@ -111,8 +122,8 @@ class BusController extends Controller
 
             ]
         );
-        //Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back()->with('success', 'Consignation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
+        Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back();
      }
     }
 
