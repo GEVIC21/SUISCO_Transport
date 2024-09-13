@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 
     <link rel="stylesheet" href="{{asset("template/css/icon_flashy.css")}}">
@@ -1308,7 +1309,6 @@
 </div>
 <div class="snackbars" id="form-output-global"></div>
 
-
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -2104,10 +2104,26 @@
         }
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example of showing a success message directly
+        @if(session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        @endif
+    });
+    </script>
 
 
-{{--<script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script>--}}
-@include('flashy::message')
-<!-- coded by Ragnar-->
+
+<!-- <script src="{{ asset('template/js/jquery-3.3.1.min.js') }}"></script> -->
+<!-- @include('flashy::message')
+ --><!-- coded by Ragnar-->
 </body>
 </html>
