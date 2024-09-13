@@ -1308,6 +1308,7 @@
 </div>
 <div class="snackbars" id="form-output-global"></div>
 
+
 <script src="{{ asset('template/bus/js/core.min.js') }}"></script>
 <script src="{{ asset('template/bus/js/script.js') }}"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
