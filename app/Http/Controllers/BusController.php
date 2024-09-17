@@ -33,6 +33,9 @@ class BusController extends Controller
 
     public function submitForm(Request $request)
     {
+
+       // dd($request->all());
+
         // Valider les données si nécessaire
         $validated = $request->validate([
             'service_evaluation' => 'required|string',
@@ -68,6 +71,7 @@ class BusController extends Controller
                  'house_location' => $request->departure_address_evaluation,
                 'school_location' => $schoolName,
                 'route' => $request->trajectory,
+                'distance' => $request->distance_itineraire,
                 ]
         );
       //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
@@ -116,6 +120,7 @@ class BusController extends Controller
                   'school_location' => $schoolName,
                   'route' => $request->trajectory,
                   'phone_numbre' => $request->phone_number,
+                  'distance' => $request->route_distance ,
                   ]
           );
        // Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));

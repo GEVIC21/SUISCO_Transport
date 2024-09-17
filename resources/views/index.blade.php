@@ -700,6 +700,9 @@
                                                             <span
                                                             class="form-icon mdi mdi-map"></span>
                                                         </div> 
+
+                                                      
+
                                                         <div class="form-wrap">
                                                             <input hidden class="form-input" id="distance_address" type="text" name="distance_address" data-constraints="@Required" style="pointer-events: none;">
 
@@ -798,6 +801,11 @@
                                                             <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
                                                         </div> -->
+
+                                                        <div class="form-wrap">
+                                                            <input hidden class="form-input" id="distance_itineraire" type="text" name="distance_itineraire" data-constraints="@Required" style="pointer-events: none;">
+
+                                                        </div>
 
                                                         <div class="form-wrap">
                                                             <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
@@ -1566,7 +1574,7 @@
                             var routeDistance = route.summary.totalDistance; // Distance en mètres
 
                             // Mettre à jour les champs de formulaire avec les distances
-                            document.getElementById('distance_address').value = `${(distance / 1000).toFixed(2)}`; // Distance en ligne droite
+                          //   document.getElementById('distance_address').value = `${(distance / 1000).toFixed(2)}`; // Distance en ligne droite
                             document.getElementById('route_distance').value = `${(routeDistance / 1000).toFixed(2)}`; // Distance le long de l'itinéraire
                         }); 
                     } else {
@@ -1949,6 +1957,8 @@
                         // Afficher les valeurs dans le modal
                         if (modalDistanceElem) {
                             modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+                            var distance_itineraire = document.getElementById('distance_itineraire');
+                            distance_itineraire.value = (routeDistance / 1000).toFixed(2) ;
                         }
                         if (modalPriceElem) {
                             modalPriceElem.textContent = 'Prix: ' + price;
