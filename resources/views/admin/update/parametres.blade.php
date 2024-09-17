@@ -37,7 +37,7 @@
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--end::Flatpickr-->
                                     <!--begin::Add product-->
-                                    <a href="{{route('admin.parametres')}}" class="btn btn-instagram"><i
+                                    <a href="{{route('admin.parametres')}}" class="btn btn-primary btn-active-color-success"><i
                                             class="bi bi-back"></i>Retour
                                     </a>
                                     <!--end::Add product-->

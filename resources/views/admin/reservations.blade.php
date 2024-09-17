@@ -23,7 +23,7 @@
     <!--begin::Post-->
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
+        <div id="kt_content_container" class="container-fluid">
             <!--begin::Products-->
             <div class="card card-flush">
                 <!--begin::Card header-->
@@ -57,10 +57,12 @@
 {{--                            <th class="min-w-100px">Trajet</th>--}}
                             <th class="min-w-100px">Adresse de la maison</th>
                             <th class="min-w-100px">Adresse de l'école</th>
+                            <th class="min-w-100px">Distance (Maison->Ecole)</th>
+                            <th class="min-w-100px">Estimation Prix</th>
                             <th class="min-w-100px">Date et Heure</th>
-{{--
-                            <th class="text-end min-w-100px">Actions</th>
---}}
+                            <th class="min-w-100px">Statut</th>
+                            <th class="text-start min-w-100px">Actions</th>
+-
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -102,7 +104,7 @@
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td>
+                                <td class="pe-0">
                                     <span class="fw-bolder">{{$reservation->house_location}}</span>
                                 </td>
                                 <!--end::Total=-->
@@ -111,13 +113,28 @@
                                     <span class="fw-bolder">{{$reservation->school_location}}</span>
                                 </td>
                                 <!--end::Date Added=-->
+                                <!--begin::Date Added=-->
+                                <td class="pe-0" data-order="2022-02-07">
+                                    <span class="fw-bolder">{{$reservation->distance}}</span>
+                                </td>
+                                <!--end::Date Added=-->
+                                <!--begin::Date Added=-->
+                                <td class="pe-0" data-order="2022-02-07">
+                                    <span class="fw-bolder">{{$reservation->price}}</span>
+                                </td>
+                                <!--end::Date Added=-->
                                 <!--begin::Date Modified=-->
                                 <td class="pe-0" >
                                     <span class="fw-bolder">{{$reservation->created_at}}</span>
                                 </td>
+                                <td class="pe-0 d-flex align-items-center" data-order="Completed">
+                                    <!--begin::Badges-->
+                                    <div class="badge badge-light-success">{{$reservation->status}}</div>
+                                    <!--end::Badges-->
+                                </td>
                                 <!--end::Date Modified=-->
                                 <!--begin::Action=-->
-                                {{--<td class="text-end">
+                                <td class="text-start">
                                     <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
@@ -136,7 +153,7 @@
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <span class="menu-link px-3">View</span>
+                                            <span class="menu-link px-3">Traiter</span>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
@@ -152,7 +169,7 @@
                                         <!--end::Menu item-->
                                     </div>
                                     <!--end::Menu-->
-                                </td>--}}
+                                </td>
                                 <!--end::Action=-->
                             </tr>
                             <!--end::Table row-->
