@@ -72,6 +72,7 @@ class BusController extends Controller
         );
       //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
+
     }
 
 
@@ -135,8 +136,8 @@ class BusController extends Controller
 
             ]
         );
-        Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
-        return redirect()->back();
+        //Flashy::message(__('Consignation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
+        return redirect()->back()->with('success', 'Consignation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
      }
     }
 

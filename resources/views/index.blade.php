@@ -892,10 +892,10 @@
                                                                 <p id="modalPrice"></p>
 
                                                                 <!-- Ajouter les boutons Continuer et Annuler -->
-                                                                 <p class="modal-title">Vous desirez faire une reservation</p>
+                                                                 <p class="modal-title"> Désirez-vous faire une reservation ?</p>
                                                                 <div class="modal-buttons">
-                                                                    <button id="continueBtn" type="button">Continuer</button>
-                                                                    <button id="cancelBtn">Annuler</button>
+                                                                    <button id="continueBtn" type="button"> Maintenant</button>
+                                                                    <button id="cancelBtn">Après</button>
                                                                 </div>
 
 
@@ -1113,8 +1113,9 @@
                         <a href="#"><img src="{{ asset('template/bus/images/button-2-170x53.png') }}"
                                          alt="" width="170" height="53"/></a>
 
-                        <a><img src="{{ asset('template/bus/images/suisco_transport.jpeg') }}"
-                                alt="" width="170" height="53"/></a>
+                        <a><img src="{{ asset('template/bus/images/suisco_transport.jpeg') }}" style=" border: 1px solid #ccc;
+    border-radius: 10px;  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);"
+                                alt="" width="170" height="53" /></a>
                     </div>
                 </div>
             </div>
@@ -2187,7 +2188,8 @@
         @if(session('success'))
         Swal.fire({
             title: 'Success!',
-            text: '{{ session('success') }}',
+            text: '{{ session('success') }}', 
+            
             icon: 'success',
             confirmButtonText: 'OK'
         });

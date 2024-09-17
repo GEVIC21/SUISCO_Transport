@@ -184,7 +184,7 @@
         $(document).ready(function () {
             $('#kt_ecommerce_sales_table').DataTable(
                 {
-                    "order": [[3, 'desc']]
+                    "order": [[6, 'desc']]
                 }
             );
         });
