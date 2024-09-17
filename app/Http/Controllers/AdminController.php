@@ -150,6 +150,12 @@ class AdminController extends Controller
         return view('admin.update.parametres',compact('school','parametre'));
     }
 
+    public function traiter_reservation($id)
+    {
+        $reservation = Reservation::find($id);
+        return view('admin.update.reservations',compact('reservation'));
+    }
+
     public function do_update_school($id,Request $request)
     {
 
