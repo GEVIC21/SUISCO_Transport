@@ -78,6 +78,7 @@ class BusController extends Controller
 
     public function store_subscription(Request $request)
     {
+        
        /* $validator = $this->validate($request, [
             'service' => 'required',
             'house_location' => 'required',
@@ -96,11 +97,22 @@ class BusController extends Controller
             Flashy::warning($validator->messages());
             return back()->withErrors($validator)->withInput();
         }*/
+
+        $school = School::where('location', $request->school_address)->first();
+
+        if ($school) {
+            $schoolName = $school->name;
+        } else {
+            // Si l'école n'est pas trouvée, vous pouvez gérer cette situation ici
+            // Par exemple, retourner une erreur ou une valeur par défaut
+            $schoolName = 'Nom de l\'école inconnu'; // ou bien gérer cela autrement
+        }
+
           $subscription = Reservation::create(
               [
                   'service' => $request->service,
                   'house_location' => $request->home_address,
-                  'school_location' => $request->school_address,
+                  'school_location' => $schoolName,
                   'route' => $request->trajectory,
                   'phone_numbre' => $request->phone_number,
                   ]
@@ -108,7 +120,7 @@ class BusController extends Controller
        // Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
 
-     }
+    }
 
     public function store_consignment(Request $request)
     {
