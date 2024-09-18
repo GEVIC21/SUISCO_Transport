@@ -327,13 +327,13 @@
     <!--end::Post-->
 
 
-                        <!-- La Modal -->
+            <!-- La Modal -->
                 <div id="myModal" class="modal" style="display: none;"> <!-- S'assurer que le modal est masqué par défaut -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h4>Emplacement de la maison</h4>
                         <p>
-                           <i class="fas fa-map-marker-alt" ></i>
+                           <i class="fas fa-map-marker-alt"></i>
                         </p>
                         <p id="coordonne"></p>
 
