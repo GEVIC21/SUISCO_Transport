@@ -182,7 +182,7 @@
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
                             <th class="text-start min-w-100px">Actions</th>
--
+
                         </tr>
                         <!--end::Table row-->
                         </thead>
