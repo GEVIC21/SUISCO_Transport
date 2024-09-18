@@ -56,13 +56,13 @@
             font-size: 13px; /* Taille de police ajustée */
 
             text-align: center; /* Centre le texte */
-            
+
         }
         .modal-content p  i {
             color: #239dd4; /* Texte en gris foncé */
             font-size: 22px; /* Taille de police ajustée */
             text-align: center; /* Centre le texte */
-            
+
         }
             /* Le bouton de fermeture */
      .close {
@@ -175,14 +175,14 @@
                             <th class="min-w-50px">Service</th>
                             <th class="min-w-50px">Trajet</th>
 {{--                            <th class="min-w-100px">Trajet</th>--}}
-                            <th class="min-w-100px">Adresse de la maison</th>
+                            <th class="min-w-100px" style="text-align: center;">Adresse de la maison</th>
                             <th class="min-w-100px">Adresse de l'école</th>
                             <th class="min-w-50px">Estimation Distance (Maison->Ecole)</th>
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
                             <th class="text-start min-w-100px">Actions</th>
--
+
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -224,10 +224,10 @@
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td class="pe-0 openModal" data-coordinates="{{$reservation->house_location}}">
+                                <td class="pe-0 openModal" data-coordinates="{{$reservation->house_location}}" style="text-align: center;">
                                     <!-- <span class="fw-bolder text-hover-primary">{{$reservation->house_location}}</span> -->
                                     <span class="fw-bolder text-hover-primary">
-                                     <i class="bi bi-house"style="font-size:2rem;"> </i>
+                                            <i class="bi bi-house"style="font-size:2rem;" title="Cliquez pour voir l'adresse sur Maps"></i>
                                     </span>
                                 </td>
 
@@ -327,13 +327,13 @@
     <!--end::Post-->
 
 
-                        <!-- La Modal -->
+            <!-- La Modal -->
                 <div id="myModal" class="modal" style="display: none;"> <!-- S'assurer que le modal est masqué par défaut -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h4>Emplacement de la maison</h4>
                         <p>
-                           <i class="fas fa-map-marker-alt" ></i>
+                           <i class="fas fa-map-marker-alt"></i>
                         </p>
                         <p id="coordonne"></p>
 
