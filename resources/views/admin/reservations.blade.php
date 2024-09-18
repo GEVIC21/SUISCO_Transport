@@ -80,7 +80,7 @@
         width: 90%;
         height: 36rem;
     }
-    
+
     .close {
         position: absolute; /* Positionné dans le coin supérieur droit */
                      right: 10px;
@@ -174,7 +174,7 @@
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
-                            <th class="text-start min-w-50px">Actions</th>
+                            <th class="text-start min-w-100px">Actions</th>
 -
                         </tr>
                         <!--end::Table row-->
@@ -322,7 +322,7 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h4>Emplacement de la maison</h4>
-                        
+
                         <!-- Le contenu de la modal -->
                          <!-- Carte et contenu de la modal -->
                          <div id="mapContainer" class="form-wrap">
@@ -376,7 +376,7 @@
 
 </script>
 
-                                                            
+
 <script>
     $(document).ready(function () {
         $('#kt_ecommerce_sales_table').DataTable(
@@ -395,7 +395,7 @@
     // Récupérer les éléments
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
-    
+
     var map; // Déclaration de la variable map pour une portée globale
     var routingControl = null; // Variable pour stocker le contrôle de routage
     var marker; // Variable pour stocker le marqueur
