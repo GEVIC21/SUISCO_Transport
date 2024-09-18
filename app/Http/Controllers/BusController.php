@@ -43,13 +43,14 @@ class BusController extends Controller
             'departure_address_evaluation' => 'nullable|string',
             'arrive_address_evaluation' => 'nullable|string',
             'distance_address_evaluation' => 'nullable|string',
+            'distance_itineraire' => 'nullable|string',
             'trajectory' => 'required|string',
             'phoneInput' => 'required|string',
 
         ]);
-        $distance = $request->distance_address_evaluation;
+        $distance = $request->distance_itineraire;
         if ($request->trajectory == "Aller-Retour"){
-            $distance=floatval($request->distance_address_evaluation)  *2;
+            $distance=floatval($request->distance_itineraire)  *2;
         }
 
         // Traitez les données comme vous le souhaitez
