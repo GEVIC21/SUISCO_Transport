@@ -175,13 +175,13 @@
                             <th class="min-w-50px">Service</th>
                             <th class="min-w-50px">Trajet</th>
 {{--                            <th class="min-w-100px">Trajet</th>--}}
-                            <th class="min-w-100px" style="text-align: center;">Adresse de la maison</th>
+                            <th class="text-center min-w-100px" >Adresse de la maison</th>
                             <th class="min-w-100px">Adresse de l'école</th>
                             <th class="min-w-50px">Estimation Distance (Maison->Ecole)</th>
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px"></th>
 -
                         </tr>
                         <!--end::Table row-->
