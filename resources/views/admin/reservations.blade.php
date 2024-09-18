@@ -53,9 +53,16 @@
         }
         .modal-content p {
             color: #000; /* Texte en gris foncé */
-            font-size: 18px; /* Taille de police ajustée */
-            margin-bottom: 20px; /* Espacement en dessous du texte */
+            font-size: 13px; /* Taille de police ajustée */
+
             text-align: center; /* Centre le texte */
+            
+        }
+        .modal-content p  i {
+            color: #239dd4; /* Texte en gris foncé */
+            font-size: 22px; /* Taille de police ajustée */
+            text-align: center; /* Centre le texte */
+            
         }
             /* Le bouton de fermeture */
      .close {
@@ -218,7 +225,10 @@
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
                                 <td class="pe-0 openModal" data-coordinates="{{$reservation->house_location}}">
-                                    <span class="fw-bolder text-hover-primary">{{$reservation->house_location}}</span>
+                                    <!-- <span class="fw-bolder text-hover-primary">{{$reservation->house_location}}</span> -->
+                                    <span class="fw-bolder text-hover-primary">
+                                     <i class="bi bi-house"style="font-size:2rem;"> </i>
+                                    </span>
                                 </td>
 
 
@@ -322,6 +332,10 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h4>Emplacement de la maison</h4>
+                        <p>
+                           <i class="fas fa-map-marker-alt" ></i>
+                        </p>
+                        <p id="coordonne"></p>
 
                         <!-- Le contenu de la modal -->
                          <!-- Carte et contenu de la modal -->
@@ -446,6 +460,7 @@
     document.querySelectorAll('td.openModal').forEach(function(cell) {
         cell.onclick = function() {
             var coordinates = cell.getAttribute('data-coordinates'); // Récupérer les coordonnées
+            document.getElementById("coordonne").textContent = coordinates;
             openModal(coordinates); // Ouvrir le modal avec les coordonnées
         };
     });
