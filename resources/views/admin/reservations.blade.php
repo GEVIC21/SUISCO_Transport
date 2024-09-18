@@ -44,24 +44,24 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 table-responsive">
                     <!--begin::Table-->
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
                         <!--begin::Table head-->
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-100px">Numero de Telephone</th>
-                            <th class="min-w-100px">Service</th>
-                            <th class="min-w-100px">Trajet</th>
+                            <th class="min-w-50px">Numero de Telephone</th>
+                            <th class="min-w-50px">Service</th>
+                            <th class="min-w-50px">Trajet</th>
 {{--                            <th class="min-w-100px">Trajet</th>--}}
                             <th class="min-w-100px">Adresse de la maison</th>
                             <th class="min-w-100px">Adresse de l'école</th>
-                            <th class="min-w-100px">Estimation Distance (Maison->Ecole)</th>
+                            <th class="min-w-50px">Estimation Distance (Maison->Ecole)</th>
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-50px">Actions</th>
 -
                         </tr>
                         <!--end::Table row-->
@@ -73,9 +73,9 @@
                         @foreach($reservations as $reservation)
                             <tr>
                                 <!--begin::Order ID=-->
-                                <td data-kt-ecommerce-order-filter="order_id">
+                                <td>
                                     <span
-                                       class="text-gray-800 text-hover-primary fw-bolder">{{$reservation->phone_numbre}}
+                                       class="text-gray-800 fw-bolder">{{$reservation->phone_numbre}}
                                     </span>
                                 </td>
                                 <!--end::Order ID=-->
@@ -83,7 +83,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800 text-hover-primary fs-5 fw-bolder">{{$reservation->service}}</span>
+                                        <span class="fw-bolder">{{$reservation->service}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -91,7 +91,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800">{{$reservation->route}}</span>
+                                        <span class="fw-bolder">{{$reservation->route}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -105,7 +105,7 @@
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
                                 <td class="pe-0">
-                                    <span class="fw-bolder">{{$reservation->house_location}}</span>
+                                    <span class="fw-bolder text-hover-primary ">{{$reservation->house_location}}</span>
                                 </td>
                                 <!--end::Total=-->
                                 <!--begin::Date Added=-->
@@ -115,7 +115,7 @@
                                 <!--end::Date Added=-->
                                 <!--begin::Date Added=-->
                                 <td class="pe-0" data-order="2022-02-07">
-                                    <span class="fw-bolder">
+                                    <span class="fw-bolder align-center">
                                         @if($reservation->distance)
                                             {{$reservation->distance}} Km
                                         @else
