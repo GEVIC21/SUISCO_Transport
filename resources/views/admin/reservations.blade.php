@@ -181,8 +181,7 @@
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
-                            <th class="text-start min-w-100px"></th>
--
+                            <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -327,13 +326,13 @@
     <!--end::Post-->
 
 
-                        <!-- La Modal -->
+            <!-- La Modal -->
                 <div id="myModal" class="modal" style="display: none;"> <!-- S'assurer que le modal est masqué par défaut -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h4>Emplacement de la maison</h4>
                         <p>
-                           <i class="fas fa-map-marker-alt" ></i>
+                           <i class="fas fa-map-marker-alt"></i>
                         </p>
                         <p id="coordonne"></p>
 
