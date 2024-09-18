@@ -39,6 +39,7 @@ Route::name('admin.')->middleware('auth')->group(function (){
     Route::get('/modifier_ecole/{id}', [\App\Http\Controllers\AdminController::class, 'update_school'])->name('update.school');
     Route::get('/modifier_parametre/{id}', [\App\Http\Controllers\AdminController::class, 'update_parametre'])->name('update.parametre');
     Route::get('/modifier_utilisateur/{id}', [\App\Http\Controllers\AdminController::class, 'update_utilisateur'])->name('update.utilisateur');
+    Route::get('/traiter_reservation/{id}', [\App\Http\Controllers\AdminController::class, 'traiter_reservation'])->name('update.reservation');
 
     Route::post('/supprimer_ecole{id}', [\App\Http\Controllers\AdminController::class, 'del_school'])->name('del.school');
     Route::post('/supprimer_utilisateur{id}', [\App\Http\Controllers\AdminController::class, 'del_user'])->name('del.user');

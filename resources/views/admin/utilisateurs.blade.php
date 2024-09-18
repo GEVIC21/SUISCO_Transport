@@ -22,7 +22,7 @@
     <!--begin::Post-->
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <!--begin::Container-->
-        <div id="kt_content_container" class="container-xxl">
+        <div id="kt_content_container" class="container-fluid">
             <!--begin::Products-->
             <div class="card card-flush">
                 <!--begin::Card header-->
@@ -35,7 +35,7 @@
                     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         <!--end::Flatpickr-->
                         <!--begin::Add product-->
-                        <a href="{{route('admin.add.utilisateur')}}" class="btn btn-instagram" ><i class="bi bi-plus-circle-fill"></i>Ajouter Utilisateur
+                        <a href="{{route('admin.add.utilisateur')}}" class="btn btn-primary btn-active-color-success" ><i class="bi bi-plus-circle-fill"></i>Ajouter Utilisateur
                             </a>
                         <!--end::Add product-->
                     </div>

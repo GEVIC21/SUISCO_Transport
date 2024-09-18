@@ -517,7 +517,7 @@
                                                             <select class="form-input select" id="school_address" name="school_address" data-constraints="@Required" required>
                                                                 <option value="" selected style="display: none">Choisir votre école</option>
                                                                 @foreach($schools as $school)
-                                                                    <option value="{{$school->name}}">{{$school->name}}</option>
+                                                                    <option value="{{$school->location}}">{{$school->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                             <span
@@ -699,7 +699,20 @@
                                                             </select>
                                                             <span
                                                             class="form-icon mdi mdi-map"></span>
+                                                        </div> 
+
+                                                      
+
+                                                        <div class="form-wrap">
+                                                            <input hidden class="form-input" id="distance_address" type="text" name="distance_address" data-constraints="@Required" style="pointer-events: none;">
+
                                                         </div>
+
+                                                        <div class="form-wrap">
+                                                            <input hidden class="form-input" id="route_distance" type="text"  name="route_distance" data-constraints="@Required" style="pointer-events: none;">
+
+                                                        </div>
+                                                        
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
                                                                 <input class="form-input" id="form-phone" type="text" name="phone_number"
@@ -788,6 +801,11 @@
                                                             <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
                                                         </div> -->
+
+                                                        <div class="form-wrap">
+                                                            <input hidden class="form-input" id="distance_itineraire" type="text" name="distance_itineraire" data-constraints="@Required" style="pointer-events: none;">
+
+                                                        </div>
 
                                                         <div class="form-wrap">
                                                             <input hidden class="form-input" id="arrive_address_evaluation" type="text" name="arrive_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
@@ -1430,24 +1448,25 @@
     var modal3 = document.getElementById("myModal3");
     var btn = document.getElementById("openModal3");
     var span = document.getElementsByClassName("close3")[0];
-    // Récupérer le bouton Valider et le modal
     var validateBtn = document.getElementById('validateBtn');
-    var modal3 = document.getElementById('myModal3');
+
+    // Variable pour la carte et le routage
+    var map;
+    var currentMarker = null;
+    var schoolMarker = null; // Marqueur pour l'école
+    var routingControl = null;
 
     // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
     validateBtn.onclick = function() {
         modal3.style.display = "none";
     }
 
-    var map; // Déclare la variable map en dehors pour la rendre accessible globalement
-    var currentMarker = null;
-
     // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
     btn.onclick = function() {
         modal3.style.display = "block";
 
         // Initialiser la carte seulement lorsque la modal est ouverte
-        if (!map) { // Vérifier si la carte n'est pas déjà initialisée
+        if (!map) {
             map = L.map('map').setView([6.1356, 1.2226], 15);
 
             // Charger les tuiles de la carte
@@ -1470,11 +1489,12 @@
                             if (currentMarker) {
                                 map.removeLayer(currentMarker);
                             }
-
-                            // Marqueur de la position actuelle
                             /* currentMarker = L.marker([lat, lon]).addTo(map)
                                 .bindPopup('Vous êtes ici')
                                 .openPopup(); */
+
+                            // Mettre à jour le champ caché avec les coordonnées
+                            document.getElementById('home_address').value = `${lat},${lon}`;
                         },
                         function() {
                             alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
@@ -1486,8 +1506,8 @@
                 }
             }
 
-            // Ajouter un marqueur lorsqu'on clique sur la carte
-            map.on('click', function(e) {
+            // Fonction pour gérer les clics sur la carte
+            function handleMapClick(e) {
                 var lat = e.latlng.lat;
                 var lon = e.latlng.lng;
 
@@ -1505,8 +1525,63 @@
 
                     // Mettre à jour le champ caché avec les coordonnées du point cliqué
                     document.getElementById('home_address').value = `${lat},${lon}`;
+
+                    // Calculer la distance et tracer l'itinéraire si un autre marqueur existe
+                    if (routingControl) {
+                        map.removeControl(routingControl);
+                    }
+
+                    // Récupérer les coordonnées de l'école à partir du champ
+                    var schoolCoords = document.getElementById('school_address').value;
+                    var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
+
+                    if (schoolLatLng.length === 2) {
+                        // Créer un latlng pour le point de l'école
+                        var endLatLng = L.latLng(schoolLatLng[0], schoolLatLng[1]);
+
+                        // Ajouter le marqueur de l'école si ce n'est pas déjà fait
+                        if (schoolMarker) {
+                            map.removeLayer(schoolMarker);
+                        }
+                        schoolMarker = L.marker(endLatLng).addTo(map)
+                            .bindPopup('École')
+                            .openPopup();
+
+                        // Ajouter le contrôle d'itinéraire à la carte
+                        routingControl = L.Routing.control({
+                            waypoints: [
+                                L.latLng(lat, lon),
+                                endLatLng
+                            ],
+                            router: L.Routing.osrmv1({
+                                language: 'fr',
+                                profile: 'driving'
+                            }),
+                            createMarker: function() { return null; },
+                            routeWhileDragging: true,
+                            showAlternatives: false, // Masquer les alternatives
+                    show: false // Cette option ne sera pas utilisée directement, mais assurez-vous de la configurer selon vos besoins
+                
+                        }).addTo(map);
+
+                        // Calculer la distance en ligne droite
+                        var startLatLng = L.latLng(lat, lon);
+                        var distance = startLatLng.distanceTo(endLatLng); // Distance en mètres
+
+                        // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
+                        routingControl.on('routesfound', function(event) {
+                            var route = event.routes[0];
+                            var routeDistance = route.summary.totalDistance; // Distance en mètres
+
+                            // Mettre à jour les champs de formulaire avec les distances
+                          //   document.getElementById('distance_address').value = `${(distance / 1000).toFixed(2)}`; // Distance en ligne droite
+                            document.getElementById('route_distance').value = `${(routeDistance / 1000).toFixed(2)}`; // Distance le long de l'itinéraire
+                        }); 
+                    } else {
+                        alert("Veuillez entrer l'adresse de l'école.");
+                    }
                 });
-            });
+            }
 
             // Fonction de géocodage inverse pour obtenir le nom géographique
             function reverseGeocode(lat, lon, callback) {
@@ -1529,10 +1604,15 @@
                     });
             }
 
+            // Ajouter un écouteur d'événement pour cliquer sur la carte
+            map.on('click', handleMapClick);
+
             // Localiser l'utilisateur automatiquement à l'ouverture de la modal
             locateUser();
+        } else {
+            // La carte est déjà initialisée, donc nous devons seulement redimensionner
+            map.invalidateSize();
         }
-
     }
 
     // Lorsque l'utilisateur clique sur (x), fermer la modal
@@ -1546,195 +1626,9 @@
             modal3.style.display = "none";
         }
     }
-
 </script>
 
 
-<!-- Script Evaluer carte  -->
-
-<!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
-        var mapContainer = document.getElementById('map2');
-    mapContainer.style.display = 'block';
-    map2.invalidateSize(); // Recalculer la taille de la carte
-
-        // Charger les tuiles de la carte
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 20
-        }).addTo(map2);
-
-        // Marqueurs pour les points de départ et d'arrivée
-        var startMarker2 = null;
-        var endMarker2 = null;
-
-        // Variables pour stocker les coordonnées des points
-        var startLatLng2 = null;
-        var endLatLng2 = null;
-
-        // Fonction pour obtenir la position actuelle de l'utilisateur
-        function locateUser2() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                        var lat2 = position.coords.latitude;
-                        var lon2 = position.coords.longitude;
-
-                        // Centrer la carte sur la position actuelle
-                        map2.setView([lat2, lon2], 17);
-
-                        // Ajouter un marqueur à la position actuelle
-                        if (startMarker2) {
-                            map2.removeLayer(startMarker2);
-                        }
-                        startLatLng2 = L.latLng(lat2, lon2);
-                        /*  startMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                             .bindPopup('Point actuel')
-                             .openPopup(); */
-
-                        // Mettre à jour le champ de formulaire pour le départ
-                        var departureElem = document.getElementById('departure_address_evaluation');
-                        if (departureElem) {
-                            departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                        }
-
-                    },
-                    function() {
-                        alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
-                    }, {
-                        enableHighAccuracy: true
-                    });
-            } else {
-                alert("Géolocalisation non supportée.");
-            }
-        }
-
-        // Fonction pour gérer les clics sur la carte
-        function handleMapClick(e) {
-            var lat2 = e.latlng.lat;
-            var lon2 = e.latlng.lng;
-
-            // Mettre à jour le point de départ avec la position cliquée
-            if (startMarker2) {
-                map2.removeLayer(startMarker2);
-            }
-            startLatLng2 = e.latlng; // Définir le point de départ
-            startMarker2 = L.marker([lat2, lon2]).addTo(map2)
-                .bindPopup('Point choisi')
-                .openPopup();
-
-            // Récupérer les coordonnées de l'école à partir du champ
-            var schoolCoords = document.getElementById('school_address_evaluation').value;
-            var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
-
-            if (schoolLatLng.length === 2) {
-                // Créer un latlng pour le point de l'école
-                endLatLng2 = L.latLng(schoolLatLng[0], schoolLatLng[1]);
-
-                // Supprimer le marqueur d'arrivée précédent s'il existe
-                if (endMarker2) {
-                    map2.removeLayer(endMarker2);
-                }
-                endMarker2 = L.marker(endLatLng2).addTo(map2)
-                    .bindPopup('École')
-                    .openPopup();
-
-                // Ajouter le contrôle d'itinéraire à la carte
-                var routingControl = L.Routing.control({
-                    waypoints: [
-                        L.latLng(startLatLng2.lat, startLatLng2.lng),
-                        L.latLng(endLatLng2.lat, endLatLng2.lng)
-                    ],
-                    router: L.Routing.osrmv1({
-                        language: 'fr',
-                        profile: 'driving'
-                    }),
-                    createMarker: function() { return null; },
-                    routeWhileDragging: true
-                }).addTo(map2);
-
-                // Calculer la distance en ligne droite
-                var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
-
-                // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
-                routingControl.on('routesfound', function(event) {
-                    var route = event.routes[0];
-                    var routeDistance = route.summary.totalDistance; // Distance en mètres
-
-                    // Mettre à jour les champs de formulaire avec les coordonnées et les distances
-                    var departureElem = document.getElementById('departure_address_evaluation');
-                    var arriveElem = document.getElementById('arrive_address_evaluation');
-                    var distanceElem = document.getElementById('distance_address_evaluation');
-                    var modalDistanceElem = document.getElementById('modalDistance');
-                    var modalPriceElem = document.getElementById('modalPrice');
-
-                    if (departureElem) {
-                        departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
-                    }
-                    if (arriveElem) {
-                        arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
-                    }
-                    if (distanceElem) {
-                        distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
-                    }
-
-                    // Afficher les valeurs dans le modal
-                    if (modalDistanceElem) {
-                        /*                     modalDistanceElem.textContent = 'Distance en ligne droite: ' + (distance2 / 1000).toFixed(2) + ' km | Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
-                         */                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
-
-                    }
-                    if (modalPriceElem) {
-                        modalPriceElem.textContent = 'Prix: ' + price;
-                    }
-
-                    // Afficher les valeurs dans la console
-                    console.log('Distance en ligne droite (Leaflet DistanceTo):', (distance2 / 1000).toFixed(2), 'km');
-                    console.log('Distance le long de l\'itinéraire (Leaflet Routing Machine):', (routeDistance / 1000).toFixed(2), 'km');
-                });
-            } else {
-                alert("Choisissez votre école et réessayez.");
-            }
-        }
-
-        // Ajouter un écouteur d'événement pour cliquer sur la carte
-        map2.on('click', handleMapClick);
-
-        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
-        locateUser2();
-
-        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
-        document.getElementById('locate-me2').addEventListener('click', function() {
-            locateUser2();
-        });
-    });
-</script> -->
-
-<!-- Script Masquer Evaluer carte  -->
-
-<!-- <script>
-    var myMapvar2 = 0;
-    document.getElementById('toggleMapBtn2').addEventListener('click', function() {
-        var mapContainer = document.getElementById('mapContainer2');
-
-        if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
-            mapContainer.style.display = 'block';
-            myMapvar2= 1;
-            console.log("myMapvar dans Afficher");
-
-            console.log(myMapvar2);
-        s
-            this.textContent = 'Masquer';
-        } else {
-            mapContainer.style.display = 'none';
-            this.textContent = 'Afficher';
-            myMapvar2= 0;
-            console.log("myMapvar dans Masquer");
-
-            console.log(myMapvar2);
-        }
-    });
-</script> -->
 
 <!-- Script Ouvrir Modal Evaluer Résultats  -->
 
@@ -2063,6 +1957,8 @@
                         // Afficher les valeurs dans le modal
                         if (modalDistanceElem) {
                             modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+                            var distance_itineraire = document.getElementById('distance_itineraire');
+                            distance_itineraire.value = (routeDistance / 1000).toFixed(2) ;
                         }
                         if (modalPriceElem) {
                             modalPriceElem.textContent = 'Prix: ' + price;
@@ -2105,6 +2001,196 @@
         }
     }
 </script>
+
+<!-- Script Evaluer carte  -->
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var map2 = L.map('map2').setView([6.1356, 1.2226], 15);
+        var mapContainer = document.getElementById('map2');
+    mapContainer.style.display = 'block';
+    map2.invalidateSize(); // Recalculer la taille de la carte
+
+        // Charger les tuiles de la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 20
+        }).addTo(map2);
+
+        // Marqueurs pour les points de départ et d'arrivée
+        var startMarker2 = null;
+        var endMarker2 = null;
+
+        // Variables pour stocker les coordonnées des points
+        var startLatLng2 = null;
+        var endLatLng2 = null;
+
+        // Fonction pour obtenir la position actuelle de l'utilisateur
+        function locateUser2() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                        var lat2 = position.coords.latitude;
+                        var lon2 = position.coords.longitude;
+
+                        // Centrer la carte sur la position actuelle
+                        map2.setView([lat2, lon2], 17);
+
+                        // Ajouter un marqueur à la position actuelle
+                        if (startMarker2) {
+                            map2.removeLayer(startMarker2);
+                        }
+                        startLatLng2 = L.latLng(lat2, lon2);
+                        /*  startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                             .bindPopup('Point actuel')
+                             .openPopup(); */
+
+                        // Mettre à jour le champ de formulaire pour le départ
+                        var departureElem = document.getElementById('departure_address_evaluation');
+                        if (departureElem) {
+                            departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                        }
+
+                    },
+                    function() {
+                        alert("Erreur de géolocalisation. Veuillez autoriser l'accès à votre position.");
+                    }, {
+                        enableHighAccuracy: true
+                    });
+            } else {
+                alert("Géolocalisation non supportée.");
+            }
+        }
+
+        // Fonction pour gérer les clics sur la carte
+        function handleMapClick(e) {
+            var lat2 = e.latlng.lat;
+            var lon2 = e.latlng.lng;
+
+            // Mettre à jour le point de départ avec la position cliquée
+            if (startMarker2) {
+                map2.removeLayer(startMarker2);
+            }
+            startLatLng2 = e.latlng; // Définir le point de départ
+            startMarker2 = L.marker([lat2, lon2]).addTo(map2)
+                .bindPopup('Point choisi')
+                .openPopup();
+
+            // Récupérer les coordonnées de l'école à partir du champ
+            var schoolCoords = document.getElementById('school_address_evaluation').value;
+            var schoolLatLng = schoolCoords.split(',').map(Number); // Convertir en tableau de nombres
+
+            if (schoolLatLng.length === 2) {
+                // Créer un latlng pour le point de l'école
+                endLatLng2 = L.latLng(schoolLatLng[0], schoolLatLng[1]);
+
+                // Supprimer le marqueur d'arrivée précédent s'il existe
+                if (endMarker2) {
+                    map2.removeLayer(endMarker2);
+                }
+                endMarker2 = L.marker(endLatLng2).addTo(map2)
+                    .bindPopup('École')
+                    .openPopup();
+
+                // Ajouter le contrôle d'itinéraire à la carte
+                var routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(startLatLng2.lat, startLatLng2.lng),
+                        L.latLng(endLatLng2.lat, endLatLng2.lng)
+                    ],
+                    router: L.Routing.osrmv1({
+                        language: 'fr',
+                        profile: 'driving'
+                    }),
+                    createMarker: function() { return null; },
+                    routeWhileDragging: true
+                }).addTo(map2);
+
+                // Calculer la distance en ligne droite
+                var distance2 = startLatLng2.distanceTo(endLatLng2); // Distance en mètres
+
+                // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
+                routingControl.on('routesfound', function(event) {
+                    var route = event.routes[0];
+                    var routeDistance = route.summary.totalDistance; // Distance en mètres
+
+                    // Mettre à jour les champs de formulaire avec les coordonnées et les distances
+                    var departureElem = document.getElementById('departure_address_evaluation');
+                    var arriveElem = document.getElementById('arrive_address_evaluation');
+                    var distanceElem = document.getElementById('distance_address_evaluation');
+                    var modalDistanceElem = document.getElementById('modalDistance');
+                    var modalPriceElem = document.getElementById('modalPrice');
+
+                    if (departureElem) {
+                        departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
+                    }
+                    if (arriveElem) {
+                        arriveElem.value = `Lat: ${endLatLng2.lat}, Lng: ${endLatLng2.lng}`;
+                    }
+                    if (distanceElem) {
+                        distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
+                    }
+
+                    // Afficher les valeurs dans le modal
+                    if (modalDistanceElem) {
+                        /*                     modalDistanceElem.textContent = 'Distance en ligne droite: ' + (distance2 / 1000).toFixed(2) + ' km | Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+                         */                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
+
+                    }
+                    if (modalPriceElem) {
+                        modalPriceElem.textContent = 'Prix: ' + price;
+                    }
+
+                    // Afficher les valeurs dans la console
+                    console.log('Distance en ligne droite (Leaflet DistanceTo):', (distance2 / 1000).toFixed(2), 'km');
+                    console.log('Distance le long de l\'itinéraire (Leaflet Routing Machine):', (routeDistance / 1000).toFixed(2), 'km');
+                });
+            } else {
+                alert("Choisissez votre école et réessayez.");
+            }
+        }
+
+        // Ajouter un écouteur d'événement pour cliquer sur la carte
+        map2.on('click', handleMapClick);
+
+        // Appel automatique pour localiser l'utilisateur lorsque la page est chargée
+        locateUser2();
+
+        // Ajouter un écouteur d'événement au bouton pour localiser l'utilisateur
+        document.getElementById('locate-me2').addEventListener('click', function() {
+            locateUser2();
+        });
+    });
+</script> -->
+
+<!-- Script Masquer Evaluer carte  -->
+
+<!-- <script>
+    var myMapvar2 = 0;
+    document.getElementById('toggleMapBtn2').addEventListener('click', function() {
+        var mapContainer = document.getElementById('mapContainer2');
+
+        if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+            mapContainer.style.display = 'block';
+            myMapvar2= 1;
+            console.log("myMapvar dans Afficher");
+
+            console.log(myMapvar2);
+        s
+            this.textContent = 'Masquer';
+        } else {
+            mapContainer.style.display = 'none';
+            this.textContent = 'Afficher';
+            myMapvar2= 0;
+            console.log("myMapvar dans Masquer");
+
+            console.log(myMapvar2);
+        }
+    });
+</script> -->
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -20,6 +20,9 @@ class CreateReservationsTable extends Migration
             $table->string('school_location');
             $table->string('route');
             $table->string('phone_numbre');
+            $table->string('distance')->nullable();
+            $table->string('price')->nullable();
+            $table->string('status')->default('Non Traitée');
             $table->timestamps();
         });
     }

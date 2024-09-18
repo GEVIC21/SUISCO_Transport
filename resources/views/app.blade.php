@@ -164,7 +164,7 @@ License: For each use you must have a valid license purchased only from above li
 					<!--end::Aside menu-->
 					<!--begin::Footer-->
 					<div class="aside-footer flex-column-auto pt-5 pb-7 px-5" id="kt_aside_footer">
-						<a href="{{route('admin.logout')}}" class="btn btn-custom btn-primary w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Cliquez pour vous déconnecter">
+						<a href="{{route('admin.logout')}}" class="btn btn-custom btn-instagram btn-active-color-warning w-100" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss-="click" title="Cliquez pour vous déconnecter">
 							<span class="btn-label">
                                 <!--begin::Svg Icon | path: assets/media/icons/duotune/arrows/arr077.svg-->
 <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

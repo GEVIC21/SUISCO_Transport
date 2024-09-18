@@ -15,5 +15,8 @@ class Reservation extends Model
         'school_location',
         'route',
         'phone_numbre',
+        'distance',
+        'price',
+        'status',
     ];
 }

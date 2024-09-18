@@ -1,5 +1,5 @@
 @extends('app')
-@section('title','Ajouter un utilisateur')
+@section('title',"Traitement d'une réservation")
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
 @endsection
@@ -14,7 +14,7 @@
                  data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                  class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Ajouter un Utilisateur</h1>
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Traiter une réservation</h1>
                 <!--end::Title-->
             </div>
             <!--end::Page title-->
@@ -37,7 +37,7 @@
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--end::Flatpickr-->
                                     <!--begin::Add product-->
-                                    <a href="{{route('admin.utilisateurs')}}" class="btn btn-primary btn-active-color-success"><i
+                                    <a href="{{route('admin.reservations')}}" class="btn btn-primary btn-active-color-success"><i
                                             class="bi bi-back"></i>Retour
                                     </a>
                                     <!--end::Add product-->
@@ -45,29 +45,54 @@
                                 <!--end::Card toolbar-->
                             </div>
                             <!--end::Card header-->
-
                             <!--begin::Card body-->
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
-                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.add.user')}}" method="post">
-                                    <!--begin::Input group-->
+                                <form id="kt_ecommerce_settings_general_form" class="form" action="" method="post">
                                     @csrf
+                                    <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Nom</span>
+                                                <span class="required">Service</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set the title of the store for SEO."></i>
+                                                   title="Type de service demandé"></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid" name="name"
-                                                   />
+                                            <select name="service" data-control="select2" class="form-select form-select-solid">
+                                                <option value="Standard" @if($reservation->service == "Standard") selected @endif>Standard</option>
+                                                <option value="Premium" @if($reservation->service == "Premium") selected @endif>Premium</option>
+                                            </select>
                                             <!--end::Input-->
-                                            @error('name')
+                                            @error('service')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span class="required">Trajet</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Type de service demandé"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <select name="route" data-control="select2" class="form-select form-select-solid">
+                                                <option value="Aller Simple" @if($reservation->route == "Aller Simple") selected @endif>Maison -> Ecole</option>
+                                                <option value="Retour Simple" @if($reservation->route == "Retour Simple") selected @endif>Ecole -> Maison</option>
+                                                <option value="Aller-Retour" @if($reservation->route == "Aller-Retour") selected @endif>Aller <-> Retour</option>
+                                            </select>
+                                            <!--end::Input-->
+                                            @error('service')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -78,19 +103,41 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">E-mail</span>
+                                                <span class="required">Numero de Télephone</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set keywords for the store separated by a comma."></i>
+                                                   title="Numero de téléphone du client"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" required name="phone_numbre" style="pointer-events: none;"
+                                                   value="{{$reservation->phone_numbre}}"/>
+                                            <!--end::Input-->
+                                            @error('phone_numbre')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span class="required">Distance</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Distance du trajet de la course"></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                   name="email" value=""
+                                                   name="distance" value="{{$reservation->distance}}" required style="pointer-events: none;"
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
-                                            @error('email')
+                                            @error('distance')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -101,19 +148,19 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Mot de passe</span>
+                                                <span class="required">Adresse de la Maison</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set keywords for the store separated by a comma."></i>
+                                                   title="La localisation géographique de la maison du client"></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="password" class="form-control form-control-solid"
-                                                   name="password" value=""
+                                            <input type="text" class="form-control form-control-solid"
+                                                   name="house_location" value="{{$reservation->house_location}}" required
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
-                                            @error('password')
+                                            @error('house_location')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -124,19 +171,67 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Confirmer Mot de passe</span>
+                                                <span class="required">Nom de l'école</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set keywords for the store separated by a comma."></i>
+                                                   title="Le nom de l'école"></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="password" class="form-control form-control-solid"
-                                                   name="password_confirmation" value="" id="password_confirmation"
+                                            <input type="text" class="form-control form-control-solid"
+                                                   name="school_location" value="{{$reservation->school_location}}" required
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
-                                            @error('password')
+                                            @error('school_location')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span class="required">Estimation Prix</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Le nom de l'école"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid"
+                                                   name="price" value="{{$reservation->price}}" required
+                                                   data-kt-ecommerce-settings-type="tagify"/>
+                                            <!--end::Input-->
+                                            @error('price')
+                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-3 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <span class="required">Statut</span>
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                   title="Le nom de l'école"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                        </div>
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <select name="status" data-control="select2" class="form-select form-select-solid">
+                                                <option value="Non Traitée" @if($reservation->status == "Non Traitée") selected @endif>Non Traitée</option>
+                                                <option value="Traitée" @if($reservation->status == "Traitée") selected @endif>Traitée</option>
+                                                <option value="Traitée et Conclue" @if($reservation->status == "Traitée et Conclue") selected @endif>Traitée et Conclue</option>
+                                            </select>
+                                            <!--end::Input-->
+                                            @error('status')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>

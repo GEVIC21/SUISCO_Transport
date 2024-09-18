@@ -33,6 +33,9 @@ class BusController extends Controller
 
     public function submitForm(Request $request)
     {
+
+       // dd($request->all());
+
         // Valider les données si nécessaire
         $validated = $request->validate([
             'service_evaluation' => 'required|string',
@@ -44,7 +47,10 @@ class BusController extends Controller
             'phoneInput' => 'required|string',
 
         ]);
-        //  dd($validated);
+        $distance = $request->distance_address_evaluation;
+        if ($request->trajectory == "Aller-Retour"){
+            $distance=floatval($request->distance_address_evaluation)  *2;
+        }
 
         // Traitez les données comme vous le souhaitez
         // Exemple : enregistrer les données dans la base de données, envoyer un email, etc.
@@ -68,6 +74,7 @@ class BusController extends Controller
                  'house_location' => $request->departure_address_evaluation,
                 'school_location' => $schoolName,
                 'route' => $request->trajectory,
+                'distance' => $distance,
                 ]
         );
       //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
@@ -79,37 +86,34 @@ class BusController extends Controller
 
     public function store_subscription(Request $request)
     {
-       /* $validator = $this->validate($request, [
-            'service' => 'required',
-            'house_location' => 'required',
-            'school_location' => 'required',
-            'trajectory' => 'required',
-            'phone_numbre' => 'required',
-        ]
-            , [
-                'service.required' => 'Ce champ est obligatoire',
-                'phone_numbre.required' => 'Ce champ est obligatoire',
-            ]
-        );
+        $distance = $request->route_distance;
+        if ($request->trajectory == "Aller-Retour"){
+            $distance=$request->route_distance *2;
+        }
+        $school = School::where('location', $request->school_address)->first();
 
+        if ($school) {
+            $schoolName = $school->name;
+        } else {
+            // Si l'école n'est pas trouvée, vous pouvez gérer cette situation ici
+            // Par exemple, retourner une erreur ou une valeur par défaut
+            $schoolName = 'Nom de l\'école inconnu'; // ou bien gérer cela autrement
+        }
 
-        if (!$validator) {
-            Flashy::warning($validator->messages());
-            return back()->withErrors($validator)->withInput();
-        }*/
           $subscription = Reservation::create(
               [
                   'service' => $request->service,
                   'house_location' => $request->home_address,
-                  'school_location' => $request->school_address,
+                  'school_location' => $schoolName,
                   'route' => $request->trajectory,
                   'phone_numbre' => $request->phone_number,
+                  'distance' => $distance ,
                   ]
           );
        // Flashy::message(__('Reservation enrégistrée avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));
         return redirect()->back()->with('success', 'Reservation enrégistrée avec sussès. Nous vous contacterons le plutôt possible.');
 
-     }
+    }
 
     public function store_consignment(Request $request)
     {
