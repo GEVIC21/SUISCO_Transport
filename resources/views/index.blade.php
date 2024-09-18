@@ -741,11 +741,10 @@
                                                                     <span class="form-icon mdi mdi-map-marker"></span>
                                                                     <div class="form-wrap" id="map" style="height: 350px;"></div>
                                                                     <div class="form-wrap">
-                                                                        <!-- Espace pour bouton ou autre contenu -->
-                                                                    </div>
+                                                                        <!-- Espace pour bouton ou autre contenu --> </div>
                                                                 </div>
                                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                                                  <button class="button-validate" id="validateBtn" >Valider</button>
+                                                                   <button class="button-validate" id="validateBtn" >Valider</button>
 
                                                                 </div>
                                                                 
@@ -891,7 +890,7 @@
 
                                                         <!-- La Modal Essayer -->
                                                         <div id="myModal" class="modal">
-                                                            <div id="responsive" class="modal-content" >
+                                                            <div id="responsive" class="modal-content">
                                                                 <span class="close">&times;</span>
                                                                 <h4>Résultats de la simulation</h4>
                                                                 <!-- <p id="modalDeparture"></p>
@@ -944,7 +943,7 @@
                                                                 <!--   <p id="modalDeparture"></p>
                                                                   <p id="modalArrival"></p> -->
 
-                                                        <div id="mapContainer2"  class="form-wrap" style="display: auto">
+                                                         <div id="mapContainer2"  class="form-wrap" style="display: auto">
                                                              <br>
                                                              <label class="form-label" for="form-location"></label><span class="form-icon mdi mdi-map-marker"></span>
                                                             <div class="form-wrap" id="map2" style="height: 350px;"></div>

@@ -2,6 +2,119 @@
 @section('title','Réservations')
 @section('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+    <style>
+ /* La Modal (cachée par défaut) */
+        .modal {
+            display: none; /* Cachée par défaut */
+            position: fixed; /* Reste en place lors du défilement */
+             z-index: 1000; /* Met la modal au-dessus du contenu */
+            left: 0;
+            top: 0;
+            width: 100%; /* Occupe toute la largeur */
+            height: 100%; /* Occupe toute la hauteur */
+            overflow: auto; /* Ajoute une barre de défilement si nécessaire */
+            background-color: rgb(0,0,0); /* Fond semi-transparent */
+            background-color: rgba(0,0,0,0.4); /* Fond semi-transparent */
+
+        }
+
+        /* Contenu de la Modal */
+        .modal-content {
+            color: #000;
+            background-color: #ffffff; /* Fond blanc pour un contraste élégant */
+            margin: 8% auto; /* Centre verticalement et horizontalement */
+            padding: 20px;
+            border-radius: 20px; /* Coins arrondis élégants */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre douce pour un effet de profondeur */
+            width: 50%; /* Réduit la largeur pour permettre le déplacement */
+            transform: scale(0.9); /* Départ de l'animation */
+            animation: scaleUp 0.4s forwards; /* Animation d'agrandissement */
+            border: 1px solid #239dd4; /* Bordure colorée pour un effet pop */
+            background: linear-gradient(135deg,#7eba42,#ffffff); /* Fond dégradé */
+
+
+        }
+        .modal-content h4 {
+            color: #2c343b; /* Titre plus doux et élégant */
+            font-size: 26px; /* Taille de police agrandie */
+            margin-bottom: 15px; /* Espacement en dessous du titre */
+            text-align: center; /* Centre le texte */
+        }
+        /* Animation d'agrandissement */
+        @keyframes scaleUp {
+            to {
+                transform: scale(1); /* Passe à 100% de la taille */
+            }
+        }
+        .modal-content p {
+            color: #000; /* Texte en gris foncé */
+            font-size: 18px; /* Taille de police ajustée */
+            margin-bottom: 20px; /* Espacement en dessous du texte */
+            text-align: center; /* Centre le texte */
+        }
+            /* Le bouton de fermeture */
+     .close {
+        position: absolute; /* Positionné dans le coin supérieur droit */
+                     right: 10px;
+                    top: 20px;
+                    color: #000; /* Couleur grise douce */
+                    font-size: 28px; /* Taille augmentée */
+                    font-weight: bold; /* En gras */
+                    cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                    transition: color 0.3s; /* Animation douce au survol */
+        }
+
+
+    @media (max-width: 600px) {
+    .modal-content {
+        width: 90%; /* Occupe presque toute la largeur sur petits écrans */
+        padding: 20px; /* Réduit le padding sur mobiles */
+        top:2rem;
+    }
+    #responsive {
+        width: 90%;
+        height: 36rem;
+    }
+    
+    .close {
+        position: absolute; /* Positionné dans le coin supérieur droit */
+                     right: 10px;
+                    top: 20px;
+                    color: #000; /* Couleur grise douce */
+                    font-size: 28px; /* Taille augmentée */
+                    font-weight: bold; /* En gras */
+                    cursor: pointer; /* Curseur en pointeur pour indiquer un élément cliquable */
+                    transition: color 0.3s; /* Animation douce au survol */
+    }
+}
+
+/* Style du bouton Valider - moins large */
+.button-validate {
+    width: 90px;
+    display: inline-block;
+    padding: 8px 16px; /* Réduction du padding pour un bouton plus étroit */
+    background-color: #239dd4; /* Couleur verte pour valider */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
+}
+
+/* Effet hover sur le bouton */
+.button-validate:hover {
+    background-color: #239dd4;
+}
+
+
+    </style>
 @endsection
 
 @section('content')
@@ -44,24 +157,24 @@
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
-                <div class="card-body pt-0">
+                <div class="card-body pt-0 table-responsive">
                     <!--begin::Table-->
                     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
                         <!--begin::Table head-->
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-100px">Numero de Telephone</th>
-                            <th class="min-w-100px">Service</th>
-                            <th class="min-w-100px">Trajet</th>
+                            <th class="min-w-50px">Numero de Telephone</th>
+                            <th class="min-w-50px">Service</th>
+                            <th class="min-w-50px">Trajet</th>
 {{--                            <th class="min-w-100px">Trajet</th>--}}
                             <th class="min-w-100px">Adresse de la maison</th>
                             <th class="min-w-100px">Adresse de l'école</th>
-                            <th class="min-w-100px">Estimation Distance (Maison->Ecole)</th>
+                            <th class="min-w-50px">Estimation Distance (Maison->Ecole)</th>
                             <th class="min-w-100px">Estimation Prix/ Prix Final</th>
                             <th class="min-w-100px">Statut</th>
                             <th class="min-w-100px">Date et Heure</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-50px">Actions</th>
 -
                         </tr>
                         <!--end::Table row-->
@@ -73,9 +186,9 @@
                         @foreach($reservations as $reservation)
                             <tr>
                                 <!--begin::Order ID=-->
-                                <td data-kt-ecommerce-order-filter="order_id">
+                                <td>
                                     <span
-                                       class="text-gray-800 text-hover-primary fw-bolder">{{$reservation->phone_numbre}}
+                                       class="text-gray-800 fw-bolder">{{$reservation->phone_numbre}}
                                     </span>
                                 </td>
                                 <!--end::Order ID=-->
@@ -83,7 +196,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800 text-hover-primary fs-5 fw-bolder">{{$reservation->service}}</span>
+                                        <span class="fw-bolder">{{$reservation->service}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -91,7 +204,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Title-->
-                                        <span class="text-gray-800">{{$reservation->route}}</span>
+                                        <span class="fw-bolder">{{$reservation->route}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </td>
@@ -104,9 +217,10 @@
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td class="pe-0">
-                                    <span class="fw-bolder">{{$reservation->house_location}}</span>
+                                <td class="pe-0" id="openModal">
+                                    <span class="fw-bolder text-hover-primary">{{$reservation->house_location}}</span>
                                 </td>
+
                                 <!--end::Total=-->
                                 <!--begin::Date Added=-->
                                 <td class="pe-0" data-order="2022-02-07">
@@ -115,7 +229,7 @@
                                 <!--end::Date Added=-->
                                 <!--begin::Date Added=-->
                                 <td class="pe-0" data-order="2022-02-07">
-                                    <span class="fw-bolder">
+                                    <span class="fw-bolder align-center">
                                         @if($reservation->distance)
                                             {{$reservation->distance}} Km
                                         @else
@@ -201,11 +315,67 @@
     </div>
     <!--end::Post-->
 
+
+                        <!-- La Modal -->
+                <div id="myModal" class="modal" style="display: none;"> <!-- S'assurer que le modal est masqué par défaut -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h4>Sélectionnez votre maison</h4>
+                        
+                        <!-- Le contenu de la modal -->
+                         <!-- Carte et contenu de la modal -->
+                         <div id="mapContainer" class="form-wrap">
+                                <br>
+                                <label class="form-label" for="form-location"></label>
+                                <span class="form-icon mdi mdi-map-marker"></span>
+                                <div class="form-wrap" id="map" style="height: 350px;"></div>
+                                <div class="form-wrap">
+                                    <!-- Espace pour bouton ou autre contenu -->
+                                </div>
+                            </div> <br>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button class="button-validate" id="validateBtn1">OK</button>
+                        </div>
+                    </div>
+                </div>
+
 @endsection
 @section('scripts')
     <script src="{{asset('secunda/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@turf/turf"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
+
+
+    <script>
+
+        var myMapvar;
+        document.getElementById('toggleMapBtn').addEventListener('click', function() {
+            var mapContainer = document.getElementById('mapContainer');
+
+            if (mapContainer.style.display === 'none' || mapContainer.style.display === '') {
+                mapContainer.style.display = 'block';
+                myMapvar= 1;
+                console.log("myMapvar dans Afficher");
+
+                console.log(myMapvar);
+
+                this.textContent = 'Masquer';
+            } else {
+                mapContainer.style.display = 'none';
+                this.textContent = 'Afficher';
+                myMapvar= 0;
+                console.log("myMapvar dans Masquer");
+
+                console.log(myMapvar);
+            }
+        });
+
+</script>
+
+                                                            
     <script>
         $(document).ready(function () {
             $('#kt_ecommerce_sales_table').DataTable(
@@ -215,4 +385,54 @@
             );
         });
     </script>
+
+
+
+<!-- Script Ouvrir Modal Evaluer Résultats  -->
+
+<script>
+    // Récupérer les éléments
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal"); // Correctement lié au TD
+    var span = document.getElementsByClassName("close")[0];
+    
+    var map; // Déclaration de la variable map2 pour une portée globale
+    var routingControl = null; // Variable pour stocker le contrôle de routage
+
+
+    // Ouvrir le modal lorsque l'utilisateur clique sur le bouton (le TD ici)
+    btn.onclick = function() {
+        modal.style.display = "block";
+
+        // Initialiser la carte seulement lorsque la modal est ouverte
+        if (!map) {
+            map = L.map('map').setView([6.1356, 1.2226], 15);
+
+            // Charger les tuiles de la carte
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 20
+            }).addTo(map);
+ 
+        } else {
+            // La carte est déjà initialisée, donc nous devons seulement redimensionner
+            map.invalidateSize();
+        }
+    }
+
+    // Lorsque l'utilisateur clique sur (x), fermer la modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fermer le modal si l'utilisateur clique en dehors du modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+
 @endsection
