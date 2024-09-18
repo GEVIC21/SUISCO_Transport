@@ -1206,7 +1206,7 @@
                             <div class="quote-modern-header">
                                 <div class="quote-modern-info">
                                     <img class="quote-modern-avatar"
-                                         src="{{ asset('template/bus/images/kako Nubukpo.jpg') }}" alt="" width="74" height="74"/>
+                                         src="{{ asset('template/bus/images/law.jpeg') }}" alt="" width="74" height="74"/>
                                     <div class="quote-modern-info-main">
                                         <cite class="quote-modern-cite">Lawson-Late </cite>
                                         <p class="quote-modern-position">Cadre de Banque</p>
