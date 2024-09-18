@@ -217,9 +217,10 @@
                                 </td>--}}
                                 <!--end::Status=-->
                                 <!--begin::Total=-->
-                                <td class="pe-0" id="openModal">
+                                <td class="pe-0 openModal" data-coordinates="{{$reservation->house_location}}">
                                     <span class="fw-bolder text-hover-primary">{{$reservation->house_location}}</span>
                                 </td>
+
 
                                 <!--end::Total=-->
                                 <!--begin::Date Added=-->
@@ -320,7 +321,7 @@
                 <div id="myModal" class="modal" style="display: none;"> <!-- S'assurer que le modal est masqué par défaut -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <h4>Sélectionnez votre maison</h4>
+                        <h4>Emplacement de la maison</h4>
                         
                         <!-- Le contenu de la modal -->
                          <!-- Carte et contenu de la modal -->
@@ -349,7 +350,7 @@
 
 
 
-    <script>
+<script>
 
         var myMapvar;
         document.getElementById('toggleMapBtn').addEventListener('click', function() {
@@ -376,32 +377,38 @@
 </script>
 
                                                             
-    <script>
-        $(document).ready(function () {
-            $('#kt_ecommerce_sales_table').DataTable(
-                {
-                    "order": [[7, 'desc'],[8,'desc']]
-                }
-            );
-        });
-    </script>
+<script>
+    $(document).ready(function () {
+        $('#kt_ecommerce_sales_table').DataTable(
+            {
+                "order": [[7, 'desc'],[8,'desc']]
+            }
+        );
+    });
+</script>
 
 
 
-<!-- Script Ouvrir Modal Evaluer Résultats  -->
+<!-- Script Ouvrir Modal    -->
 
 <script>
     // Récupérer les éléments
     var modal = document.getElementById("myModal");
-    var btn = document.getElementById("openModal"); // Correctement lié au TD
     var span = document.getElementsByClassName("close")[0];
     
-    var map; // Déclaration de la variable map2 pour une portée globale
+    var map; // Déclaration de la variable map pour une portée globale
     var routingControl = null; // Variable pour stocker le contrôle de routage
+    var marker; // Variable pour stocker le marqueur
 
 
-    // Ouvrir le modal lorsque l'utilisateur clique sur le bouton (le TD ici)
-    btn.onclick = function() {
+    var validateBtn1 = document.getElementById('validateBtn1');
+    // Lorsque l'utilisateur clique sur le bouton OK, fermer le modal
+    validateBtn1.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fonction pour ouvrir le modal
+    function openModal(coordinates) {
         modal.style.display = "block";
 
         // Initialiser la carte seulement lorsque la modal est ouverte
@@ -413,12 +420,35 @@
                 attribution: '© OpenStreetMap contributors',
                 maxZoom: 20
             }).addTo(map);
- 
         } else {
             // La carte est déjà initialisée, donc nous devons seulement redimensionner
             map.invalidateSize();
         }
+
+        // Récupérer les coordonnées et ajouter un marqueur
+        var latLng = coordinates.split(',').map(Number); // Convertir en tableau de nombres
+        if (latLng.length === 2) {
+            if (marker) {
+                map.removeLayer(marker); // Supprimer le marqueur précédent s'il existe
+            }
+            marker = L.marker(latLng).addTo(map)
+                .bindPopup('Lieu réservé')
+                .openPopup();
+
+            // Centrer la carte sur le marqueur
+            map.setView(latLng, 15);
+        } else {
+            alert("Coordonnées invalides.");
+        }
     }
+
+    // Écouter les clics sur les cellules avec la classe openModal
+    document.querySelectorAll('td.openModal').forEach(function(cell) {
+        cell.onclick = function() {
+            var coordinates = cell.getAttribute('data-coordinates'); // Récupérer les coordonnées
+            openModal(coordinates); // Ouvrir le modal avec les coordonnées
+        };
+    });
 
     // Lorsque l'utilisateur clique sur (x), fermer la modal
     span.onclick = function() {
@@ -432,6 +462,7 @@
         }
     }
 </script>
+
 
 
 
