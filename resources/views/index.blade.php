@@ -1683,7 +1683,7 @@
 
     var arrive = document.getElementById('arrive_address_evaluation').value;
     var distance = document.getElementById('distance_address_evaluation').value ;
-    var price = "40.000 FCFA";
+    var price = 0 ;
 
 
     // Mettre à jour le contenu de la modal
@@ -1719,6 +1719,14 @@
             var schoolValue = document.getElementById('school_address_evaluation').value ;
             var trajectoryValue = document.getElementById('trajectory').value ;
 
+            var modalDistanceElem = document.getElementById('modalDistance');
+            var modalPriceElem = document.getElementById('modalPrice');
+            // Afficher les valeurs dans le modal
+            
+            var dItValue = (routeDistance / 1000).toFixed(2) ;
+            console.log("dItValue");
+            console.log(dItValue);
+
             
             console.log("1");
             console.log(serviceValue);
@@ -1738,7 +1746,56 @@
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
                 // Vérifiez tous les champs
-                modal.style.display = "block";
+                var standardPrice = @json($prix_standard_km_h);
+                var premiumPrice = @json($prix_premium_km_h);
+
+                console.log('Standard Price:', standardPrice);
+                console.log('Premium Price:', premiumPrice);
+
+                var dItValueFloat = parseFloat(dItValue)
+               
+                if (serviceValue === "Standard") 
+                {
+                        if (dItValueFloat <= 1) {
+                            price = standardPrice; // Prix standard
+                        } 
+                        else {
+                            price = dItValue * standardPrice; // Calculer le prix basé sur la distance niveau standard
+                        }
+                }
+
+                else if (serviceValue === "Premium")
+                {
+                        if (dItValueFloat <= 1) {
+                            price = premiumPrice; // Prix premium
+                        } else {
+                            price = dItValue * premiumPrice; // Calculer le prix basé sur la distance niveau premium
+                        }
+                }
+
+                        // Vérifier si la valeur de trajectory est "Aller <-> Retour"
+                if (trajectoryValue === "Aller-Retour") 
+                {
+                            price *= 2; // Doubler le prix
+                }
+
+                        // Mettre à jour les éléments de la modale
+                if (modalDistanceElem) {
+                    modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (dItValue) + ' km';
+                }
+                if (modalPriceElem) {
+                    
+                    // Arrondir à l'entier inférieur
+                    price = Math.floor(price);
+
+                    // Formatage du prix pour l'affichage sans décimales
+                    var formattedPrice = price.toLocaleString('fr-FR', { style: 'currency', currency: 'CFA' });
+
+                    modalPriceElem.textContent = 'Prix: ' + price + ' FCFA';
+                }
+                console.log('Price:', price);
+                modal.style.display = "block";                      
+               
             } 
             else {
                 console.log("Un champ est vide.");
@@ -1793,6 +1850,8 @@
     var map2; // Déclaration de la variable map2 pour une portée globale
     var routingControl = null; // Variable pour stocker le contrôle de routage
 
+
+    var routeDistance = 0;
     // Lorsque l'utilisateur clique sur le bouton Valider, fermer le modal
     validateBtn1.onclick = function() {
         modal2.style.display = "none";
@@ -1929,14 +1988,15 @@
                     // Écouter l'événement 'routesfound' pour obtenir la distance de l'itinéraire
                     routingControl.on('routesfound', function(event) {
                         var route = event.routes[0];
-                        var routeDistance = route.summary.totalDistance; // Distance en mètres
+                        routeDistance = route.summary.totalDistance; // Distance en mètres
 
                         // Mettre à jour les champs de formulaire avec les coordonnées et les distances
                         var departureElem = document.getElementById('departure_address_evaluation');
                         var arriveElem = document.getElementById('arrive_address_evaluation');
                         var distanceElem = document.getElementById('distance_address_evaluation');
-                        var modalDistanceElem = document.getElementById('modalDistance');
-                        var modalPriceElem = document.getElementById('modalPrice');
+                        
+                        var distance_itineraire = document.getElementById('distance_itineraire');
+                            distance_itineraire.value = (routeDistance / 1000).toFixed(2) ;
 
                         /* 
                         Latitude avec lat et long au debut
@@ -1953,15 +2013,6 @@
                             distanceElem.value = `${(distance2 / 1000).toFixed(2)} km`; // Distance en ligne droite
                         }
 
-                        // Afficher les valeurs dans le modal
-                        if (modalDistanceElem) {
-                            modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (routeDistance / 1000).toFixed(2) + ' km';
-                            var distance_itineraire = document.getElementById('distance_itineraire');
-                            distance_itineraire.value = (routeDistance / 1000).toFixed(2) ;
-                        }
-                        if (modalPriceElem) {
-                            modalPriceElem.textContent = 'Prix: ' + price;
-                        }
 
                         // Afficher les valeurs dans la console
                         console.log('Distance en ligne droite (Leaflet DistanceTo):', (distance2 / 1000).toFixed(2), 'km');
