@@ -26,9 +26,11 @@ class BusController extends Controller
         $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value;
         $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value;
         $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value;
+        $prix_standard_km_h =  Parameter::whereLabel(Parameter::PRIX_STANDARD_1H_1KM)->first()->value;
+        $prix_premium_km_h =  Parameter::whereLabel(Parameter::PRIX_PREMIUM_1H_1KM)->first()->value;
         $schools = School::all();
 
-        return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools'));
+        return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools','prix_standard_km_h','prix_premium_km_h'));
     }
 
     public function submitForm(Request $request)
