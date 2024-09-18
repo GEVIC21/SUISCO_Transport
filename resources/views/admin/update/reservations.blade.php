@@ -48,7 +48,7 @@
                             <!--begin::Card body-->
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
-                                <form id="kt_ecommerce_settings_general_form" class="form" action="" method="post">
+                                <form id="kt_ecommerce_settings_general_form" class="form" action="{{route('admin.do.update.reservation',$reservation->id)}}" method="post">
                                     @csrf
                                     <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
@@ -157,7 +157,7 @@
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid"
-                                                   name="house_location" value="{{$reservation->house_location}}" required
+                                                   name="house_location" value="{{$reservation->house_location}}" required style="pointer-events: none;"
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
                                             @error('house_location')
@@ -194,7 +194,7 @@
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Estimation Prix</span>
+                                                <span class="required">Prix Estimé/Définitif</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                                    title="Le nom de l'école"></i>
                                             </label>

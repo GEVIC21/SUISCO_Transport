@@ -47,6 +47,7 @@ Route::name('admin.')->middleware('auth')->group(function (){
     Route::post('/do_update_school/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_school'])->name('do.update.school');
     Route::post('/do_update_parameter/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_parameter'])->name('do.update.parameter');
     Route::post('/do_update_user/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_user'])->name('do.update.user');
+    Route::post('/do_update_reservation/{id}', [\App\Http\Controllers\AdminController::class, 'do_update_reservation'])->name('do.update.reservation');
 
     Route::post('/add_user', [\App\Http\Controllers\AdminController::class, 'add_user'])->name('add.user');
     Route::post('/add_school', [\App\Http\Controllers\AdminController::class, 'add_school'])->name('add.school');

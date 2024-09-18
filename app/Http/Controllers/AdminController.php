@@ -132,6 +132,33 @@ class AdminController extends Controller
 
     }
 
+
+    public function do_update_reservation(Request $request,$id)
+    {
+        $validator = $request->validate([
+            'service' => 'required|string|max:255',
+            'route' => 'required',
+            'phone_numbre' => 'required',
+            'distance' => 'required',
+            'house_location' => 'required',
+            'school_location' => 'required',
+            'price' => 'required',
+            'status' => 'required',
+        ]);
+
+        if (!$validator) {
+            return back()->withErrors($validator)->withInput();
+        }
+        $reservation = Reservation::find($id);
+        $reservation->status = $request->status;
+        $reservation->price = $request->price;
+        $reservation->service = $request->service;
+        $reservation->route = $request->route;
+        $reservation->save();
+        return redirect()->route('admin.reservations');
+
+    }
+
     public function update_school($id)
     {
         $school = School::find($id);
