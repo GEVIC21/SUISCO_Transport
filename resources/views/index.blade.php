@@ -693,9 +693,9 @@
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
                                                                 <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
-                                                                <option value="Aller Simple">Maison -> Ecole</option>
-                                                                <option value="Retour Simple">Ecole -> Maison </option>
-                                                                <option value="Aller-Retour">Aller <-> Retour</option>
+                                                                <option value="1">Maison -> Ecole</option>
+                                                                <option value="1">Ecole -> Maison </option>
+                                                                <option value="2">Aller <-> Retour</option>
                                                             </select>
                                                             <span
                                                             class="form-icon mdi mdi-map"></span>
@@ -863,9 +863,9 @@
                                                             </select> -->
                                                             <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
-                                                                <option value="Aller Simple">Maison -> Ecole</option>
-                                                                <option value="Retour Simple">Ecole -> Maison </option>
-                                                                <option value="Aller-Retour">Aller <-> Retour</option>
+                                                                <option value="1">Maison -> Ecole</option>
+                                                                <option value="1">Ecole -> Maison </option>
+                                                                <option value="2">Aller <-> Retour</option>
                                                             </select>
                                                             <span
                                                                 class="form-icon mdi mdi-map"></span>
@@ -1745,56 +1745,60 @@
 
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
-                // Vérifiez tous les champs
-                var standardPrice = @json($prix_standard_km_h);
-                var premiumPrice = @json($prix_premium_km_h);
+              
+                var marge = @json($marge);
+                var ammortissement = @json($ammortissement);
+                var coutheure = @json($coutheure);
+                var coutmaintenance = @json($coutmaintenance);
+                var coutcarburant = @json($coutcarburant);
 
-                console.log('Standard Price:', standardPrice);
-                console.log('Premium Price:', premiumPrice);
+                console.log('marge:', marge);
+                console.log('ammortissement:', ammortissement);
+                console.log('coutheure:', coutheure);
+                console.log('coutmaintenance:', coutmaintenance);
+                console.log('coutcarburant:', coutcarburant);
 
-                var dItValueFloat = parseFloat(dItValue)
-               
+                var coutJour = 0;
+                var Benef = 0;
+                var prixBase = 0;
+                var prixPremium = 0;
+                var prixStandard= 0;
+
+                coutJour = parseInt((ammortissement + coutheure ) *  dItValue  + trajectoryValue  * ( coutmaintenance + coutcarburant));
+
+                Benef = parseInt((coutJour *  (marge / 100 ) )) ;
+
+                prixBase = coutJour + Benef ;
+
+                price = prixBase * 25 ;
+
                 if (serviceValue === "Standard") 
                 {
-                        if (dItValueFloat <= 1) {
-                            price = standardPrice; // Prix standard
-                        } 
-                        else {
-                            price = dItValue * standardPrice; // Calculer le prix basé sur la distance niveau standard
-                        }
+                        price = parseInt( price / 4);
                 }
+            
 
-                else if (serviceValue === "Premium")
-                {
-                        if (dItValueFloat <= 1) {
-                            price = premiumPrice; // Prix premium
-                        } else {
-                            price = dItValue * premiumPrice; // Calculer le prix basé sur la distance niveau premium
-                        }
-                }
-
-                        // Vérifier si la valeur de trajectory est "Aller <-> Retour"
-                if (trajectoryValue === "Aller-Retour") 
-                {
-                            price *= 2; // Doubler le prix
-                }
-
-                        // Mettre à jour les éléments de la modale
                 if (modalDistanceElem) {
                     modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (dItValue) + ' km';
                 }
                 if (modalPriceElem) {
-                    
-                    // Arrondir à l'entier inférieur
-                    price = Math.floor(price);
 
                     // Formatage du prix pour l'affichage sans décimales
                     var formattedPrice = price.toLocaleString('fr-FR', { style: 'currency', currency: 'CFA' });
 
                     modalPriceElem.textContent = 'Prix: ' + price + ' FCFA';
                 }
+                console.log('marge:', marge);
+                console.log('ammortissement:', ammortissement);
+                console.log('coutJour:', coutJour);
+                console.log('Benef:', Benef);
+                console.log('prixBase:', prixBase);
+                console.log('prixPremium:', prixPremium);
+                console.log('prixStandard:', prixStandard);
                 console.log('Price:', price);
-                modal.style.display = "block";                      
+                
+                modal.style.display = "block";  
+
                
             } 
             else {
