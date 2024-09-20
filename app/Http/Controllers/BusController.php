@@ -85,6 +85,7 @@ class BusController extends Controller
                 'school_location' => $schoolName,
                 'route' => $request->trajectory,
                 'distance' => $distance,
+                'price' => $request->pricevalue,
                 ]
         );
       //Flashy::message(__('Reservation enrégistrer avec sussès') . ' ' . __('Nous vous contacterons le plutôt possible.'));

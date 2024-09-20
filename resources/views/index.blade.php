@@ -815,6 +815,11 @@
                                                             <input hidden class="form-input" id="distance_address_evaluation" type="text"  name="distance_address_evaluation" data-constraints="@Required" style="pointer-events: none;">
 
                                                         </div>
+                                                        <div class="form-wrap">
+                                                            <input hidden class="form-input" id="pricevalue" type="text"  name="pricevalue" data-constraints="@Required" style="pointer-events: none;">
+
+                                                        </div>
+                                                        
                                                         <!-- Bouton pour afficher la div -->
 
                                                         <!--  id d'avant home_address_evaluation -->
@@ -896,7 +901,7 @@
                                                                 <!-- <p id="modalDeparture"></p>
                                                                 <p id="modalArrival"></p> -->
                                                                 <p id="modalDistance"></p>
-                                                                <p id="modalPrice"></p>
+                                                                <p id="modalPrice" name="modalPrice"></p>
 
                                                                 <!-- Ajouter les boutons Continuer et Annuler -->
                                                                  <p class="modal-title"> Désirez-vous faire une reservation ?</p>
@@ -1746,11 +1751,11 @@
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
               
-                var marge = @json($marge);
-                var ammortissement = @json($ammortissement);
-                var coutheure = @json($coutheure);
-                var coutmaintenance = @json($coutmaintenance);
-                var coutcarburant = @json($coutcarburant);
+                var marge = parseInt(@json($marge));
+                var ammortissement = parseInt(@json($ammortissement));
+                var coutheure = parseInt(@json($coutheure));
+                var coutmaintenance = parseInt(@json($coutmaintenance));
+                var coutcarburant = parseInt(@json($coutcarburant));
 
                 console.log('marge:', marge);
                 console.log('ammortissement:', ammortissement);
@@ -1763,8 +1768,25 @@
                 var prixBase = 0;
                 var prixPremium = 0;
                 var prixStandard= 0;
+                 var c1 = parseInt((ammortissement + coutheure ));
+                console.log('c1:', c1);
+                console.log(ammortissement + coutheure);
 
-                coutJour = parseInt((ammortissement + coutheure ) *  dItValue  + trajectoryValue  * ( coutmaintenance + coutcarburant));
+                var cj1 = parseInt(parseInt((ammortissement + coutheure )) * (dItValue));
+
+                var c2 = parseInt((coutmaintenance + coutcarburant ));
+                console.log('c2:', c2);
+
+                var cj2 =  parseInt(trajectoryValue  * ( coutmaintenance + coutcarburant));
+                console.log('cj1:', cj1);
+                console.log('cj2:', cj2);
+
+                if (trajectoryValue === "2") 
+                {
+                    dItValue *= 2;
+                }
+ 
+                coutJour =   (ammortissement + coutheure ) *  dItValue  +   trajectoryValue  *  (coutmaintenance + coutcarburant );
 
                 Benef = parseInt((coutJour *  (marge / 100 ) )) ;
 
@@ -1774,7 +1796,7 @@
 
                 if (serviceValue === "Standard") 
                 {
-                        price = parseInt( price / 4);
+                        price = price / 4;
                 }
             
 
@@ -1787,6 +1809,8 @@
                     var formattedPrice = price.toLocaleString('fr-FR', { style: 'currency', currency: 'CFA' });
 
                     modalPriceElem.textContent = 'Prix: ' + price + ' FCFA';
+                    var priceElem = document.getElementById('pricevalue');
+                    priceElem.value = price;
                 }
                 console.log('marge:', marge);
                 console.log('ammortissement:', ammortissement);
