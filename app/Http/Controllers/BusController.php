@@ -20,17 +20,24 @@ class BusController extends Controller
     {
 
     }
-
+    const MARGE = "MARGE";
+    const AMORTISSEMENT = "AMORTISSEMENT";
+    const COUTHEURE = "COUTHEURE";
+    const COUTMAINTENANCE = "COUTMAINTENANCE";
+    const COUTCARBURANT = "COUTCARBURANT";
     public function index()
     {
         $mutual_price = Parameter::whereLabel(Parameter::BUS_MUTUAL_PRICE)->first()->value;
         $standard_price = Parameter::whereLabel(Parameter::BUS_STANDARD_PRICE)->first()->value;
         $premium_price = Parameter::whereLabel(Parameter::BUS_PREMIUM_PRICE)->first()->value;
-        $prix_standard_km_h =  Parameter::whereLabel(Parameter::PRIX_STANDARD_1H_1KM)->first()->value;
-        $prix_premium_km_h =  Parameter::whereLabel(Parameter::PRIX_PREMIUM_1H_1KM)->first()->value;
+        $marge =  Parameter::whereLabel(Parameter::MARGE)->first()->value;
+        $ammortissement =  Parameter::whereLabel(Parameter::AMORTISSEMENT)->first()->value;
+        $coutheure =  Parameter::whereLabel(Parameter::COUTHEURE)->first()->value;
+        $coutmaintenance =  Parameter::whereLabel(Parameter::COUTMAINTENANCE)->first()->value;
+        $coutcarburant =  Parameter::whereLabel(Parameter::COUTCARBURANT)->first()->value;
         $schools = School::all();
 
-        return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools','prix_standard_km_h','prix_premium_km_h'));
+        return view('index', compact('mutual_price', 'standard_price', 'premium_price','schools','marge','ammortissement','coutheure','coutmaintenance','coutcarburant'));
     }
 
     public function submitForm(Request $request)
