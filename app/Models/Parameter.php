@@ -51,9 +51,9 @@ class Parameter extends Model
         self::BUS_STANDARD_PRICE => ['BUS STANDARD PRICE', '60 000 Fcfa/mois'],
         self::BUS_PREMIUM_PRICE => ['BUS PREMIUM PRICE', '200 000 Fcfa/mois'],
         self::MARGE => ['LA MARGE BENEF', '40'],
-        self::AMORTISSEMENT => ['AMORTISSEMENT DE LA VOITURE', '729,17'],
+        self::AMORTISSEMENT => ['AMORTISSEMENT DE LA VOITURE', '729.17'],
         self::COUTHEURE => ['COUT HEURE', '805'],
-        self::COUTMAINTENANCE => ['COUT DE LA MAINTENANCE', '25,41'],
+        self::COUTMAINTENANCE => ['COUT DE LA MAINTENANCE', '25.41'],
         self::COUTCARBURANT => ['COUT DU CARBURANT PAR KM', '70'],
     ];
 
