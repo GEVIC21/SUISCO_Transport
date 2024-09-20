@@ -1772,21 +1772,37 @@
                 console.log('c1:', c1);
                 console.log(ammortissement + coutheure);
 
+                if (trajectoryValue === "Aller-Retour") 
+                {
+                    dItValue *= 2;
+                    trajectoryValue = 2;
+              
+                }
+                else {
+                    trajectoryValue = 1;
+                }
+
                 var cj1 = parseInt(parseInt((ammortissement + coutheure )) * (dItValue));
 
                 var c2 = parseInt((coutmaintenance + coutcarburant ));
                 console.log('c2:', c2);
 
-                var cj2 =  parseInt(trajectoryValue  * ( coutmaintenance + coutcarburant));
+                var cj2 =  parseInt( trajectoryValue *  ( coutmaintenance + coutcarburant));
                 console.log('cj1:', cj1);
                 console.log('cj2:', cj2);
 
                 if (trajectoryValue === "Aller-Retour") 
                 {
                     dItValue *= 2;
+                    
                 }
+
+                console.log("dItValue");
+                console.log(dItValue);
+
+
  
-                coutJour =   (ammortissement + coutheure ) *  dItValue  +   trajectoryValue  *  (coutmaintenance + coutcarburant );
+                coutJour = parseInt(parseInt(parseInt((ammortissement + coutheure )) *  dItValue)  + parseInt( trajectoryValue  * parseInt((coutmaintenance + coutcarburant ))));
 
                 Benef = parseInt((coutJour *  (marge / 100 ) )) ;
 
@@ -1808,7 +1824,7 @@
                     // Formatage du prix pour l'affichage sans décimales
                     var formattedPrice = price.toLocaleString('fr-FR', { style: 'currency', currency: 'CFA' });
 
-                    modalPriceElem.textContent = 'Prix: ' + price + ' FCFA';
+                    modalPriceElem.textContent = 'Prix approximatif: ' + price + ' FCFA';
                     var priceElem = document.getElementById('pricevalue');
                     priceElem.value = price;
                 }
