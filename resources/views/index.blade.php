@@ -693,9 +693,9 @@
                                                             <select class="form-input select button-shadow " name="trajectory" data-constraints="@Required" required>
                                                                 <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
-                                                                <option value="1">Maison -> Ecole</option>
-                                                                <option value="1">Ecole -> Maison </option>
-                                                                <option value="2">Aller <-> Retour</option>
+                                                                <option value="Maison-Ecole">Maison -> Ecole</option>
+                                                                <option value="Ecole-Maison">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                             <span
                                                             class="form-icon mdi mdi-map"></span>
@@ -868,9 +868,9 @@
                                                             </select> -->
                                                             <option value="" selected style="display: none"> Précisez votre itinéraire
                                                                 </option>
-                                                                <option value="1">Maison -> Ecole</option>
-                                                                <option value="1">Ecole -> Maison </option>
-                                                                <option value="2">Aller <-> Retour</option>
+                                                                <option value="Maison-Ecole">Maison -> Ecole</option>
+                                                                <option value="Ecole-Maison">Ecole -> Maison </option>
+                                                                <option value="Aller-Retour">Aller <-> Retour</option>
                                                             </select>
                                                             <span
                                                                 class="form-icon mdi mdi-map"></span>
@@ -1781,7 +1781,7 @@
                 console.log('cj1:', cj1);
                 console.log('cj2:', cj2);
 
-                if (trajectoryValue === "2") 
+                if (trajectoryValue === "Aller-Retour") 
                 {
                     dItValue *= 2;
                 }
