@@ -54,6 +54,7 @@
                             <th class="min-w-100px">Nom d'utilisateur</th>
                             {{--                            <th class="min-w-100px">Trajet</th>--}}
                             <th class="min-w-100px">Date et Heure</th>
+                            <th class="min-w-100px">Role</th>
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -87,6 +88,30 @@
                                 <!--begin::Date Modified=-->
                                 <td class="pe-0" >
                                     <span class="fw-bolder">{{$user->created_at}}</span>
+                                </td>
+                                <td class="pe-0">
+                                    @php
+                                        // Définir la classe CSS en fonction du rôle
+                                        $roleClass = '';
+                                        switch ($user->role) {
+                                            case 'admin':
+                                                $roleClass = 'badge bg-primary';
+                                                break;
+                                            case 'parent':
+                                                $roleClass = 'badge bg-danger';
+                                                break;
+                                            case 'driver':
+                                                $roleClass = 'badge bg-success';
+                                                break;
+                                            default:
+                                                $roleClass = 'badge bg-light'; // Classe par défaut si nécessaire
+                                                break;
+                                        }
+                                    @endphp
+
+                                    <span class="fw-bolder {{ $roleClass }}">
+                                        {{ ucfirst($user->role) }}
+                                    </span>
                                 </td>
                                 <!--end::Date Modified=-->
                                 <!--begin::Action=-->

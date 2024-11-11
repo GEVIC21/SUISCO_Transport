@@ -9,6 +9,7 @@ use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use MercurySeries\Flashy\Flashy;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,7 @@ class AdminController extends Controller
     //
     public function login_page()
     {
-        return view('sign-in');
+        return view('admin.add.chauffeur');
     }
 
     public function reservations()
@@ -244,6 +245,94 @@ class AdminController extends Controller
         // Authentication failed, redirect back with error
         return Redirect::back()->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
+
+
+
+
+    /////chauffeur
+    // Affichage de la liste des chauffeurs
+    public function chauffeur()
+    {
+        $users = User::where('role', 'driver')->get();
+        return view('admin.chauffeur', compact('users'));
+    }
+
+    /////parent
+    // Affichage de la liste des parents
+    public function parent()
+    {
+        $users = User::where('role', 'parent')->get();
+        return view('admin.parent', compact('users'));
+    }
+
+// Affichage de la page de création de chauffeur
+    public function createChauffeur()
+    {
+        return view('admin.add.chauffeur');
+    }
+
+// Ajout d'un nouveau chauffeur
+    public function storeChauffeur(Request $request)
+    {
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|',
+            'voiture' => 'required|string|max:255',
+        ]);
+
+        User::create([
+            'name' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'voiture' => $request->voiture,
+            'role' => 'driver',
+        ]);
+
+        return redirect()->route('admin.chauffeur')->with('success', 'Chauffeur ajouté avec succès!');
+    }
+
+// Modification d'un chauffeur
+    // Affichage de la page de modification du chauffeur
+    public function editChauffeur($id)
+    {
+        $chauffeur = User::findOrFail($id);
+        return view('admin.update.chauffeur', compact('chauffeur'));
+    }
+
+// Mise à jour du chauffeur
+    public function updateChauffeur(Request $request, $id)
+    {
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'voiture' => 'required|string|max:255',
+        ]);
+
+        $chauffeur = User::findOrFail($id);
+        $chauffeur->update([
+            'name' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'voiture' => $request->voiture,
+        ]);
+
+        return redirect()->route('admin.chauffeur')->with('success', 'Chauffeur modifié avec succès!');
+    }
+
+
+// Suppression d'un chauffeur
+    public function deleteChauffeur($id)
+    {
+        $chauffeur = User::findOrFail($id);
+        $chauffeur->delete();
+        return redirect()->route('admin.chauffeur')->with('success', 'Chauffeur supprimé avec succès!');
+    }
+
+    ///
 
 
 

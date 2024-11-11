@@ -144,7 +144,7 @@
         width: 90%;
         height: 36rem;
     }
-    
+
     #phoneInputContainer #submitBtn  {
         position:fixed;
         right: 130px;
@@ -345,7 +345,7 @@
 
 .input-wrapper input {
     width: 100%;
-    padding-left: 40px; 
+    padding-left: 40px;
     padding-right: 10px;
     height: 40px;
     font-size: 16px;
@@ -355,7 +355,7 @@
 
 .input-wrapper .form-icon {
     position: absolute;
-    left: 17rem; 
+    left: 17rem;
     top: 60%;
     transform: translateY(-50%);
     font-size: 20px;
@@ -364,7 +364,7 @@
 
     </style>
 
-    
+
 </head>
 <body>
 <div class="ie-panel">
@@ -436,6 +436,36 @@
                         <a class="button button-sm button-default-outline button-winona" href="{{ route('bus.become.owner') }}">
                             CONSIGNATION</a>
                     </div>
+                    @if(Auth::guest())
+                    <a href="{{route('login')}}" class="text-black mx-2" title="Login">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                            <polyline points="10 17 15 12 10 7"></polyline>
+                            <line x1="15" y1="12" x2="3" y2="12"></line>
+                        </svg> Se connecter
+                    </a>
+                    <a href="{{route('register')}}" class="text-black mx-2" title="Signup">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                            <line x1="20" y1="8" x2="20" y2="14"></line>
+                            <line x1="23" y1="11" x2="17" y2="11"></line>
+                        </svg>
+                        S'inscrire
+                    </a>
+                    @endif
+                    @if(!Auth::guest())
+                    <a href="{{route('dashboard')}}" class="text-black mx-2" title="Dashboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                            <path d="M17 2l4 4-4 4"></path>
+                            <path d="M3 13h16"></path>
+                        </svg> Dashboard
+                    @if(Auth::user()->role == 'admin')
+                    @endif
+
+                    @endif
+
                     <div class="rd-navbar-dummy"></div>
                 </div>
             </nav>
@@ -699,9 +729,9 @@
                                                             </select>
                                                             <span
                                                             class="form-icon mdi mdi-map"></span>
-                                                        </div> 
+                                                        </div>
 
-                                                      
+
 
                                                         <div class="form-wrap">
                                                             <input hidden class="form-input" id="distance_address" type="text" name="distance_address" data-constraints="@Required" style="pointer-events: none;">
@@ -712,7 +742,7 @@
                                                             <input hidden class="form-input" id="route_distance" type="text"  name="route_distance" data-constraints="@Required" style="pointer-events: none;">
 
                                                         </div>
-                                                        
+
                                                         <div class="form-wrap-2">
                                                             <div class="form-wrap">
                                                                 <input class="form-input" id="form-phone" type="text" name="phone_number"
@@ -747,7 +777,7 @@
                                                                    <button class="button-validate" id="validateBtn" >Valider</button>
 
                                                                 </div>
-                                                                
+
                                                             </div>
                                                         </div>
 
@@ -794,7 +824,7 @@
                                                         <!-- <div class="form-wrap" >
                                                             <input hidden class="form-input" id="departure_address_evaluation" type="text" name="departure_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
 
-                                                        </div> 
+                                                        </div>
 
                                                         <div class="form-wrap" >
                                                             <input hidden class="form-input" id="home_address_evaluation" type="text" name="home_address_evaluation" data-constraints="@Required" style="pointer-events: none;" >
@@ -819,7 +849,7 @@
                                                             <input hidden class="form-input" id="pricevalue" type="text"  name="pricevalue" data-constraints="@Required" style="pointer-events: none;">
 
                                                         </div>
-                                                        
+
                                                         <!-- Bouton pour afficher la div -->
 
                                                         <!--  id d'avant home_address_evaluation -->
@@ -830,10 +860,10 @@
                                                                 <label class="form-label" for="form-location"></label>
                                                                 <span
                                                                     class="form-icon mdi mdi-home"></span>
-                                                            
+
                                                             </div>
 
-                                                            
+
                                                             <!-- <div class="form-button">
                                                                 <button   class="button button-block button-primary button-winona" type="button" >
                                                                     Carte
@@ -876,7 +906,7 @@
                                                                 class="form-icon mdi mdi-map"></span>
                                                         </div>
 
-                                                         
+
                                                         <div class="form-wrap">
                                                                             <!-- <div class="form-wrap">
                                                             <input class="form-input" id="form-phone" type="text" name="phone_number"
@@ -915,11 +945,11 @@
                                                                  <!-- <div>
                                                                     <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center">
                                                                         <label  for="phoneInput"> Votre numéro de téléphone :</label> <br>
-                                                                        <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>  
+                                                                        <input type="tel" id="phoneInput" name="phoneInput" placeholder="Numéro de téléphone" required>
                                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                                                                                 <button id="submitBtn" >Valider</button>
                                                                          </div>
-                                                                   
+
                                                                 </div>
                                                                  </div>      -->
                                                                     <div id="phoneInputContainer" style="display: none; margin-top: 20px; text-align: center;">
@@ -959,7 +989,7 @@
                                                             </div>
 
                                                         </div>
-                                                                
+
                                                      </div>
 
                                                             <!--fin Button trigger modal -->
@@ -1565,7 +1595,7 @@
                             routeWhileDragging: true,
                             showAlternatives: false, // Masquer les alternatives
                     show: false // Cette option ne sera pas utilisée directement, mais assurez-vous de la configurer selon vos besoins
-                
+
                         }).addTo(map);
 
                         // Calculer la distance en ligne droite
@@ -1580,7 +1610,7 @@
                             // Mettre à jour les champs de formulaire avec les distances
                           //   document.getElementById('distance_address').value = `${(distance / 1000).toFixed(2)}`; // Distance en ligne droite
                             document.getElementById('route_distance').value = `${(routeDistance / 1000).toFixed(2)}`; // Distance le long de l'itinéraire
-                        }); 
+                        });
                     } else {
                         alert("Veuillez entrer l'adresse de l'école.");
                     }
@@ -1669,7 +1699,7 @@
     // Quand l'utilisateur clique sur "Valider"
     submitBtn.onclick = function() {
     var phoneNumber = phoneInput.value.trim();
-    
+
         if (phoneNumber) {
             console.log("Numéro de téléphone soumis :", phoneNumber);
         // alert("Numéro de téléphone validé : " + phoneNumber);
@@ -1677,10 +1707,10 @@
         // phoneInput.value = ""; // Réinitialiser l'input
         } else {
             console.log("Veuillez entrer un numéro de téléphone valide.");
-        } 
+        }
     };
 
-    
+
     // Mettre à jour les champs de formulaire avec les coordonnées et la distance
     var departure = document.getElementById('departure_address_evaluation').value ;
     console.log("depart");
@@ -1703,9 +1733,9 @@
     /*         // Lorsque l'utilisateur clique sur le bouton, ouvrir la modal
             btn.onclick = function() {
             // Récupérer et vérifier la valeur du champ spécifique
-            
+
             var departureValue = document.getElementById('departure_address_evaluation').value ;
-            
+
             // Vérifiez si la valeur est non nulle et non vide
             if (departureValue) {
                 // Vérifiez tous les champs
@@ -1727,30 +1757,30 @@
             var modalDistanceElem = document.getElementById('modalDistance');
             var modalPriceElem = document.getElementById('modalPrice');
             // Afficher les valeurs dans le modal
-            
+
             var dItValue = (routeDistance / 1000).toFixed(2) ;
             console.log("dItValue");
             console.log(dItValue);
 
-            
+
             console.log("1");
             console.log(serviceValue);
             console.log(departureValue);
             console.log(schoolValue);
             console.log(trajectoryValue);
 
-           
+
             if (departureValue) {
                 // Vérifiez tous les champs
                 console.log("departure existe.");
-            } 
+            }
             if (schoolValue) {
                 console.log("schoolValue existe.");
-            } 
+            }
 
             // Vérifiez si la valeur est non nulle et non vide
             if (serviceValue && schoolValue && departureValue && trajectoryValue) {
-              
+
                 var marge = parseInt(@json($marge));
                 var ammortissement = parseInt(@json($ammortissement));
                 var coutheure = parseInt(@json($coutheure));
@@ -1772,11 +1802,11 @@
                 console.log('c1:', c1);
                 console.log(ammortissement + coutheure);
 
-                if (trajectoryValue === "Aller-Retour") 
+                if (trajectoryValue === "Aller-Retour")
                 {
                     dItValue *= 2;
                     trajectoryValue = 2;
-              
+
                 }
                 else {
                     trajectoryValue = 1;
@@ -1791,17 +1821,17 @@
                 console.log('cj1:', cj1);
                 console.log('cj2:', cj2);
 
-                if (trajectoryValue === "Aller-Retour") 
+                if (trajectoryValue === "Aller-Retour")
                 {
                     dItValue *= 2;
-                    
+
                 }
 
                 console.log("dItValue");
                 console.log(dItValue);
 
 
- 
+
                 coutJour = parseInt(parseInt(parseInt((ammortissement + coutheure )) *  dItValue)  + parseInt( trajectoryValue  * parseInt((coutmaintenance + coutcarburant ))));
 
                 Benef = parseInt((coutJour *  (marge / 100 ) )) ;
@@ -1810,11 +1840,11 @@
 
                 price = prixBase * 25 ;
 
-                if (serviceValue === "Standard") 
+                if (serviceValue === "Standard")
                 {
                         price = price / 4;
                 }
-            
+
 
                 if (modalDistanceElem) {
                     modalDistanceElem.textContent = 'Distance le long de l\'itinéraire: ' + (dItValue) + ' km';
@@ -1836,11 +1866,11 @@
                 console.log('prixPremium:', prixPremium);
                 console.log('prixStandard:', prixStandard);
                 console.log('Price:', price);
-                
-                modal.style.display = "block";  
 
-               
-            } 
+                modal.style.display = "block";
+
+
+            }
             else {
                 console.log("Un champ est vide.");
                 alert("Veuillez vous assurer de remplir tous les champs avant de continuer.");
@@ -1862,7 +1892,7 @@
       }
     };
 
- 
+
 
 
         // Fonction pour afficher "Réservez" et cacher "Tarifs"
@@ -1986,7 +2016,7 @@
                     if (endMarker2) {
                         map2.removeLayer(endMarker2);
                     }
-                    
+
                     endMarker2 = L.marker(endLatLng2).addTo(map2)
                         .bindPopup('École')
                         .openPopup();
@@ -2038,11 +2068,11 @@
                         var departureElem = document.getElementById('departure_address_evaluation');
                         var arriveElem = document.getElementById('arrive_address_evaluation');
                         var distanceElem = document.getElementById('distance_address_evaluation');
-                        
+
                         var distance_itineraire = document.getElementById('distance_itineraire');
                             distance_itineraire.value = (routeDistance / 1000).toFixed(2) ;
 
-                        /* 
+                        /*
                         Latitude avec lat et long au debut
                         if (departureElem) {
                             departureElem.value = `Lat: ${startLatLng2.lat}, Lng: ${startLatLng2.lng}`;
@@ -2292,8 +2322,8 @@
         @if(session('success'))
         Swal.fire({
             title: 'Success!',
-            text: '{{ session('success') }}', 
-            
+            text: '{{ session('success') }}',
+
             icon: 'success',
             confirmButtonText: 'OK'
         });

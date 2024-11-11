@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+//use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +21,30 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('bus.')->group(function (){
     Route::get('/', 'App\Http\Controllers\BusController@index')->name('index');
-    Route::view('/'.__('become-owner'), 'become_owner')->name('become.owner');
+    Route::view('/'.('become-owner'), 'become_owner')->name('become.owner');
     Route::post('/subscription/store', 'App\Http\Controllers\BusController@store_subscription')->name('subscription.store');
     Route::post('/consignment/store', 'App\Http\Controllers\BusController@store_consignment')->name('consignment.store');
     Route::post('/submit-form', 'App\Http\Controllers\BusController@submitForm')->name('form.submit');
 
-    // Route::post('/submit-form', [FormController::class, 'submitForm'])->name('form.submit');
 
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Route pour gérer la soumission du formulaire d'inscription
+    Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
+
+
+
+//    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+//    Route::post('/register', [RegisterController::class, 'register']);
+
+
+
+//     Route::post('/submit-form', [FormController::class, 'submitForm'])->name('form.submit');
+//
 });
 
+Route::middleware(['role:admin', 'auth'])->name('admin.')->group(function (){
 
-Route::name('admin.')->middleware('auth')->group(function (){
     Route::get('/reservations', [\App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations');
     Route::get('/utilisateurs', [\App\Http\Controllers\AdminController::class, 'utilisateurs'])->name('utilisateurs');
     Route::get('/ecoles', [\App\Http\Controllers\AdminController::class, 'ecoles'])->name('ecoles');
@@ -52,13 +70,47 @@ Route::name('admin.')->middleware('auth')->group(function (){
     Route::post('/add_user', [\App\Http\Controllers\AdminController::class, 'add_user'])->name('add.user');
     Route::post('/add_school', [\App\Http\Controllers\AdminController::class, 'add_school'])->name('add.school');
 
+    ////chauffeur////
+    Route::get('/chauffeur', [\App\Http\Controllers\AdminController::class, 'chauffeur'])->name('chauffeur');
+    Route::get('/chauffeur/create', [\App\Http\Controllers\AdminController::class, 'createChauffeur'])->name('create.chauffeur');
+    Route::post('/chauffeur/store', [\App\Http\Controllers\AdminController::class, 'storeChauffeur'])->name('store.chauffeur');
+    Route::get('/chauffeur/edit/{id}', [\App\Http\Controllers\AdminController::class, 'editChauffeur'])->name('edit.chauffeur');
+    Route::put('/chauffeur/update/{id}', [\App\Http\Controllers\AdminController::class, 'updateChauffeur'])->name('update.chauffeur');
+    Route::delete('/chauffeur/delete/{id}', [\App\Http\Controllers\AdminController::class, 'deleteChauffeur'])->name('delete.chauffeur');
+
+    ////parent////
+    Route::get('/parent', [\App\Http\Controllers\AdminController::class, 'parent'])->name('parent');
+
     Route::get('/admin.logout', function () {
         Auth::logout();
         return redirect(route('login_page'));
     })->name('logout');
 
+    // Route::post('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login'])->name('dashboard_admin');
 });
 
-Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
-Route::post('/admin-logged', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
 
+
+
+
+//Route::name('admin.')->middleware('auth')->group(function (){
+//
+//
+//});
+
+// Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
+Route::post('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
+Route::get('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
+
+
+Route::get('login', [AuthenticatedSessionController::class, 'create'])
+->name('login');
+Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+
+Route::get('register', [RegisteredUserController::class, 'create'])
+->name('register');
+Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
+
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         }
         $this->call([UsersTableSeeder::class]);
         $this->call([SchoolsTableSeeders::class]);
-
+        ////role////
+        $this->call(AdminUserSeeder::class);
 
     }
 }
