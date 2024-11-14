@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Consignment;
 use App\Models\Parameter;
+use App\Models\PermissionModel;
+use App\Models\PermissionRoleModel;
 use App\Models\Reservation;
+use App\Models\RoleModel;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,6 +33,7 @@ class AdminController extends Controller
     }
     public function utilisateurs()
     {
+        // dd(Hash::make('00000000'));
         $users =  User::all();
         return view('admin.utilisateurs',compact('users'));
     }
@@ -120,16 +124,33 @@ class AdminController extends Controller
         if (!$validator) {
             return back()->withErrors($validator)->withInput();
         }
+
+        // $user = User::getSingle($id);
+        // $user->name = trim($request->name);
+        // if(!empty($request->password))
+        // {
+        //     $user->password = Hash::make($request->password);
+        // }
+
+        // $user->role_id = trim($request->role_id);
+
+
         $user = User::find($id);
-        $user->name = $request->name;
+        $user->name = trim($request->name);
+        // $user->name = $request->name;
         $user->email = $request->email;
-        if ($user->password)
+        // if ($user->password)
+        // {
+        //     $user->password = bcrypt($request->input('password'));
+        // }
+        if(!empty($request->password))
         {
-            $user->password = bcrypt($request->input('password'));
+            $user->password = Hash::make($request->password);
         }
+        $user->role_id = trim($request->role_id);
         $user->save();
         Flashy::message(__('Utilisateur modifie avec sussès'));
-        return redirect()->route('admin.utilisateurs');
+        return redirect()->route('admin.utilisateurs')->with('success','Utilisateur mise à jour avec success');
 
     }
 
@@ -167,8 +188,12 @@ class AdminController extends Controller
     }
     public function update_utilisateur($id)
     {
+        $data['getRecord'] = User::getSingle($id);
+        $data['getRole'] = RoleModel::getRecord();
+
         $user = User::find($id);
-        return view('admin.update.utilisateurs',compact('user'));
+        $data['user'] = $user;
+        return view('admin.update.utilisateurs', $data);
     }
 
     public function update_parametre($id)

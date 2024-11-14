@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,22 @@ Route::name('bus.')->group(function (){
 });
 
 Route::middleware(['role:admin', 'auth'])->name('admin.')->group(function (){
+
+    // Route pour les roles
+    Route::get('role/list', [RoleController::class, 'list'])->name('role.list');
+    Route::get('panel/role/add',[RoleController::class,'add'])->name('role.add');
+    Route::post('panel/role/insert',[RoleController::class,'insert'])->name('role.insert');
+    Route::get('panel/role/delete/{id}',[RoleController::class,'delete'])->name('role.delete');
+    Route::get('panel/role/edit/{id}',[RoleController::class,'edit'])->name('role.edit');
+    Route::post('panel/role/update/{id}',[RoleController::class,'update'])->name('role.update');
+
+    // Route pour les utilisateurs
+    // Route::get('panel/user',[UserController::class,'list'])->name('user.list');
+    // Route::get('panel/user/add',[UserController::class,'add'])->name('user.add');
+    // Route::post('panel/user/insert',[UserController::class,'insert'])->name('user.insert');
+    // Route::get('panel/user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
+    // Route::post('panel/user/update/{id}',[UserController::class,'update'])->name('user.update');
+    // Route::get('panel/user/delete/{id}',[UserController::class,'delete'])->name('user.delete');
 
     Route::get('/reservations', [\App\Http\Controllers\AdminController::class, 'reservations'])->name('reservations');
     Route::get('/utilisateurs', [\App\Http\Controllers\AdminController::class, 'utilisateurs'])->name('utilisateurs');

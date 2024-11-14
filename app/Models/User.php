@@ -63,4 +63,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getRecord(){
+        return self::select('users.*', 'roles.name as role_name')
+        ->join('roles', 'roles.id','=', 'users.role_id')
+        ->orderBy('users.id','desc')->get();
+    }
+
+    public static function getSingle($id){
+        return self::find($id);
+    }
 }

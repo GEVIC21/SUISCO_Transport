@@ -1,0 +1,654 @@
+@extends('layouts.master')
+@section('content')
+    @include('layouts.header')
+
+
+
+    @include('layouts.sidebar')
+
+    <div class="contents mt-5">
+        <div class="container-fluid">
+            <div class="form-element">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card card-default card-md mb-4">
+                            <div class="card-header">
+                                <h6>Ajouter un utilisateur</h6>
+                            </div>
+
+                            <div class="card-body py-md-25">
+                                <form action="{{ route('user.insert') }}" method="POST">
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-25">
+                                            <div class="with-icon">
+                                                <span class="la-user lar color-light"></span>
+                                                <input type="text" name="name" value="{{old('name')}}"
+                                                    class="form-control  ih-medium ip-lightradius-xs b-light"
+                                                    id="inputNameIcon1" placeholder="Duran Clayton">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-25">
+                                            <div class="with-icon">
+                                                <span class="las la-envelope color-light"></span>
+                                                <input type="email" value="{{old('email')}}" name="email" autocomplete="off"
+                                                    class="form-control  ih-medium ip-lightradius-xs b-light"
+                                                    id="inputNameIcon2" placeholder="Email">
+                                                <div style="color:red">
+                                                    {{ $errors->first('email') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-25">
+                                            <div class="with-icon">
+                                                <span class="la-lock las color-light"></span>
+                                                <input type="password"  name="password" autocomplete="off"
+                                                    class="form-control  ih-medium ip-lightradius-xs b-light"
+                                                    id="inputNameIcon4" placeholder="Password">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 mb-25" >
+
+                                            <select name="role_id" class="form-control px-15 select2-hidden-accessible" id="countryOption" data-select2-id="countryOption" tabindex="-1" aria-hidden="true">
+                                               <option value="">Selectionner</option>
+                                               @foreach ($getRole as $value )
+                                                 <option {{ (old('role_id') == $value->id) ? 'selected' : '' }}  value="{{$value->id}}">{{$value->name}}</option>
+                                               @endforeach
+                                            </select>
+                                         </div>
+
+
+                                        <!-- Submit Button -->
+                                        <div class="col-md-12 d-flex justify-content-end mt-3">
+                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+
+                        </div>
+                        <!-- ends: .card -->
+                    </div>
+
+                    {{-- <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>Form Control</h6>
+                                    </div>
+                                    <div class="card-body pb-md-30">
+                                        <form action="#">
+                                            <div class="form-group">
+                                                <label for="a11" class="il-gray fs-14 fw-500 align-center mb-10">Email
+                                                    Address</label>
+                                                <input type="text"
+                                                    class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                    id="a11" placeholder="username@email.com">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1"
+                                                    class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                    Select</label>
+                                                <select class="form-control px-15" id="exampleFormControlSelect1">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group tagSelect-rtl">
+                                                <label class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                    multiple select</label>
+
+                                                <div class="dm-select ">
+
+                                                    <select name="select-tag" id="select-tag" class="form-control "
+                                                        multiple="multiple">
+                                                        <option value="01">Option 1</option>
+                                                        <option value="02">Option 2</option>
+                                                        <option value="03">Option 3</option>
+                                                        <option value="04">Option 4</option>
+                                                        <option value="05">Option 5</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group form-element-textarea mb-20">
+                                                <label for="exampleFormControlTextarea1"
+                                                    class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                    textarea</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card card-horizontal card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>HTML5 Inputs</h6>
+                                    </div>
+                                    <div class="card-body py-md-30">
+                                        <div class="horizontal-form">
+                                            <form action="#">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="inputName"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Text</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="inputName" placeholder="Duran Clayton">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="element-text"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Email
+                                                            Address</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="email"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="element-text" placeholder="username@email.com">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="element-text2"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">URL</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="url"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="element-text2"
+                                                            placeholder="https://ninjadash-react-admin-dashboard-template">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="element-text3"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="number"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="element-text3" placeholder="017123456789">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="element-text4"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Password</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="password"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="element-text4">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="element-text5"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Number</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="number"
+                                                            class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                            id="element-text5" placeholder="123">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="datepicker7"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Datetime</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="position-relative">
+                                                            <div
+                                                                class="d-flex align-items-center justify-content-start ih-medium ip-light radius-xs b-light px-15 form-control">
+                                                                <input type="text"
+                                                                    class="ip-light border-0 shadow-none w-100px"
+                                                                    id="datepicker7" placeholder="01/10/2021">
+                                                                <input type="text"
+                                                                    class="ip-light color-lighten border-0 shadow-none"
+                                                                    id="time-picker2" placeholder="12:00 AM">
+                                                            </div>
+                                                            <a href="#"><img class="svg"
+                                                                    src="img/svg/calendar.svg" alt="calendar.svg"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="datepicker8"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Date</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="position-relative">
+                                                            <input type="text"
+                                                                class="form-control  ih-medium ip-light radius-xs b-light px-15"
+                                                                id="datepicker8" placeholder="01/10/2021">
+                                                            <a href="#"><img class="svg"
+                                                                    src="img/svg/calendar.svg" alt="calendar"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="datepicker"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Month</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="position-relative">
+                                                            <input type="text"
+                                                                class="form-control  ih-medium ip-light radius-xs b-light px-15"
+                                                                id="datepicker" placeholder="January 20, 2018">
+                                                            <a href="#"><img class="svg"
+                                                                    src="img/svg/calendar.svg" alt="calendar"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label for="datepicker9"
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Week</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="position-relative">
+                                                            <input type="text"
+                                                                class="form-control  ih-medium ip-light radius-xs b-light px-15"
+                                                                id="datepicker9" placeholder="Week 2, 2021">
+                                                            <a href="#"><img class="svg"
+                                                                    src="img/svg/calendar.svg" alt="calendar"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender mb-20">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Time</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="time-picker">
+                                                            <div class="form-group mb-0">
+                                                                <div
+                                                                    class="input-container icon-right position-relative w-100 color-light ">
+                                                                    <span class="input-icon icon-right">
+                                                                        <img class="svg" src="img/svg/clock.svg"
+                                                                            alt="clock">
+                                                                    </span>
+                                                                    <input type="text"
+                                                                        class="form-control ih-medium ip-light radius-xs b-light px-15 color-lighten"
+                                                                        id="time-picker" placeholder="12:00 AM">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row form-group-calender mb-20">
+                                                    <div class="col-sm-3 d-flex aling-items-center">
+                                                        <label
+                                                            class=" col-form-label color-dark fs-14 fw-500 align-center">Color</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <div class="color-picker">
+                                                            <div class="form-group mb-0">
+                                                                <div
+                                                                    class="input-container icon-right position-relative w-100 color-light ">
+                                                                    <input type="color"
+                                                                        class="form-control ih-medium ip-light radius-xs b-light px-15 color-light"
+                                                                        id="favcolor" value="#5F63F2">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ends: .card -->
+
+                            </div>
+                        </div>
+                    </div> --}}
+                    {{-- <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>Sizes</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="#">
+                                            <div class="form-group">
+                                                <label for="a12"
+                                                    class="il-gray fs-14 fw-500 align-center mb-10">Large
+                                                    Input</label>
+                                                <input type="text"
+                                                    class="form-control ih-large ip-light radius-xs b-light px-15"
+                                                    id="a12" placeholder=".form-control.lg">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="a13"
+                                                    class="il-gray fs-14 fw-500 align-center mb-10">Default
+                                                    Input</label>
+                                                <input type="text"
+                                                    class="form-control ih-medium ip-light radius-xs b-light px-15"
+                                                    id="a13" placeholder="Default input">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="a14"
+                                                    class="il-gray fs-14 fw-500 align-center mb-10">Small
+                                                    Input</label>
+                                                <input type="text"
+                                                    class="form-control ih-small ip-light radius-xs b-light px-15"
+                                                    id="a14" placeholder=".form-control.sm">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="card card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>Form Control</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group form-element-textarea">
+                                            <label for="exampleFormControlTextarea2"
+                                                class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                basic</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group form-element-textarea">
+                                            <label for="exampleFormControlTextarea3"
+                                                class="il-gray fs-14 fw-500 align-center mb-10">Unresizable
+                                                Textarea</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea3" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>Sizes</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group select-px-15">
+                                            <label for="countryOption"
+                                                class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                Select</label>
+                                            <select class="form-control px-15" id="countryOption">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-2" class="il-gray fs-14 fw-500 align-center mb-10">Disable
+                                                Select</label>
+                                            <div class="dm-select disabled ">
+                                                <select name="select-2" id="select-2"
+                                                    class="form-control  ih-medium ip-light radius-xs b-light px-15"
+                                                    disabled="">
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group select-px-15 tagSelect-rtl">
+                                            <label class="il-gray fs-14 fw-500 align-center mb-10">Example
+                                                multiple select</label>
+
+                                            <div class="dm-select ">
+
+                                                <select name="select-tag2" id="select-tag2" class="form-control "
+                                                    multiple="multiple">
+                                                    <option value="01">Option 1</option>
+                                                    <option value="02">Option 2</option>
+                                                    <option value="03">Option 3</option>
+                                                    <option value="04">Option 4</option>
+                                                    <option value="05">Option 5</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="select-3" class="il-gray fs-14 fw-500 align-center mb-10">Disable
+                                                multiple select</label>
+                                            <div class="dm-select disabled ">
+                                                <select name="select-2" id="select-3"
+                                                    class="form-control  ih-medium ip-light radius-xs b-light px-15"
+                                                    disabled="">
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                    <option value="01">Option 1</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card  card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>File Browser</h6>
+                                    </div>
+                                    <div class="card-body pb-md-40 pt-md-30">
+                                        <div class="custom-file">
+
+                                            <input class="form-control custom-file-input" type="file" id="customFile">
+                                            <label class="custom-file-label ps-15" for="customFile">Browse</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card  card-default card-md mb-4">
+                                    <div class="card-header">
+                                        <h6>Checkboxes and Radios</h6>
+                                    </div>
+                                    <div class="card-body form-element-radioChecks">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+
+
+                                                    <div class="checkbox-theme-default custom-checkbox ">
+                                                        <input class="checkbox" type="checkbox" id="check-un1">
+                                                        <label for="check-un1">
+                                                            <span class="checkbox-text">
+                                                                Uncheck
+
+                                                            </span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="mb-3">
+
+
+                                                    <div class="checkbox-theme-default custom-checkbox ">
+                                                        <input class="checkbox" type="checkbox" id="check-un3" checked>
+                                                        <label for="check-un3">
+                                                            <span class="checkbox-text">
+                                                                Checked
+
+                                                            </span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="checkbox-list">
+                                                    <div class="checkbox-list__single mb-3">
+
+
+                                                        <div class="checkbox-theme-default custom-checkbox disabled ">
+                                                            <input class="checkbox" type="checkbox" id="check-5">
+                                                            <label for="check-5">
+                                                                <span class="checkbox-text">
+                                                                    Disabled Unchecked
+
+                                                                </span>
+                                                            </label>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="checkbox-list__single">
+
+
+                                                        <div class="checkbox-theme-default custom-checkbox disabled ">
+                                                            <input class="checkbox" type="checkbox" id="check-4"
+                                                                checked>
+                                                            <label for="check-4">
+                                                                <span class="checkbox-text">
+                                                                    Disabled checked
+
+                                                                </span>
+                                                            </label>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+
+
+                                                    <div class="radio-theme-default custom-radio ">
+                                                        <input class="radio" type="radio" name="radio-default" value=0
+                                                            id="radio-un2">
+                                                        <label for="radio-un2">
+                                                            <span class="radio-text">Uncheck</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="mb-3">
+
+
+                                                    <div class="radio-theme-default custom-radio ">
+                                                        <input class="radio" type="radio" name="radio-default" value=0
+                                                            id="radio-un4" checked>
+                                                        <label for="radio-un4">
+                                                            <span class="radio-text">Checked</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="mb-3">
+
+
+                                                    <div class="radio-theme-default custom-radio disabled ">
+                                                        <input class="radio" type="radio" name="radio-default" value=0
+                                                            id="radio-2">
+                                                        <label for="radio-2">
+                                                            <span class="radio-text">Disabled Unchecked</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                </div>
+                                                <div>
+                                                    <div class="radio-theme-default custom-radio disabled ">
+                                                        <input class="radio" type="radio" name="radio-default2"
+                                                            value="0" id="radio-3" checked="">
+                                                        <label for="radio-3">
+                                                            <span class="radio-text">Disabled Checked</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    @include('layouts.footer')
+
+    <div id="overlayer">
+        <div class="loader-overlay">
+            <div class="dm-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay-dark-sidebar"></div>
+    <style>
+        .table-actions {
+            min-width: 150px;
+            /* Ajustez selon vos besoins */
+        }
+
+        .table-actions .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .table-actions .svg {
+            width: 16px;
+            height: 16px;
+            /* Pour les icônes blanches sur fond coloré */
+            filter: brightness(0) invert(1);
+        }
+
+        /* Si vous voulez que les boutons soient de la même taille */
+        .table-actions .btn {
+            min-width: 80px;
+            /* Ajustez selon vos besoins */
+        }
+
+        /* Pour assurer que le contenu de la cellule est centré */
+        .table td {
+            vertical-align: middle;
+        }
+    </style>
+@endsection

@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-solid"
+                                            <input type="text" readonly class="form-control form-control-solid"
                                                    name="email" value="{{$user->email}}"
                                                    data-kt-ecommerce-settings-type="tagify"/>
                                             <!--end::Input-->
@@ -112,35 +112,38 @@
                                             <input type="password" class="form-control form-control-solid"
                                                    name="password" value=""
                                                    data-kt-ecommerce-settings-type="tagify"/>
+                                            <small>Voulez-vous changez votre mot de passe?.Sinon laissez vide.</small>
                                             <!--end::Input-->
                                             @error('password')
                                             <div style="color: red;font-size: smaller;">{{ $message }}</div>
                                             @enderror
                                         </div>
+
                                     </div>
                                     <!--end::Input group-->
-                                    <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
                                         <div class="col-md-3 text-md-end">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                <span >Confirmer Mot de passe</span>
+                                                <span >Role</span>
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                                    title="Set keywords for the store separated by a comma."></i>
                                             </label>
                                             <!--end::Label-->
                                         </div>
                                         <div class="col-md-9">
-                                            <!--begin::Input-->
-                                            <input type="password" class="form-control form-control-solid"
-                                                   name="password_confirmation" value="" id="password_confirmation"
-                                                   data-kt-ecommerce-settings-type="tagify"/>
-                                            <!--end::Input-->
-                                            @error('password')
-                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
-                                            @enderror
+                                            <select name="role_id" class="form-control">
+                                                <option value="">Selectionner</option>
+                                                @foreach ($getRole as $value )
+                                                <option {{ ($getRecord->role_id == $value->id) ? 'selected' : '' }}  value="{{$value->id}}">{{$value->name}}</option>
+                                                @endforeach
+                                             </select>
                                         </div>
+
+
                                     </div>
+                                    <!--begin::Input group-->
+
                                     <!--end::Input group-->
                                     <!--begin::Action buttons-->
                                     <div class="row">

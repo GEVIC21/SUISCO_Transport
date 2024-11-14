@@ -121,25 +121,12 @@
                                     <!--end::Input group-->
                                     <!--begin::Input group-->
                                     <div class="row fv-row mb-7">
-                                        <div class="col-md-3 text-md-end">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-bold form-label mt-3">
-                                                <span class="required">Confirmer Mot de passe</span>
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                   title="Set keywords for the store separated by a comma."></i>
-                                            </label>
-                                            <!--end::Label-->
-                                        </div>
-                                        <div class="col-md-9">
-                                            <!--begin::Input-->
-                                            <input type="password" class="form-control form-control-solid"
-                                                   name="password_confirmation" value="" id="password_confirmation"
-                                                   data-kt-ecommerce-settings-type="tagify"/>
-                                            <!--end::Input-->
-                                            @error('password')
-                                            <div style="color: red;font-size: smaller;">{{ $message }}</div>
-                                            @enderror
-                                        </div>
+                                        <select name="role_id" class="form-control px-15 select2-hidden-accessible" id="countryOption" data-select2-id="countryOption" tabindex="-1" aria-hidden="true">
+                                            <option value="">Selectionner</option>
+                                            @foreach ($getRole as $value )
+                                              <option {{ (old('role_id') == $value->id) ? 'selected' : '' }}  value="{{$value->id}}">{{$value->name}}</option>
+                                            @endforeach
+                                         </select>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Action buttons-->
