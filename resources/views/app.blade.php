@@ -192,6 +192,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Ecoles</span>
                                 </a>
                             </div>
+                            {{-- @if(!empty($PermissionSetting)) --}}
                             <div class="menu-item menu-accordion">
                                 <a class="menu-link @if (Route::currentRouteName() == 'admin.parametres') active @endif"
                                     href="{{ route('admin.parametres') }}">
@@ -213,7 +214,9 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Paramètres</span>
                                 </a>
                             </div>
+                            {{-- @endif --}}
 
+                            @if(!empty($PermissionRole))
                             <div class="menu-item menu-accordion">
                                 <a class="menu-link @if (Route::currentRouteName() == 'admin.parametres') active @endif"
                                     href="{{ route('admin.role.list') }}">
@@ -235,7 +238,9 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Roles</span>
                                 </a>
                             </div>
+                            @endif
 
+                            @if(!empty($PermissionUser))
                             <div class="menu-item menu-accordion">
                                 <a href="{{ route('admin.utilisateurs') }}"
                                     class="menu-link @if (Route::currentRouteName() == 'admin.utilisateurs') active @endif">
@@ -256,9 +261,9 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Utilisateurs</span>
                                 </a>
                             </div>
+                            @endif
 
-
-
+                            @if(!empty($PermissionDriver))
                             <div class="menu-item menu-accordion">
                                 <a href="{{ route('admin.chauffeur') }}"
                                     class="menu-link @if (Route::currentRouteName() == 'admin.chauffeur') active @endif">
@@ -279,6 +284,7 @@ License: For each use you must have a valid license purchased only from above li
                                     <span class="menu-title">Chauffeur</span>
                                 </a>
                             </div>
+                            @endif
 
 
                             <div class="d-flex flex-column p-3 " style="width: 150px;">

@@ -63,7 +63,9 @@ class AdminController extends Controller
 
     public function ajouter_utilisateur()
     {
-        return view('admin.add.utilisateurs');
+        $data['getRole'] = RoleModel::getRecord();
+        $data['getRole'] = RoleModel::getRecord();
+        return view('admin.add.utilisateurs', $data);
     }
 
     public function add_school(Request $request)
@@ -94,6 +96,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
+            'role_id' => 'required',
         ], [
                 'email.unique' => 'cette valeur a déjà été utilisée',
             ]
@@ -103,10 +106,23 @@ class AdminController extends Controller
             return back()->withErrors($validator)->withInput();
         }
 
+
+        // $user = new User;
+        // $user->name = trim($request->name);
+        // $user->email = trim($request->email);
+        // $user->password = Hash::make($request->password);
+        // $user->role_id = trim($request->role_id);
+        // $user->save();
+
+
+
+
+
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'role_id' => $request->input('role_id'),
         ]);
         Flashy::message(__('Utilisateur enrégistré avec sussès'));
         return redirect()->route('admin.utilisateurs');
