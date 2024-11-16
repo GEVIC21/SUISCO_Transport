@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\DriverController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
@@ -131,3 +133,11 @@ Route::post('register', [RegisteredUserController::class, 'store'])->name('regis
 
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+
+
+// Admin Routes
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
+
+// Vendor Routes
+Route::get('driver/dashboard', [DriverController::class, 'dashboard'])->middleware('auth')->name('driver.dashboard');
