@@ -14,13 +14,13 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        User::updateOrCreate([
-            'email' => 'admin@suisco.com',
-        ], [
-            'name' => 'Admin',
-            'password' => bcrypt('suisco2024'),
-            'role' => 'admin',
-            ]);
+        // User::updateOrCreate([
+        //     'email' => 'admin@suisco.com',
+        // ], [
+        //     'name' => 'Admin',
+        //     'password' => bcrypt('suisco2024'),
+        //     'role' => 'admin',
+        //     ]);
 
     }
 }

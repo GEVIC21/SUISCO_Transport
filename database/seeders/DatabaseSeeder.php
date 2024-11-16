@@ -15,19 +15,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (Parameter::DEFAULTS as $key => $value ) {
-            if (Parameter::whereLabel($key)->doesntExist()) {
-                Parameter::create([
-                    'label' => $key,
-                    'description' => $value[0],
-                    'value' => $value[1],
-                ]);
-            }
-        }
+        // foreach (Parameter::DEFAULTS as $key => $value ) {
+        //     if (Parameter::whereLabel($key)->doesntExist()) {
+        //         Parameter::create([
+        //             'label' => $key,
+        //             'description' => $value[0],
+        //             'value' => $value[1],
+        //         ]);
+        //     }
+        // }
+
         $this->call([UsersTableSeeder::class]);
         $this->call([SchoolsTableSeeders::class]);
         ////role////
-        $this->call(AdminUserSeeder::class);
+        // $this->call(AdminUserSeeder::class);
 
     }
 }
