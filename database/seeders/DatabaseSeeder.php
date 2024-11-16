@@ -15,15 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // foreach (Parameter::DEFAULTS as $key => $value ) {
-        //     if (Parameter::whereLabel($key)->doesntExist()) {
-        //         Parameter::create([
-        //             'label' => $key,
-        //             'description' => $value[0],
-        //             'value' => $value[1],
-        //         ]);
-        //     }
-        // }
+        foreach (Parameter::DEFAULTS as $key => $value ) {
+            if (Parameter::whereLabel($key)->doesntExist()) {
+                $parameter = new Parameter();
+                $parameter->create([
+                    'label' => $key,
+                    'description' => $value[0],
+                    'value' => $value[1],
+                ]);
+            }
+        }
 
         $this->call([UsersTableSeeder::class]);
         $this->call([SchoolsTableSeeders::class]);

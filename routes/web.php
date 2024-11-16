@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::name('bus.')->group(function (){
     Route::get('/', 'App\Http\Controllers\BusController@index')->name('index');
     Route::view('/'.('become-owner'), 'become_owner')->name('become.owner');
@@ -118,8 +122,8 @@ Route::middleware(['role:admin', 'auth'])->name('admin.')->group(function (){
 //});
 
 // Route::get('/admin-login', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('login_page');
-Route::post('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
-Route::get('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
+// Route::post('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
+// Route::get('/dashboard2', [\App\Http\Controllers\AdminController::class, 'login_page'])->name('dashboard');
 
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -136,8 +140,5 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
 
 
 
-// Admin Routes
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
 
-// Vendor Routes
-Route::get('driver/dashboard', [DriverController::class, 'dashboard'])->middleware('auth')->name('driver.dashboard');
+

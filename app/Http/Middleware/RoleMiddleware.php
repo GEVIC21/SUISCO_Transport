@@ -15,12 +15,20 @@ class RoleMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      *
      */
-    public function handle(Request $request, Closure $next, $role)
-    {
-        if (auth()->check() && auth()->user()->role === $role) {
-            return $next($request);
-        }
-        return redirect('/home')->with('error', 'Accès refusé.');
+    // public function handle(Request $request, Closure $next, $role)
+    // {
+    //     if (auth()->check() && auth()->user()->role === $role) {
+    //         return $next($request);
+    //     }
+    //     return redirect('/home')->with('error', 'Accès refusé.');
 
+    // }
+
+    public function handle(Request $request, Closure $next,$role)
+    {
+        if ($request->user()->role !== $role) {
+            return redirect()->route('dashboard');
+        }
+        return $next($request);
     }
 }
